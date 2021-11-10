@@ -15,10 +15,11 @@
 # Installation:
   1. Install termux from playstore or with link: https://play.google.com/store/apps/details?id=com.termux
   2. Type the commands:
-        1) pkg install git -y (if shows error try once more)
+        1) pkg install git -y (do it twice due to some bug)
         2) git clone https://github.com/DrDelin/Youtube-Downloader-Android
         3) cd Youtube-Downloader-Android
         4) sh install.sh
+        5) cd
   3. Always run the script with command: python ytdlp.py
   4. Enjoy..!!
     4.1. If any bug feel free to comment.
