@@ -1,0 +1,2 @@
+url=$1
+python "/data/data/com.termux/files/home/ytdlp.py" $url

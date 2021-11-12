@@ -1,5 +1,30 @@
 #import
 import os
+import sys
+
+#Verification of dependencies
+def dependency():
+    try:
+        import ffmpeg
+    except ModuleNotFoundError:
+        os.system('pip install ffmpeg')
+    try:
+        import yt_dlp
+    except ModuleNotFoundError():
+        os.system('pip install --no-deps -U yt-dlp')
+    try:
+        import mutagen
+    except ModuleNotFoundError():
+        os.system('pip install mutagen')
+    try:
+        import pycryptodomex
+    except ModuleNotFoundError():
+        os.system('pip install pycryptodomex')
+
+dependency()
+
+#Automated link grabbing from Termux url Opener
+link = sys.argv[1]
 
 #Assigning output directory
 opdir = "'/storage/emulated/0/YTD/%(title)s.%(ext)s' "
@@ -13,11 +38,6 @@ def dowdir():
     else:
         os.mkdir(path)
         codec()
-
-#User input as link
-print('Enter the YT link: ')
-link = input('YT link:')
-
 
 #Advance download fn for advanced users :)
 def advanced():
