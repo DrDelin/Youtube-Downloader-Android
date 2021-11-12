@@ -16,10 +16,7 @@ def dependency():
         import mutagen
     except ModuleNotFoundError():
         os.system('pip install mutagen')
-    try:
-        import pycryptodomex
-    except ModuleNotFoundError():
-        os.system('pip install pycryptodomex')
+
 
 dependency()
 
