@@ -26,7 +26,7 @@ dependency()
 link = sys.argv[1]
 
 #(Torrent) Downloader
-def tor_codec():
+def torrentCodec():
     code = "transmission-cli -w '/storage/emulated/0/Torrent/' " +magnet
     os.system(code)
 
@@ -172,29 +172,26 @@ def codec():
             codec()
 
 #(Youtube) Download directory creation and verification
-def dowdir():
+def downloadDirectory():
     path = "/storage/emulated/0/YTD/"
-    exist = os.path.isdir(path)
-    if exist:
+    if os.path.isdir(path):
         codec()
     else:
         os.mkdir(path)
         codec()
 
 #(Torrent) Download Directory creation and verification
-def tordow():
+def torrentDownload():
     path = '/storage/emulated/0/Torrent'
-    exist = os.path.isdir(path)
-    if exist:
-        tor_codec()
+    if os.path.isdir(path):
+        torrentCodec()
     else:
         os.mkdir(path)
-        tor_codec()
+        torrentCodec()
 
 #(Master) Link Assortment (Distributor)
 if "magnet" in link:
-    link1 = "'" +link
-    magnet = link1 +"'"
-    tordow()
+    magnet = "'" +link +"'"
+    torrentDownload()
 else:
-    dowdir()
+    downloadDirectory()
