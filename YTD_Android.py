@@ -1,8 +1,8 @@
-#import
+#(Master) imports
 import os
 import sys
 
-#Verification of dependencies
+#(Master) Verification of dependencies
 def dependency():
     try:
         import ffmpeg
@@ -16,29 +16,25 @@ def dependency():
         import mutagen
     except ModuleNotFoundError():
         os.system('pip install mutagen')
-
-
+    try:
+        import transmission
+    except ModuleNotFoundError():
+        os.system('apt install transmission-gtk')
 dependency()
 
-#Automated link grabbing from Termux url Opener
+#(Master) Automated link grabbing from Termux url Opener
 link = sys.argv[1]
 
-#Assigning output directory
+#(Torrent) Downloader
+def tor_codec():
+    code = "transmission-cli -w '/storage/emulated/0/Torrent/' " +magnet
+    os.system(code)
+
+#(Youtube) Assigning output directory
 opdir = "'/storage/emulated/0/YTD/%(title)s.%(ext)s' "
 
-#Download directory Verification
-def dowdir():
-    path = "/storage/emulated/0/YTD/"
-    exist = os.path.isdir(path)
-    if exist:
-        codec()
-    else:
-        os.mkdir(path)
-        codec()
-
-#Advance download fn for advanced users :)
-def advanced():
-    
+#(Youtube) Advanced download
+def advanced():  
     os.system("yt-dlp -F " +link)
     vid = input('Video id: ')
     aid = input('Audio id: ')
@@ -47,12 +43,12 @@ def advanced():
     format = fit+str(vid)+" + "+str(aid)
     
     def nsv():
-        code = "yt-dlp --embed-thumbnail -o "+opdir+format+'" --merge-output-format mp4 ' +link
+        code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+format+'" --merge-output-format mp4 ' +link
         os.system(code)
     
     def sv():
         print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
-        code = "yt-dlp --embed-thumbnail -o "+opdir+" -ci "+format+'" --write-sub --sub-lang en --embed-subs --merge-output-format mp4 ' +link
+        code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" -ci "+format+'" --write-sub --sub-lang en --embed-subs --merge-output-format mp4 ' +link
         os.system(code)
 
     if sub=="y":
@@ -64,17 +60,13 @@ def advanced():
     else:
         advanced()
 
-
-#Best version for lazy fellows
+#(Youtube) Best
 def best():
-
-    code = "yt-dlp --embed-thumbnail -o "+opdir+" --format best " +link
+    code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" --format best " +link
     os.system(code)
 
-
-#Video fellows
-def video():
-    
+#(Youtube) Video
+def video(): 
     print('Enter the respective code for Required Resolution:')
     print('[code] - [Resolution]')
     print('1 - 4k')
@@ -128,12 +120,12 @@ def video():
 
         def nsv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --merge-output-format mp4 '
-            code = "yt-dlp --embed-thumbnail -o "+opdir+" -f "+format +link
+            code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" -f "+format +link
             os.system(code)
 
         def sv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --write-sub --sub-lang en --embed-subs --merge-output-format mp4 '
-            code = "yt-dlp --embed-thumbnail -o "+opdir+" -ci -f "+format +link
+            code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" -ci -f "+format +link
             os.system(code)
 
         subs = input('With Subtilte (y) or without subtitle (n): ')
@@ -148,19 +140,17 @@ def video():
     else:
         return video()
 
-
-#Audio fellows
+#(Youtube) Audio
 def audio():
 
     print('Enter the Format of audio (mp3, aac, m4a, flac....)')
     codec = input('Enter the format: ')
-    code = "yt-dlp --embed-thumbnail -o "+opdir+" -x --audio-format "+codec+" "+link
+    code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" -x --audio-format "+codec+" '"+link + "'"
     os.system(code)
 
-
-#Orchestra Master
+#(Youtube) Assortment of media to download
 def codec():
-
+    print('***Enter (v) for Video or (a) for audio or (m) for advanced or (b) for best***')
     T = input('v or a or m or b: ')
 
     if T=="v":
@@ -174,9 +164,30 @@ def codec():
     else:
         codec()
 
+#(Youtube) Download directory creation and verification
+def dowdir():
+    path = "/storage/emulated/0/YTD/"
+    exist = os.path.isdir(path)
+    if exist:
+        codec()
+    else:
+        os.mkdir(path)
+        codec()
 
-#Theme selection for orchestra
-print('***Enter (v) for Video or (a) for audio or (m) for advanced or (b) for best***')
+#(Torrent) Download Directory creation and verification
+def tordow():
+    path = '/storage/emulated/0/Torrent'
+    exist = os.path.isdir(path)
+    if exist:
+        tor_codec()
+    else:
+        os.mkdir(path)
+        tor_codec()
 
-#Here Starts the Orchestra
-dowdir()
+#(Master) Link Assortment (Distributor)
+if "magnet" in link:
+    link1 = "'" +link
+    magnet = link1 +"'"
+    tordow()
+else:
+    dowdir()
