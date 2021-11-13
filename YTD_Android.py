@@ -28,7 +28,7 @@ def torrentCodec():
     os.system(code)
 
 #(Youtube) Assigning output directory
-opdir = "'/storage/emulated/0/YTD/%(title)s.%(ext)s' "
+output_directory = "'/storage/emulated/0/YTD/%(title)s.%(ext)s' "
 
 #(Youtube) Advanced download
 def advanced():  
@@ -40,12 +40,12 @@ def advanced():
     format = fit+str(vid)+" + "+str(aid)
     
     def nsv():
-        code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+format+'" --merge-output-format mp4 ' +link
+        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+format+'" --merge-output-format mp4 ' +link
         os.system(code)
     
     def sv():
         print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
-        code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" -ci "+format+'" --write-sub --sub-lang en --embed-subs --merge-output-format mp4 ' +link
+        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci "+format+'" --write-sub --sub-lang en --embed-subs --merge-output-format mp4 ' +link
         os.system(code)
 
     if sub=="y":
@@ -59,7 +59,7 @@ def advanced():
 
 #(Youtube) Best
 def best():
-    code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" --format best " +link
+    code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" --format best " +link
     os.system(code)
 
 #(Youtube) Video
@@ -117,12 +117,12 @@ def video():
 
         def nsv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --merge-output-format mp4 '
-            code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" -f "+format +link
+            code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -f "+format +link
             os.system(code)
 
         def sv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --write-sub --sub-lang en --embed-subs --merge-output-format mp4 '
-            code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" -ci -f "+format +link
+            code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format +link
             os.system(code)
 
         subs = input('With Subtilte (y) or without subtitle (n): ')
@@ -142,7 +142,7 @@ def audio():
 
     print('Enter the Format of audio (mp3, aac, m4a, flac....)')
     codec = input('Enter the format: ')
-    code = "yt-dlp --embed-thumbnail --add-metadata -o "+opdir+" -x --audio-format "+codec+" '"+link + "'"
+    code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
     os.system(code)
 
 #(Youtube) Assortment of media to download
