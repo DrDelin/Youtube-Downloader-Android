@@ -16,17 +16,14 @@ def dependency():
         import mutagen
     except ModuleNotFoundError():
         os.system('pip install mutagen')
-    try:
-        import transmission
-    except ModuleNotFoundError():
-        os.system('apt install transmission-gtk')
+
 dependency()
 
 #(Master) Automated link grabbing from Termux url Opener
 link = sys.argv[1]
 
 #(Torrent) Downloader
-def tor_codec():
+def torrentCodec():
     code = "transmission-cli -w '/storage/emulated/0/Torrent/' " +magnet
     os.system(code)
 
@@ -156,7 +153,7 @@ def codec():
           audio()
   
     else:
-        print('***Enter (v) for Video or (a) for audio or (m) for advanced or (b) for best***')
+        print('***Enter \n(v) for Video \n(a) for audio \n(m) for advanced \n(b) for best')
    
         T = input('v or a or m or b: ')
    
@@ -172,29 +169,26 @@ def codec():
             codec()
 
 #(Youtube) Download directory creation and verification
-def dowdir():
+def downloadDirectory():
     path = "/storage/emulated/0/YTD/"
-    exist = os.path.isdir(path)
-    if exist:
+    if os.path.isdir(path):
         codec()
     else:
         os.mkdir(path)
         codec()
 
 #(Torrent) Download Directory creation and verification
-def tordow():
+def torrentDownload():
     path = '/storage/emulated/0/Torrent'
-    exist = os.path.isdir(path)
-    if exist:
-        tor_codec()
+    if os.path.isdir(path):
+        torrentCodec()
     else:
         os.mkdir(path)
-        tor_codec()
+        torrentCodec()
 
 #(Master) Link Assortment (Distributor)
 if "magnet" in link:
-    link1 = "'" +link
-    magnet = link1 +"'"
-    tordow()
+    magnet = "'" +link +"'"
+    torrentDownload()
 else:
-    dowdir()
+    downloadDirectory()
