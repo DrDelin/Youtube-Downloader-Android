@@ -20,6 +20,7 @@ def dependency():
         import transmission
     except ModuleNotFoundError():
         os.system('apt install transmission-gtk')
+
 dependency()
 
 #(Master) Automated link grabbing from Termux url Opener
@@ -156,7 +157,7 @@ def codec():
           audio()
   
     else:
-        print('***Enter (v) for Video or (a) for audio or (m) for advanced or (b) for best***')
+        print('***Enter \n(v) for Video \n(a) for audio \n(m) for advanced \n(b) for best')
    
         T = input('v or a or m or b: ')
    
