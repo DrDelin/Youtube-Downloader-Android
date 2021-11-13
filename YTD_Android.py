@@ -150,19 +150,26 @@ def audio():
 
 #(Youtube) Assortment of media to download
 def codec():
-    print('***Enter (v) for Video or (a) for audio or (m) for advanced or (b) for best***')
-    T = input('v or a or m or b: ')
-
-    if T=="v":
-         video()
-    elif T=="m":
-        advanced()
-    elif T=="a":
-        audio()
-    elif T=="b":
-        best()
+  
+    #(Youtube Music) Redirection to Audio Function Without confirmation for Youtube music links
+    if "music" in link:
+          audio()
+  
     else:
-        codec()
+        print('***Enter (v) for Video or (a) for audio or (m) for advanced or (b) for best***')
+   
+        T = input('v or a or m or b: ')
+   
+        if T=="v":
+            video()
+        elif T=="m":
+            advanced()
+        elif T=="a":
+            audio()
+        elif T=="b":
+            best()
+        else:
+            codec()
 
 #(Youtube) Download directory creation and verification
 def dowdir():
