@@ -16,10 +16,6 @@ def dependency():
         import mutagen
     except ModuleNotFoundError():
         os.system('pip install mutagen')
-    try:
-        import transmission
-    except ModuleNotFoundError():
-        os.system('apt install transmission-gtk')
 
 dependency()
 
