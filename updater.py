@@ -3,7 +3,7 @@ import os
 import sys
 
 #temp Download
-os.system(wget -P '/data/data/com.termux/files/home/' -q 'https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py')
+os.system(wget -P "/data/data/com.termux/files/home/" -q "https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py")
    
 #updator
 with open("/data/data/com.termux/files/home/YTD_Android.py") as u:
