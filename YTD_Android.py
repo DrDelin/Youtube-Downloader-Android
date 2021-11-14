@@ -1,11 +1,11 @@
-#Version 1.0.0.0
+#Version 1.0.0.1
 
 #(Master) imports
 import os
 import sys
 
 #(Master) Updater
-code = "wget -P '/data/data/com.termux/files/home/' 'https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py'"
+code = "wget -P '/data/data/com.termux/files/home/' -q 'https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py'"
 os.system(code)
 
 with open("YTD_Android.py") as u:
