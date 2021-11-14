@@ -27,4 +27,5 @@ echo ###Installation Done Successfully...Select Termux in share option of youtub
 
 rm "/data/data/com.termux/files/home/Youtube-Downloader-Android/install.sh"
 rm "/data/data/com.termux/files/home/Youtube-Downloader-Android/README.md"
+cd "/data/data/com.termux/files/home/"
 rmdir "/data/data/com.termux/files/home/Youtube-Downloader-Android"
