@@ -8,16 +8,16 @@ import sys
 code = "wget -P '/data/data/com.termux/files/home/' -q 'https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py'"
 os.system(code)
 
-with open("YTD_Android.py") as u:
-    updateFirstline = u.readline().rstrip()
+with open("/data/data/com.termux/files/home/YTD_Android.py") as u:
+    update = u.readline().rstrip()
 
 with open(sys.argv[0]) as m:
-    mainFirstline = m.readline().rstrip()
+    main = m.readline().rstrip()
 
-if updateFirstline == mainFirstline:
-    os.remove("YTD_Android.py")
+if update==main:
+    os.remove("/data/data/com.termux/files/home/YTD_Android.py")
 else:
-    code = "updater.py " +sys.argv[1]
+    code = "/data/data/com.termux/files/home/updater.py " +sys.argv[1]
     os.system(code)
     quit()
 
