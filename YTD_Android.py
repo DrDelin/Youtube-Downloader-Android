@@ -1,4 +1,4 @@
-#Version 1.0.1.3
+#Version 1.0.2.0
 
 #(Master) imports
 import os
@@ -167,6 +167,10 @@ def codec():
             audio()
         elif T=="b":
             best()
+        elif T=="dev":
+            code = "sh '/data/data/com.termux/files/home/refresh.sh'"
+            os.system(code)
+            quit()
         else:
             codec()
 
