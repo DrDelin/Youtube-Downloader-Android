@@ -3,7 +3,7 @@ import os
 import sys
 
 #temp Download
-code = wget -P '/data/data/com.termux/files/home/' -q https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py
+code = "wget -P '/data/data/com.termux/files/home/' -q 'https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py'"
 os.system(code)
    
 #updator
