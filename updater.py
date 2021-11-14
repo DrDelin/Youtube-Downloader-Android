@@ -26,4 +26,7 @@ else:
     code = "main.py " +sys.argv[1]
     os.system(code)
 
+m.close()
+u.close()
+
 quit()
