@@ -16,6 +16,7 @@ mv "YTD_Android.py" "/data/data/com.termux/files/home/main.py"
 mv "termux-url-opener" "/data/data/com.termux/files/home/termux-url-opener"
 mv "gversion.txt" "/data/data/com.termux/files/home/lversion.txt"
 rm "updatemanifest.sh"
+rm "README.md"
 
 cd "/data/data/com.termux/files/home/"
 
@@ -26,3 +27,6 @@ cd bin
 chmod +x termux-url-opener
 
 echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
+
+rm "/data/data/com.termux/files/home/Youtube-Downloader-Android/install.sh"
+rmdir "/data/data/com.termux/files/home/Youtube-Downloader-Android"
