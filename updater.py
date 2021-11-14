@@ -27,8 +27,3 @@ else:
     os.system(code)
 
 quit()
-
-
-
-
-#Back to process
