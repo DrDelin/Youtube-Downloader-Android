@@ -14,8 +14,7 @@ apt install transmission-gtk -y
 
 mv "YTD_Android.py" "/data/data/com.termux/files/home/main.py"
 mv "termux-url-opener" "/data/data/com.termux/files/home/termux-url-opener"
-mv "gversion" "/data/data/com.termux/files/home/lversion"
-
+mv "updater.py" "/data/data/com.termux/files/home/updater.py"
 cd "/data/data/com.termux/files/home/"
 
 mkdir bin
@@ -25,3 +24,7 @@ cd bin
 chmod +x termux-url-opener
 
 echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
+
+rm "/data/data/com.termux/files/home/Youtube-Downloader-Android/install.sh"
+rm "/data/data/com.termux/files/home/Youtube-Downloader-Android/README.md"
+rmdir "/data/data/com.termux/files/home/Youtube-Downloader-Android"
