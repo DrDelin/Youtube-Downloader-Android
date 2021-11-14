@@ -1,4 +1,4 @@
-#Version 1.0.0.1
+#Version 1.0.0.2
 
 #(Master) imports
 import os
@@ -17,9 +17,8 @@ with open(sys.argv[0]) as m:
 if update==main:
     os.remove("/data/data/com.termux/files/home/YTD_Android.py")
 else:
-    code = "/data/data/com.termux/files/home/updater.py " +sys.argv[1]
+    code = "python /data/data/com.termux/files/home/updater.py " +sys.argv[1]
     os.system(code)
-    quit()
 
 #(Master) Verification of dependencies
 def dependency():
