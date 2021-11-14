@@ -1,6 +1,25 @@
+#Version 1.0.0.0
+
 #(Master) imports
 import os
 import sys
+
+#(Master) Updater
+code = "wget -P '/data/data/com.termux/files/home/' 'https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py'"
+os.system(code)
+
+with open("YTD_Android.py") as u:
+    updateFirstline = u.readline().rstrip()
+
+with open(sys.argv[0]) as m:
+    mainFirstline = m.readline().rstrip()
+
+if updateFirstline == mainFirstline:
+    os.remove("YTD_Android.py")
+else:
+    code = "updater.py " +sys.argv[1]
+    os.system(code)
+    quit()
 
 #(Master) Verification of dependencies
 def dependency():
