@@ -23,7 +23,7 @@ else:
     os.remove("/data/data/com.termux/files/home/main.py")
     os.system("mv YTD_Android.py main.py")
     print("Updated..!")
-    code = "main.py '" +sys.argv[1] +"'"
+    code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
     os.system(code)
 
 m.close()
