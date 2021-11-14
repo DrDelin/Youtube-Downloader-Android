@@ -1,18 +1,2 @@
 url=$1
-
-echo "Checking For Update...."
-wget -P "/data/data/com.termux/files/home/" "https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/gversion.txt"
-
-if cmp -s "/data/data/com.termux/files/home/lversion.txt" "/data/data/com.termux/files/home/gversion.txt"
-then
-    rm "/data/data/com.termux/files/home/gversion.txt"
-else
-    echo "Update in progress..."
-    rm "/data/data/com.termux/files/home/lversion.txt"
-    mv "/data/data/com.termux/files/home/gversion.txt" "/data/data/com.termux/files/home/lversion.txt"
-    wget -P "/data/data/com.termux/files/home/" "https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/updatemanifest.sh"
-    sh updatemanifest.sh
-    rm updatemanifest.sh
-fi
-
 python "/data/data/com.termux/files/home/main.py" $url
