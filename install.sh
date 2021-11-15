@@ -15,6 +15,7 @@ apt install transmission-gtk -y
 mv "YTD_Android.py" "/data/data/com.termux/files/home/main.py"
 mv "termux-url-opener" "/data/data/com.termux/files/home/termux-url-opener"
 mv "updater.py" "/data/data/com.termux/files/home/updater.py"
+mv "refresh.sh" "/data/data/com.termux/files/home/refresh.sh"
 cd "/data/data/com.termux/files/home/"
 
 mkdir bin
