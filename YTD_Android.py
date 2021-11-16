@@ -1,4 +1,4 @@
-#Version 2.0.1.3
+#Version 2.0.2.0
 
 #(Master) imports
 import os
@@ -40,12 +40,14 @@ else:
 
 #(Torrent) Downloader
 def torrentCodec():
+    print("Downloading a torrent:")
     magnet = "'" +link +"'"
     code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
     os.system(code)
 
 #(Facebook) Facebook, Instagram and Twitter and also Others Download Directory:
 def socialMedia(socialmedia):
+    print("Downloading from " +socialmedia)
     path = os.path.join('/storage/emulated/0/Termux_Downloader/', socialmedia) +'/'
     code = 'yt-dlp -o ' + '"{path}%(title)s.%(ext)s"'.format(path=path) + ' " ' +  link + ' " '
     if os.path.isdir(path):
@@ -55,7 +57,8 @@ def socialMedia(socialmedia):
         os.system(code)
 
 #(Youtube) Advanced download
-def advanced():  
+def advanced():
+    print("Downloading from YouTube - Advanced mode:")  
     os.system("yt-dlp -F " +link)
     vid = input('Video id: ')
     aid = input('Audio id: ')
@@ -83,11 +86,13 @@ def advanced():
 
 #(Youtube) Best
 def best():
+    print("Downloading best one from YouTube:")
     code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" --format best " +link
     os.system(code)
 
 #(Youtube) Video
-def video(): 
+def video():
+    print("Downloading video from YouTube:") 
     print('Enter the respective code for Required Resolution:')
     print('[code] - [Resolution]')
     print('1 - 4k')
@@ -163,6 +168,7 @@ def video():
 
 #(Youtube Music) Directory creation
 def YTmusicDirectory():
+    print("Downloading songs from YouTube Music:")
     path = "/storage/emulated/0/Termux_Downloader/YTmusic/"
     exist = os.path.isdir(path)
     if exist:
@@ -197,6 +203,7 @@ def codec():
         elif T=="m":
             advanced()
         elif T=="a":
+            print("Downloading Audio track from YouTube:")
             audio()
         elif T=="b":
             best()
