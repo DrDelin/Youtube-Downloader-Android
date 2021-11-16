@@ -1,4 +1,4 @@
-#Version 1.0.2.1b
+#Version 1.0.2.2b
 
 #(Master) imports
 import os
@@ -31,8 +31,16 @@ dependency()
 #(Master) Automated link grabbing from Termux url Opener
 link = sys.argv[1]
 
+#Output Directory
+
+if "music" in link:
+    output_directory = "'/storage/emulated/0/Termux_Downloader/YTmusic/%(title)s.%(ext)s' "
+else:
+    output_directory = "'/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s' "
+
 #(Torrent) Downloader
 def torrentCodec():
+    magnet = "'" +link +"'"
     code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
     os.system(code)
 
@@ -190,7 +198,6 @@ def video():
 #(Youtube Music) Directory creation
 def YTmusicDirectory():
     path = "/storage/emulated/0/Termux_Downloader/YTmusic/"
-    output_directory = "'/storage/emulated/0/Termux_Downloader/YTmusic/%(title)s.%(ext)s' "
     exist = os.path.isdir(path)
     if exist:
         audio()
@@ -237,7 +244,6 @@ def codec():
 #(Youtube) Youtube Download Directory
 def youtubeDirectory():
     path = "/storage/emulated/0/Termux_Downloader/Youtube/"
-    output_directory = "'/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s' "
     if os.path.isdir(path):
         codec()
     else:
@@ -256,7 +262,6 @@ def torrentDownload():
 #(Master) Link Assortment (Distributor)
 def linkDistributor():
     if "magnet" in link:
-        magnet = "'" +link +"'"
         torrentDownload()
     elif "music" in link:
         YTmusicDirectory()
