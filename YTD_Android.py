@@ -1,8 +1,15 @@
-#Version 1.0.2.1
+#Version 1.0.2.1b
 
 #(Master) imports
 import os
 import sys
+
+#Version Info:
+with open(sys.argv[0]) as m:
+    a = m.readline().rstrip()
+    ver = a.replace("#", "")
+print(ver)
+m.close()
 
 #(Master) Verification of dependencies
 def dependency():
@@ -26,11 +33,52 @@ link = sys.argv[1]
 
 #(Torrent) Downloader
 def torrentCodec():
-    code = "transmission-cli -w '/storage/emulated/0/Torrent/' " +magnet
+    code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
     os.system(code)
 
-#(Youtube) Assigning output directory
-output_directory = "'/storage/emulated/0/YTD/%(title)s.%(ext)s' "
+#(Facebook) Facebook Download Directory:
+def facebook():
+    path = "/storage/emulated/0/Termux_Downloader/Facebook/"
+    exist = os.path.isdir(path)
+    code = "yt-dlp -o '/storage/emulated/0/Termux_Downloader/Facebook/%(title)s.%(ext)s' " +link
+    if exist:
+        os.system(code)
+    else:
+        os.mkdir(path)
+        os.system(code)
+
+#(Twitter) Twitter Download Directory:
+def twitter():
+    path = "/storage/emulated/0/Termux_Downloader/Twitter/"
+    exist = os.path.isdir(path)
+    code = "yt-dlp -o '/storage/emulated/0/Termux_Downloader/Twitter/%(title)s.%(ext)s' " +link
+    if exist:
+        os.system(code)
+    else:
+        os.mkdir(path)
+        os.system(code)
+
+#(Instagram) Instagram Download Directory:
+def instagram():
+    path = "/storage/emulated/0/Termux_Downloader/Instagram/"
+    exist = os.path.isdir(path)
+    code = "yt-dlp -o '/storage/emulated/0/Termux_Downloader/Instagram/%(title)s.%(ext)s' " +link
+    if exist:
+        os.system(code)
+    else:
+        os.mkdir(path)
+        os.system(code)
+
+#(Random Sites) Random Download Directory:
+def others():
+    path = "/storage/emulated/0/Termux_Downloader/Others/"
+    exist = os.path.isdir(path)
+    code = "yt-dlp -o '/storage/emulated/0/Termux_Downloader/Others/%(title)s.%(ext)s' " +link
+    if exist:
+        os.system(code)
+    else:
+        os.mkdir(path)
+        os.system(code)
 
 #(Youtube) Advanced download
 def advanced():  
@@ -139,6 +187,17 @@ def video():
     else:
         return video()
 
+#(Youtube Music) Directory creation
+def YTmusicDirectory():
+    path = "/storage/emulated/0/Termux_Downloader/YTmusic/"
+    output_directory = "'/storage/emulated/0/Termux_Downloader/YTmusic/%(title)s.%(ext)s' "
+    exist = os.path.isdir(path)
+    if exist:
+        audio()
+    else:
+        os.mkdir(path)
+        audio()
+
 #(Youtube) Audio
 def audio():
 
@@ -146,6 +205,7 @@ def audio():
     codec = input('Enter the format: ')
     code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
     os.system(code)
+
 
 #(Youtube) Assortment of media to download
 def codec():
@@ -174,9 +234,10 @@ def codec():
         else:
             codec()
 
-#(Youtube) Download directory creation and verification
-def downloadDirectory():
-    path = "/storage/emulated/0/YTD/"
+#(Youtube) Youtube Download Directory
+def youtubeDirectory():
+    path = "/storage/emulated/0/Termux_Downloader/Youtube/"
+    output_directory = "'/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s' "
     if os.path.isdir(path):
         codec()
     else:
@@ -185,7 +246,7 @@ def downloadDirectory():
 
 #(Torrent) Download Directory creation and verification
 def torrentDownload():
-    path = '/storage/emulated/0/Torrent'
+    path = '/storage/emulated/0/Termux_Downloader/Torrent/'
     if os.path.isdir(path):
         torrentCodec()
     else:
@@ -193,8 +254,31 @@ def torrentDownload():
         torrentCodec()
 
 #(Master) Link Assortment (Distributor)
-if "magnet" in link:
-    magnet = "'" +link +"'"
-    torrentDownload()
-else:
-    downloadDirectory()
+def linkDistributor():
+    if "magnet" in link:
+        magnet = "'" +link +"'"
+        torrentDownload()
+    elif "music" in link:
+        YTmusicDirectory()
+    elif "facebook" in link:
+        facebook()
+    elif "twitter" in link:
+        twitter()
+    elif "instagram" in link:
+        instagram()
+    elif "youtube" or "youtu.be" or "youtu" in link:
+        youtubeDirectory()
+    else:
+        others()
+
+#(Master) General Directory in Internal Storage
+def masterDirectory():
+    path = "/storage/emulated/0/Termux_Downloader/"
+    exist = os.path.isdir(path)
+    if exist:
+        linkDistributor()
+    else:
+        os.mkdir(path)
+        linkDistributor()
+
+masterDirectory()
