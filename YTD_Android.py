@@ -47,7 +47,7 @@ def torrentCodec():
 #(Facebook) Facebook, Instagram and Twitter and also Others Download Directory:
 def socialMedia(socialmedia):
     path = os.path.join('/storage/emulated/0/Termux_Downloader/', socialmedia)
-    code = "yt-dlp -o '{path}%(title)s.%(ext)s'.format(path=path) " +link
+    code = 'yt-dlp -o ' + '{path}%(title)s.%(ext)s'.format(path=path) + ' ' + link
     if os.path.isdir(path):
         os.system(code)
     else:
