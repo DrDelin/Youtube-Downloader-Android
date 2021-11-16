@@ -1,4 +1,4 @@
-#Version 1.0.2.3b
+#Version 2.0.0.0
 
 #(Master) imports
 import os
@@ -265,7 +265,7 @@ def linkDistributor():
         torrentDownload()
     elif "music" in link:
         YTmusicDirectory()
-    elif "facebook" or "fb" in link:
+    elif "facebook" in link:
         facebook()
     elif "twitter" in link:
         twitter()
