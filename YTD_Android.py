@@ -265,7 +265,7 @@ def linkDistributor():
         torrentDownload()
     elif "music" in link:
         YTmusicDirectory()
-    elif "facebook" in link:
+    elif "facebook" or "fb" in link:
         facebook()
     elif "twitter" in link:
         twitter()
