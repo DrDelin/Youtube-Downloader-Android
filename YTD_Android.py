@@ -44,45 +44,11 @@ def torrentCodec():
     code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
     os.system(code)
 
-#(Facebook) Facebook Download Directory:
-def facebook():
-    path = "/storage/emulated/0/Termux_Downloader/Facebook/"
-    exist = os.path.isdir(path)
-    code = "yt-dlp -o '/storage/emulated/0/Termux_Downloader/Facebook/%(title)s.%(ext)s' " +link
-    if exist:
-        os.system(code)
-    else:
-        os.mkdir(path)
-        os.system(code)
-
-#(Twitter) Twitter Download Directory:
-def twitter():
-    path = "/storage/emulated/0/Termux_Downloader/Twitter/"
-    exist = os.path.isdir(path)
-    code = "yt-dlp -o '/storage/emulated/0/Termux_Downloader/Twitter/%(title)s.%(ext)s' " +link
-    if exist:
-        os.system(code)
-    else:
-        os.mkdir(path)
-        os.system(code)
-
-#(Instagram) Instagram Download Directory:
-def instagram():
-    path = "/storage/emulated/0/Termux_Downloader/Instagram/"
-    exist = os.path.isdir(path)
-    code = "yt-dlp -o '/storage/emulated/0/Termux_Downloader/Instagram/%(title)s.%(ext)s' " +link
-    if exist:
-        os.system(code)
-    else:
-        os.mkdir(path)
-        os.system(code)
-
-#(Random Sites) Random Download Directory:
-def others():
-    path = "/storage/emulated/0/Termux_Downloader/Others/"
-    exist = os.path.isdir(path)
-    code = "yt-dlp -o '/storage/emulated/0/Termux_Downloader/Others/%(title)s.%(ext)s' " +link
-    if exist:
+#(Facebook) Facebook, Instagram and Twitter and also Others Download Directory:
+def socialMedia(socialmedia):
+    path = os.path.join(os.path.realpath(os.getcwd()), socialmedia)
+    code = "yt-dlp -o '{path}%(title)s.%(ext)s'.format(path=path) " +link
+    if os.path.isdir(path):
         os.system(code)
     else:
         os.mkdir(path)
@@ -266,15 +232,15 @@ def linkDistributor():
     elif "music" in link:
         YTmusicDirectory()
     elif "facebook" in link:
-        facebook()
+        socialMedia("Facebook")
     elif "twitter" in link:
-        twitter()
+        socialMedia("Twitter")
     elif "instagram" in link:
-        instagram()
+        socialMedia("Instagram")
     elif "youtube" or "youtu.be" or "youtu" in link:
         youtubeDirectory()
     else:
-        others()
+        socialMedia("Others")
 
 #(Master) General Directory in Internal Storage
 def masterDirectory():
