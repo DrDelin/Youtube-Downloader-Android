@@ -1,4 +1,4 @@
-#Version 2.1.3.2
+#Version 2.1.3.3
 #Engine 1.1
 
 #(Master) imports
@@ -24,7 +24,6 @@ if engine == locEng [1]:
     pass
 else:
     print("Upgrading Engine......")
-    print("Please reshare the link again after upgrade ;( ")
     code = "sh '/data/data/com.termux/files/home/refresh.sh'"
     os.system(code)
 e.close()
