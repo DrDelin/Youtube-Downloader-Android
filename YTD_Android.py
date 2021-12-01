@@ -1,15 +1,32 @@
-#Version 2.0.2.0
+#Version 2.1.2.0
+#Engine 1.0
 
 #(Master) imports
 import os
 import sys
+import linecache
 
 #Version Info:
-with open(sys.argv[0]) as m:
-    a = m.readline().rstrip()
-    ver = a.replace("#", "")
-print(ver)
-m.close()
+version = (linecache.getline(linecache.sys.argv[0],1))
+print(version.replace("#", ""))
+linecache.clearcache()
+
+#Engine info:
+engine = (linecache.getline(linecache.sys.argv[0],2))
+print(engine.replace("#", ""))
+linecache.clearcache()
+
+#Engine Upgrade:
+e = open("/data/data/com.termux/files/home/refresh.sh")
+locEng = e.readlines()
+
+if engine == locEng:
+    pass
+else:
+    code = "sh '/data/data/com.termux/files/home/refresh.sh'"
+    os.system(code)
+    quit()
+e.close()
 
 #(Master) Verification of dependencies
 def dependency():
