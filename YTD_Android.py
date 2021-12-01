@@ -1,5 +1,5 @@
-#Version 2.1.3.0
-#Engine 1.0
+#Version 2.1.3.1
+#Engine 1.1
 
 #(Master) imports
 import os
@@ -20,7 +20,7 @@ linecache.clearcache()
 e = open("/data/data/com.termux/files/home/refresh.sh")
 locEng = e.readlines()
 
-if engine == locEng:
+if engine == locEng [1]:
     pass
 else:
     print("Upgrading Engine......")
