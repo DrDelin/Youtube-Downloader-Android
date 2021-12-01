@@ -23,9 +23,10 @@ locEng = e.readlines()
 if engine == locEng:
     pass
 else:
+    print("Upgrading Engine......")
+    print("Please reshare the link again after upgrade ;( ")
     code = "sh '/data/data/com.termux/files/home/refresh.sh'"
     os.system(code)
-    quit()
 e.close()
 
 #(Master) Verification of dependencies
