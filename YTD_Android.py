@@ -1,4 +1,4 @@
-#Version 2.1.2.0
+#Version 2.1.3.0
 #Engine 1.0
 
 #(Master) imports
@@ -90,7 +90,7 @@ def advanced():
     
     def sv():
         print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
-        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci "+format+'" --write-sub --sub-lang en --embed-subs --merge-output-format mp4 ' +link
+        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci "+format+'" --sub-lang en-en-US --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 ' +link
         os.system(code)
 
     if sub=="y":
@@ -168,7 +168,7 @@ def video():
             os.system(code)
 
         def sv():
-            format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --write-sub --sub-lang en --embed-subs --merge-output-format mp4 '
+            format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --sub-lang en-en-US --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 '
             code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format +link
             os.system(code)
 
@@ -262,7 +262,9 @@ def linkDistributor():
         socialMedia("Twitter")
     elif "instagram" in link:
         socialMedia("Instagram")
-    elif "youtube" or "youtu.be" or "youtu" in link:
+    elif "youtube" in link:
+        youtubeDirectory()
+    elif "youtu.be" in link:
         youtubeDirectory()
     else:
         socialMedia("Others")
