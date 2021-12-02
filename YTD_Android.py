@@ -1,4 +1,4 @@
-#Version 2.1.3.3
+#Version 2.1.3.4
 #Engine 1.1
 
 #(Master) imports
@@ -256,6 +256,8 @@ def linkDistributor():
     elif "music" in link:
         YTmusicDirectory()
     elif "facebook" in link:
+        socialMedia("Facebook")
+    elif "fb" in link:
         socialMedia("Facebook")
     elif "twitter" in link:
         socialMedia("Twitter")
