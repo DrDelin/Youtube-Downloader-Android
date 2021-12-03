@@ -1,4 +1,4 @@
-#Version 2.1.3.5
+#Version 2.1.3.6
 #Engine 1.2
 
 #(Master) imports
@@ -170,7 +170,7 @@ def video():
             code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format +link
             os.system(code)
 
-        subs = input('With Subtilte (y) or skip: ')
+        subs = input('With Subtitle (y) or skip: ')
 
         if subs=="y":
             sv()
