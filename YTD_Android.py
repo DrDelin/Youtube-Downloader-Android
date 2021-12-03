@@ -1,4 +1,4 @@
-#Version 2.1.3.4
+#Version 2.1.3.5
 #Engine 1.1
 
 #(Master) imports
@@ -154,13 +154,12 @@ def video():
     
     print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced')
 
-    usr = input("Do you need to go advanced mode (y/n): ")
+    usr = input("Do you need to go advanced mode type (y) else skip: ")
     
     if usr=="y":
         advanced()
 
-    elif usr=="n":
-
+    else:
         def nsv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --merge-output-format mp4 '
             code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -f "+format +link
@@ -171,17 +170,13 @@ def video():
             code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format +link
             os.system(code)
 
-        subs = input('With Subtilte (y) or without subtitle (n): ')
+        subs = input('With Subtilte (y) or skip: ')
 
         if subs=="y":
             sv()
-        elif subs=="n":
-            nsv()
         else:
-            video()
+            nsv()
 
-    else:
-        return video()
 
 #(Youtube Music) Directory creation
 def YTmusicDirectory():
