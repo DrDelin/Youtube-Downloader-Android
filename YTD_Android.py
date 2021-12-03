@@ -1,10 +1,11 @@
-#Version 2.1.3.6
+#Version 3.1.0.0
 #Engine 1.2
 
 #(Master) imports
 import os
 import sys
 import linecache
+import json
 
 #Version Info:
 version = (linecache.getline(linecache.sys.argv[0],1))
@@ -27,6 +28,64 @@ else:
     code = "sh '/data/data/com.termux/files/home/refresh.sh'"
     os.system(code)
 e.close()
+
+#(Default) JSON file creation or verification:
+json_path = "/data/data/com.termux/files/home/default.json"
+
+if os.path.isfile(json_path):
+    pass
+else:
+    jsonnew = {
+        "default" : [
+            {
+                "code" : "",
+                "codec" : ""
+            }],
+        "1" : [
+            {
+                "height" : "2160",
+                "res" : "4k"
+            }],
+        "2" : [
+            {               
+                "height" : "1440",
+                "res" : "2k"
+            }],
+        "3" : [
+            {
+                "height" : "1080",
+                "res" : "1080p"
+            }],
+        "4" : [
+            {
+                "height" : "720",
+                "res" : "720p"
+            }],
+        "5" : [
+            {
+                "height" : "480",
+                "res" : "480p"
+            }],
+        "6" : [
+            {
+                "height" : "360",
+                "res" : "360p"
+            }],
+        "7" : [
+            {
+                "height" : "240",
+                "res" : "240p"
+            }],
+        "8" : [
+            {
+                "height" : "144",
+                "res" : "144p"
+            }]
+    }
+    file = json.dumps(jsonnew, indent=4)
+    with open(json_path, "w") as out:
+        out.write(file)
+    out.close
 
 #(Master) Verification of dependencies
 def dependency():
@@ -109,48 +168,73 @@ def best():
 
 #(Youtube) Video
 def video():
-    print("Downloading video from YouTube:") 
-    print('Enter the respective code for Required Resolution:')
-    print('[code] - [Resolution]')
-    print('1 - 4k')
-    print('2 - 2k')
-    print('3 - 1080p')
-    print('4 - 720p')
-    print("5 - 480p")
-    print('6 - 360p')
-    print('7 - 240p')
-    print('8 - 144p')
+    print("Downloading video from YouTube:")
+    with open(json_path, "r") as defaultFile:
+        data  = json.load(defaultFile)
 
-    i = input('Resolution Code: ')
-    
-    if i== "1":
-        j = '2160'
-        k = '4k'
-    elif i== "2":
-        j = "1440"
-        k = '2k'
-    elif i== "3":
-        j = "1080"
-        k = '1080p'
-    elif i== "4":
-        j = "720"
-        k = '720p'
-    elif i== "5":
-        j = "480"
-        k = '480p'
-    elif i== "6":
-        j = "360"
-        k = '360p'
-    elif i== "7":
-        j = "240"
-        k = '240p'
-    elif i== "8":
-        j = "144"
-        k = '144p'
-    
-    else:
-        print('Wrong Code :(')
-        return video()
+        if data["default"][0]["code"] == "":
+            print('Enter the respective code for Required Resolution:')
+            print('[code] - [Resolution]')
+            print('1 - 4k')
+            print('2 - 2k')
+            print('3 - 1080p')
+            print('4 - 720p')
+            print("5 - 480p")
+            print('6 - 360p')
+            print('7 - 240p')
+            print('8 - 144p')
+
+            i = input('Resolution Code: ')  
+            data["default"][0]["code"] = i
+            
+            with open(json_path, "w") as defaultFile:
+                json.dump(data, defaultFile)
+            defaultFile.close
+
+            with open(json_path, "r") as default:
+                data = json.load(default)
+                code = data["default"][0]["code"]
+                j = data[code][0]["height"]
+                k = data[code][0]["res"]
+            default.close
+            
+        else:
+            with open(json_path, "r") as default:
+                data = json.load(default)
+                code = data["default"][0]["code"]
+                k = data[code][0]["res"]
+                choice = input("Default resolution is " +k+ ". If you want to download in different resolution type (y) or skip:" )
+               
+                if choice =="y":
+                    print('Enter the respective code for Required Resolution:')
+                    print('[code] - [Resolution]')
+                    print('1 - 4k')
+                    print('2 - 2k')
+                    print('3 - 1080p')
+                    print('4 - 720p')
+                    print("5 - 480p")
+                    print('6 - 360p')
+                    print('7 - 240p')
+                    print('8 - 144p')
+
+                    i = input('Resolution Code: ')  
+                    data["default"][0]["code"] = i
+                   
+                    with open(json_path, "w") as defaultFile:
+                        json.dump(data, defaultFile)
+                    defaultFile.close
+
+                    with open(json_path, "r") as default:
+                        data = json.load(default)
+                        code = data["default"][0]["code"]
+                        j = data[code][0]["height"]
+                        k = data[code][0]["res"]
+                    default.close
+               
+                else:
+                    j = data[code][0]["height"]
+                    k = data[code][0]["res"]
+            default.close
     
     print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced')
 
@@ -191,9 +275,51 @@ def YTmusicDirectory():
 
 #(Youtube) Audio
 def audio():
+    with open(json_path, "r") as defaultFile:
+        data = json.load(defaultFile)
+    #json key first time allotment
+    if data["default"][0]["codec"] == "":
+        print('Enter the Format of audio (mp3, aac, m4a, flac....)')
+        firstCodec = input('Enter the format: ')
+        data["default"][0]["codec"] = firstCodec
+    
+        with open(json_path, "w") as defaultFile:
+            json.dump(data, defaultFile)
+        defaultFile.close
 
-    print('Enter the Format of audio (mp3, aac, m4a, flac....)')
-    codec = input('Enter the format: ')
+        with open(json_path, "r") as default:
+            data = json.load(default)
+            codec = data["default"][0]["codec"]
+        default.close
+    
+    #json key for later use
+    else:
+        with open(json_path, "r") as default:
+            data = json.load(default)
+            notification = data["default"][0]["codec"]
+            choice = input("Default audio codec is " +notification+ ". If you need to download in different codec type (y) or else skip:")
+    
+            if choice == "y":
+                print('Enter the Format of audio (mp3, aac, m4a, flac....)')
+                lateCodec = input('Enter the format: ')
+                
+                with open(json_path, "r") as defaultFile:
+                    data = json.load(defaultFile)
+                    data["default"][0]["codec"] = lateCodec
+                
+                with open(json_path, "w") as defaultFile:
+                    json.dump(data, defaultFile)
+                defaultFile.close
+
+                with open(json_path, "r") as defa:
+                    data = json.load(defa)
+                    codec = data["default"][0]["codec"]
+                defa.close
+            
+            else:
+                codec = data["default"][0]["codec"]
+            default.close
+    
     code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
     os.system(code)
 
