@@ -1,5 +1,5 @@
 #!/bin/bash
-#Engine 1.1
+#Engine 1.2
 rm main.py
 rm updater.py
 rm -rf Youtube-Downloader-Android

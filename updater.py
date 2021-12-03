@@ -22,6 +22,7 @@ else:
     print("Updating......")
     os.remove("/data/data/com.termux/files/home/main.py")
     os.system("mv YTD_Android.py main.py")
+    os.system("sleep 5")
     print("Updated..!")
     code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
     os.system(code)
