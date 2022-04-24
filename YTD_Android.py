@@ -29,6 +29,10 @@ else:
     os.system(code)
 e.close()
 
+#Update news:
+print("Whats new...!")
+print("(Engine Update) Updates on pre-existing binaries or softwares")
+
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
 
