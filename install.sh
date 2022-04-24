@@ -1,9 +1,10 @@
 #!/bin/bash
 
-termux-setup-storage -y
+termux-setup-storage
 pkg up -y
 
 pkg install python -y
+pkg install aria2 -y
 pkg install ffmpeg -y
 pip install mutagen
 pip install --no-deps -U yt-dlp
@@ -24,9 +25,13 @@ mv "termux-url-opener" "/data/data/com.termux/files/home/bin/termux-url-opener"
 cd bin
 chmod +x termux-url-opener
 
+apt upgrade -y
+apt update -y
+
 echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
 
 rm "/data/data/com.termux/files/home/Youtube-Downloader-Android/install.sh"
 rm "/data/data/com.termux/files/home/Youtube-Downloader-Android/README.md"
 cd "/data/data/com.termux/files/home/"
 rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
+cd
