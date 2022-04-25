@@ -353,7 +353,7 @@ def drive():
     code = "gdown -O '" + path + "' --id '" + id + "'"
     exist = os.path.isdir(path)
     if exist:
-        print(code)
+        os.system(code)
     else:
         os.mkdir(path)
         os.system(code)
