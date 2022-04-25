@@ -1,4 +1,4 @@
-#Version 4.0.0.0
+#Version 4.0.0.1
 #Engine 2.0
 
 #(Master) imports
@@ -347,12 +347,13 @@ def audio():
 #(Drive) Google Drive:
 def drive():
     id1 = link.replace("https://drive.google.com/file/d/", "")
-    id = id1.replace("/view?usp=sharing", "")
+    split = id1.split("/", 1)
+    id = split[0]
     path = "/storage/emulated/0/Termux_Downloader/Gdrive/"
     code = "gdown -O '" + path + "' --id '" + id + "'"
     exist = os.path.isdir(path)
     if exist:
-        os.system(code)
+        print(code)
     else:
         os.mkdir(path)
         os.system(code)
