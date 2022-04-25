@@ -1,6 +1,6 @@
 #!/bin/bash
 
-termux-setup-storage
+termux-setup-storage -y
 pkg up -y
 
 pkg install python -y
