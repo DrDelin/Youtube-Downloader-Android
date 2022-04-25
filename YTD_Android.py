@@ -122,14 +122,31 @@ else:
 def torrentCodec():
     print("Downloading a torrent:")
     magnet = "'" +link +"'"
-    code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
+    engine = input(" a for aria (or) t for transmission: ")
+    if engine=="a":
+        code = "aria2c -d '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
+    elif engine=="t":
+        code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
+    else:
+        torrentCodec()
     os.system(code)
 
 #(Facebook) Facebook, Instagram and Twitter and also Others Download Directory:
 def socialMedia(socialmedia):
     print("Downloading from " +socialmedia)
     path = os.path.join('/storage/emulated/0/Termux_Downloader/', socialmedia) +'/'
-    code = 'yt-dlp -o ' + '"{path}%(title)s.%(ext)s"'.format(path=path) + ' " ' +  link + ' " '
+    code = 'yt-dlp --external-downloader aria2c -o ' + '"{path}%(title)s.%(ext)s"'.format(path=path) + ' " ' +  link + ' " '
+    if os.path.isdir(path):
+        os.system(code)
+    else:
+        os.mkdir(path)
+        os.system(code)
+
+#(Seedr)From Seedr ftp:
+def seedr():
+    print("Downloading from seedr:")
+    path = "/storage/emulated/0/Termux_Downloader/Seedr/"
+    code = "aria2c -d '"+ path + "' '"+ link + "' --file-allocation=none"
     if os.path.isdir(path):
         os.system(code)
     else:
@@ -147,12 +164,12 @@ def advanced():
     format = fit+str(vid)+" + "+str(aid)
     
     def nsv():
-        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+format+'" --merge-output-format mp4 ' +link
+        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+format+'" --merge-output-format mp4 ' +link
         os.system(code)
     
     def sv():
         print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
-        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci "+format+'" --sub-lang en-en-US --sub-lang en-GB --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 ' +link
+        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -ci "+format+'" --sub-lang en-en-US --sub-lang en-GB --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 ' +link
         os.system(code)
 
     if sub=="y":
@@ -167,7 +184,7 @@ def advanced():
 #(Youtube) Best
 def best():
     print("Downloading best one from YouTube:")
-    code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" --format best " +link
+    code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" --format best " +link
     os.system(code)
 
 #(Youtube) Video
@@ -250,12 +267,12 @@ def video():
     else:
         def nsv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --merge-output-format mp4 '
-            code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -f "+format +link
+            code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -f "+format +link
             os.system(code)
 
         def sv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --sub-lang en-en-US --sub-lang en-GB --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 '
-            code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format +link
+            code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format +link
             os.system(code)
 
         subs = input('With Subtitle (y) or skip: ')
@@ -324,7 +341,7 @@ def audio():
                 codec = data["default"][0]["codec"]
             default.close
     
-    code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
+    code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
     os.system(code)
 
 
@@ -378,6 +395,8 @@ def torrentDownload():
 def linkDistributor():
     if "magnet" in link:
         torrentDownload()
+    if "seedr" in link:
+        seedr()
     elif "music" in link:
         YTmusicDirectory()
     elif "facebook" in link:
