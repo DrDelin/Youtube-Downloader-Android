@@ -1,6 +1,11 @@
 #!/bin/bash
 
-termux-setup-storage -y
+if [ -e 'default.json' ]; then
+    termux-setup-storage -y
+else
+    termux-setup-storage
+fi
+
 pkg up -y
 
 pkg install python -y
