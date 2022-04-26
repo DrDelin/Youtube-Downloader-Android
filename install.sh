@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -e 'default.json' ]; then
+if [ -e '/data/data/com.termux/files/home/default.json' ]; then
     termux-setup-storage -y
 else
     termux-setup-storage
