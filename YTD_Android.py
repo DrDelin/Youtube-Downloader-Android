@@ -349,7 +349,7 @@ def audio():
         ytd_opts = {
                     'format' : codec,
                     'writethumbnail' : 'True',
-                    'external_downloader' : 'aria2c',
+                    'ignoreerrors': True,
                     'outtmpl': path + '/%(playlist)s/%(title)s.%(ext)s',
                     'postprocessors' :
                             [
