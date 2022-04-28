@@ -1,4 +1,4 @@
-#Version 4.0.0.0
+#Version 4.1.0.0
 #Engine 2.1
 
 #(Master) imports
@@ -30,8 +30,8 @@ else:
 e.close()
 
 #Update news:
-print("Whats new...!")
-print("(Engine Update) New Downloader Engine. \n (Engine Update) New Torrent Client. \n (Feature Update) Google Drive support. \n (Feature Update) Seedr download support. \n")
+print("Whats new...!\n")
+print("(NEW)(Feature Update) Individual Folder for a YT Music Playlist, name of folder is the name of playlist. \n(Engine Update) New Downloader Engine. \n(Engine Update) New Torrent Client. \n(Feature Update) Google Drive support. \n(Feature Update) Seedr download support. \n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
