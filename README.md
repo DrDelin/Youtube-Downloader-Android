@@ -16,7 +16,8 @@
   * Torrents can be downloaded by just sharing magnet using termux
  
 # Installation:
-  1. Install termux from playstore or with link: https://play.google.com/store/apps/details?id=com.termux
+  1. Install termux from github https://github.com/termux/termux-app/releases
+     (arm64 recommended ,use arm only for device lower than android 7)
   2. Type the commands or just copy and paste in termux:
         1) pkg up -y
         2) pkg install git -y
@@ -45,4 +46,3 @@
      * File starts downloading
      * After 100% download Select Ctrl and C (ctrl + c) in termux to avoid seeding or data loss
      
-  
