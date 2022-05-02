@@ -1,19 +1,22 @@
-# Youtube-Downloader-Android(New Feature: Torrent Downloader)
-  It is a Termux based command line Youtube video and audio and also Torrent downloader using Binaries: yt-dlp, ffmpeg and Transmission GTK.
+# Youtube-Downloader-Android(New Feature: Torrent, YT Playlist and Gdrive Downloader)
+  It is a Termux based command line Youtube video and audio and also Torrent downloader using Binaries: yt-dlp, ffmpeg , aria2 , gdown and Transmission GTK.
   
 # Features:
  YOUTUBE:
-  * Multi-Threaded download
+  * Multi-Threaded high speed download powered by aria2c downloader binary
   * Single file or entire Yt playlist download
   * Supports Youtube Music too
+  * Separate folder named after the playlist name for downloading a YT music playlist.
   * Audio are downloaded along with Thumbnails and Meta Data
   * Video mode supports upto 4K resolution download
   * Audio mode supports all codecs
   * Best mode for hazel free quick download
   * Advance mode for Advanced users
   * This script also supports few other video streaming platforms too..
+  
  TORRENT:
   * Torrents can be downloaded by just sharing magnet using termux
+  * Aria2c for high speed download or Transmission for resumeable download
  
 # Installation:
   1. Install termux from github https://github.com/termux/termux-app/releases
@@ -44,5 +47,5 @@
      * Search your torrent 
      * Select share option followed by select Termux
      * File starts downloading
-     * After 100% download Select Ctrl and C (ctrl + c) in termux to avoid seeding or data loss
+     * After 100% download Select Ctrl and C (ctrl + c) in termux or exit the app in notification to avoid seeding or data loss
      
