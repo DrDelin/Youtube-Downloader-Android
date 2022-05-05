@@ -1,4 +1,4 @@
-#Version 4.1.0.0
+#Version 4.1.0.1
 #Engine 2.1
 
 #(Master) imports
@@ -164,12 +164,12 @@ def advanced():
     format = fit+str(vid)+" + "+str(aid)
     
     def nsv():
-        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+format+'" --merge-output-format mp4 ' +link
+        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+format+'" --merge-output-format mp4 ' + "'" +link + "'"
         os.system(code)
     
     def sv():
         print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
-        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -ci "+format+'" --sub-lang en-en-US --sub-lang en-GB --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 ' +link
+        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -ci "+format+'" --sub-lang en-en-US --sub-lang en-GB --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 ' + "'" +link + "'"
         os.system(code)
 
     if sub=="y":
@@ -184,7 +184,7 @@ def advanced():
 #(Youtube) Best
 def best():
     print("Downloading best one from YouTube:")
-    code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" --format best " +link
+    code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" --format best " + "'" + link + "'"
     os.system(code)
 
 #(Youtube) Video
@@ -267,12 +267,12 @@ def video():
     else:
         def nsv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --merge-output-format mp4 '
-            code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -f "+format +link
+            code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -f "+format + "'" + link + "'"
             os.system(code)
 
         def sv():
             format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --sub-lang en-en-US --sub-lang en-GB --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 '
-            code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format +link
+            code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format + "'" +link + "'"
             os.system(code)
 
         subs = input('With Subtitle (y) or skip: ')
