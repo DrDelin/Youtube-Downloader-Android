@@ -1,4 +1,4 @@
-#Version 4.1.0.1
+#Version 4.1.0.2
 #Engine 2.1
 
 #(Master) imports
@@ -31,7 +31,7 @@ e.close()
 
 #Update news:
 print("Whats new...!\n")
-print("(New)(Bug Fix) YT Music slow download speed fix. \n(Feature Update) Individual Folder for a YT Music Playlist, name of folder is the name of playlist.")
+print("(New)(Bug Fix) YT Music slow download speed fix. \n(Feature Update) Individual Folder for a YT Music Playlist,name of folder is the name of playlist. \n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
