@@ -31,7 +31,7 @@ e.close()
 
 #Update news:
 print("Whats new...!\n")
-print("(NEW)(Feature Update) Individual Folder for a YT Music Playlist, name of folder is the name of playlist. \n(Engine Update) New Downloader Engine. \n(Engine Update) New Torrent Client. \n(Feature Update) Google Drive support. \n(Feature Update) Seedr download support. \n")
+print("(New)(Bug Fix) YT Music slow download speed fix. \n(Feature Update) Individual Folder for a YT Music Playlist, name of folder is the name of playlist.")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -366,7 +366,7 @@ def audio():
         with yt_dlp.YoutubeDL(ytd_opts) as ydl:
             ydl.download(link)
     else:
-        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
+        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
         os.system(code)
 
 #(Drive) Google Drive:
