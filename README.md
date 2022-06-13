@@ -19,7 +19,7 @@
   * Aria2c for high speed download or Transmission for resumeable download
  
 # Installation:
-  1. Install termux from github https://github.com/termux/termux-app/releases
+  1. Install Termux from GitHub https://github.com/termux/termux-app/releases or F-Droid https://f-droid.org/packages/com.termux/ (the PlayStore version is no longer maintained and hadn't been updated in years)
      (arm64 recommended ,use arm only for device lower than android 7)
   2. Type the commands or just copy and paste in termux:
         1) pkg up -y
@@ -34,13 +34,13 @@
     * Select SHARE option in the video or playlist you wants to download
     * Select TERMUX in the options to share
     * Rest is self explainatory in Program
-  
+
   YOUTUBE MUSIC:
     * Similar to youtube feature select share in req song or playlist
     * Select Termux
     * Type the required audio codec
     * Enjoy
-   
+
   TORRENT:
      * For torrent download itorrents app from play store or using link: https://play.google.com/store/apps/details?id=com.icodelife.itorrentsearch&hl=en_IN&gl=US
      * It is a torrent searching platform from famous torrent searching engines like piratebay rabg etc..
@@ -48,4 +48,3 @@
      * Select share option followed by select Termux
      * File starts downloading
      * After 100% download Select Ctrl and C (ctrl + c) in termux or exit the app in notification to avoid seeding or data loss
-     
