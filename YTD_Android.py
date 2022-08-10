@@ -366,29 +366,8 @@ def audio():
         with yt_dlp.YoutubeDL(ytd_opts) as ydl:
             ydl.download(link)
     else:
-        import yt_dlp
-
-        path = "/storage/emulated/0/Termux_Downloader/YTmusic/"
-        
-        ytd_opts = {
-                    'format' : codec,
-                    'writethumbnail' : 'True',
-                    'ignoreerrors': True,
-                    'outtmpl': path + '/%(title)s.%(ext)s',
-                    'postprocessors' :
-                            [
-                                    {
-                                        'key': 'FFmpegMetadata',
-                                        'add_metadata' : True,     
-                                    },
-                                    {
-                                        "key" : 'EmbedThumbnail',
-                                        'already_have_thumbnail'  : False,
-                                    }
-                            ]
-                     }
-        with yt_dlp.YoutubeDL(ytd_opts) as ydl:
-            ydl.download(link)
+        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
+        os.system(code)
 
 #(Drive) Google Drive:
 def drive():
