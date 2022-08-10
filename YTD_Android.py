@@ -31,7 +31,7 @@ e.close()
 
 #Update news:
 print("Whats new...!\n")
-print("(New)(Bug Fix) YT Music slow download speed fix. \n(Feature Update) Individual Folder for a YT Music Playlist,name of folder is the name of playlist. \n")
+print("(New)(Bug Fix) YT Music slow download speed fix.\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -366,8 +366,29 @@ def audio():
         with yt_dlp.YoutubeDL(ytd_opts) as ydl:
             ydl.download(link)
     else:
-        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
-        os.system(code)
+        import yt_dlp
+
+        path = "/storage/emulated/0/Termux_Downloader/YTmusic/"
+        
+        ytd_opts = {
+                    'format' : codec,
+                    'writethumbnail' : 'True',
+                    'ignoreerrors': True,
+                    'outtmpl': path + '/%(title)s.%(ext)s',
+                    'postprocessors' :
+                            [
+                                    {
+                                        'key': 'FFmpegMetadata',
+                                        'add_metadata' : True,     
+                                    },
+                                    {
+                                        "key" : 'EmbedThumbnail',
+                                        'already_have_thumbnail'  : False,
+                                    }
+                            ]
+                     }
+        with yt_dlp.YoutubeDL(ytd_opts) as ydl:
+            ydl.download(link)
 
 #(Drive) Google Drive:
 def drive():
