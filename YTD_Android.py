@@ -141,7 +141,7 @@ def others():
     dir_name = l2[0]
     print("Downloading from " +dir_name)
     path = '/storage/emulated/0/Termux_Downloader/'+ dir_name +'/'
-    code = 'yt-dlp --external-downloader aria2c -o ' + '"' + path + '%(title).50s.%(ext)s" "'  link + ' " '
+    code = 'yt-dlp --external-downloader aria2c -o ' + '"' + path + '%(title).50s.%(ext)s" "' + link + ' " '
     if os.path.isdir(path):
         os.system(code)
     else:
