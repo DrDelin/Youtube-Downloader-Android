@@ -2,9 +2,9 @@ url=$1
 if [ -e '/data/data/com.termux/files/home/updater.py' ]; then
     if [ -e '/data/data/com.termux/files/home/main.py' ]; then
         python "/data/data/com.termux/files/home/updater.py" $url
-    fi
-else
-    sh /data/data/com.termux/files/home/refresh.sh
+    else
+        sh /data/data/com.termux/files/home/refresh.sh
+fi
 fi
 
 
