@@ -1,5 +1,5 @@
-#Version 4.1.0.2
-#Engine 2.1
+#Version 4.2.0.0
+#Engine 3.0
 
 #(Master) imports
 import os
@@ -30,8 +30,8 @@ else:
 e.close()
 
 #Update news:
-print("Whats new...!\n")
-print("(New)(Bug Fix) YT Music slow download speed fix.\n")
+print("(Changelog)Whats new...!\n")
+print("(New)(Feature)Folder named after the site from downloaded.\n(New)(Engine)Failsafe mechanism prevent corruption while upgrading.\n(General)Bug fixes.\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"

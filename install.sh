@@ -40,10 +40,10 @@ apt update -y -y -y
 apt upgrade -y -y -y
 apt update -y -y -y
 
-#Setup package purging:
-rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
-
 #Completion msg:
 echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
+
+#Setup package purging:
+rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
 sleep 5
 exit
