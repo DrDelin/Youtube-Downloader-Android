@@ -131,11 +131,17 @@ def torrentCodec():
         torrentCodec()
     os.system(code)
 
-#(Facebook) Facebook, Instagram and Twitter and also Others Download Directory:
-def socialMedia(socialmedia):
-    print("Downloading from " +socialmedia)
-    path = os.path.join('/storage/emulated/0/Termux_Downloader/', socialmedia) +'/'
-    code = 'yt-dlp --external-downloader aria2c -o ' + '"{path}%(title)s.%(ext)s"'.format(path=path) + ' " ' +  link + ' " '
+#(Others) Social Media and download supported video steaming sites:
+def others():
+    if "www" in link:
+        l1 = link.split("www.")
+    else:
+        l1 = link.split("://")
+    l2 = l1[1].split(".")
+    dir_name = l2[0]
+    print("Downloading from " +dir_name)
+    path = '/storage/emulated/0/Termux_Downloader/'+ dir_name +'/'
+    code = 'yt-dlp --external-downloader aria2c -o ' + '"' + path + '%(title).50s.%(ext)s" "'  link + ' " '
     if os.path.isdir(path):
         os.system(code)
     else:
@@ -439,20 +445,12 @@ def linkDistributor():
         drive()
     elif "music" in link:
         YTmusicDirectory()
-    elif "facebook" in link:
-        socialMedia("Facebook")
-    elif "fb" in link:
-        socialMedia("Facebook")
-    elif "twitter" in link:
-        socialMedia("Twitter")
-    elif "instagram" in link:
-        socialMedia("Instagram")
     elif "youtube" in link:
         youtubeDirectory()
     elif "youtu.be" in link:
         youtubeDirectory()
     else:
-        socialMedia("Others")
+        others()
 
 #(Master) General Directory in Internal Storage
 def masterDirectory():
