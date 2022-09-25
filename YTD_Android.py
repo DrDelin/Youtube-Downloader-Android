@@ -138,7 +138,7 @@ def others():
     else:
         l1 = link.split("://")
     l2 = l1[1].split(".")
-    dir_name = l2[0]
+    dir_name = l2[0].capitalize()
     print("Downloading from " +dir_name)
     path = '/storage/emulated/0/Termux_Downloader/'+ dir_name +'/'
     code = 'yt-dlp --external-downloader aria2c -o ' + '"' + path + '%(title).50s.%(ext)s" "' + link + ' " '
