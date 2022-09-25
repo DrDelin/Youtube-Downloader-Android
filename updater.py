@@ -1,5 +1,6 @@
 import os
 import sys
+print("WELCOME TO TERMUX DOWNLOAD MANAGER")
 if os.path.isfile("/data/data/com.termux/files/home/YTD_Android.py"):
     with open("/data/data/com.termux/files/home/YTD_Android.py") as u:
         update = u.readline().rstrip()
