@@ -119,25 +119,26 @@ else:
     output_directory = "'/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s' "
 
 #(Master) History:
-history = "/data/data/com.termux/files/home/history.json"
+def history():
+    history = "/data/data/com.termux/files/home/history.json"
 
-opt =  {
-    'skip_download' : True,
-    'quiet' : True
-}
-with yt_dlp.YoutubeDL(opt) as ytd:
-    info = ytd.extract_info(link)
-    N = info.get('title', None)
+    opt =  {
+        'skip_download' : True,
+        'quiet' : True
+    }
+    with yt_dlp.YoutubeDL(opt) as ytd:
+        info = ytd.extract_info(link)
+        N = info.get('title', None)
 
-with open(history, 'a+') as file:
-    with open(history, 'r') as fp:
-        line = len(fp.readlines())
-        fp.close()
-    x = (int(line) + int("1"))
-    No = str(x)
-    set = {"SNo": No , "Name": N, "URL": link}
-    file.write(json.dumps(set)+str("\n"))
-file.close()
+    with open(history, 'a+') as file:
+        with open(history, 'r') as fp:
+            line = len(fp.readlines())
+            fp.close()
+        x = (int(line) + int("1"))
+        No = str(x)
+        set = {"SNo": No , "Name": N, "URL": link}
+        file.write(json.dumps(set)+str("\n"))
+    file.close()
 
 #(Torrent) Downloader
 def torrentCodec():
@@ -392,10 +393,12 @@ def audio():
                      }
         with yt_dlp.YoutubeDL(ytd_opts) as ydl:
             ydl.download(link)
+        history()
     else:
         code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
         os.system(code)
-
+        history()
+        
 #(Drive) Google Drive:
 def drive():
     id1 = link.replace("https://drive.google.com/file/d/", "")
