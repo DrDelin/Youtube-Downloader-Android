@@ -119,7 +119,7 @@ else:
     output_directory = "'/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s' "
 
 #(Master) History:
-def history(link):
+def history(link, site):
     import yt_dlp
     history = "/data/data/com.termux/files/home/history.txt"
 
@@ -137,7 +137,7 @@ def history(link):
             fp.close()
         x = (int(line) + int("1"))
         No = str(x)
-        set = {"SNo": No , "Name": N, "URL": link}
+        set = {"SNo": No , "Name": N, "URL": link, "Site": site}
         file.write(json.dumps(set)+str("\n"))
     file.close()
 
@@ -394,10 +394,10 @@ def audio():
                      }
         with yt_dlp.YoutubeDL(ytd_opts) as ydl:
             ydl.download(link)
-        history()
+        history(link, site="Youtube Music")
     else:
         code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
-        history(link)
+        history(link, site="Youtube Music")
         os.system(code)
         
 
