@@ -119,7 +119,7 @@ else:
     output_directory = "'/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s' "
 
 #(Master) History:
-def history():
+def history(link):
     import yt_dlp
     history = "/data/data/com.termux/files/home/history.json"
 
@@ -397,7 +397,7 @@ def audio():
         history()
     else:
         code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
-        history()
+        history(link)
         os.system(code)
         
 
