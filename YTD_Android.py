@@ -120,6 +120,7 @@ else:
 
 #(Master) History:
 def history():
+    import yt_dlp
     history = "/data/data/com.termux/files/home/history.json"
 
     opt =  {
@@ -396,9 +397,10 @@ def audio():
         history()
     else:
         code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
-        os.system(code)
         history()
+        os.system(code)
         
+
 #(Drive) Google Drive:
 def drive():
     id1 = link.replace("https://drive.google.com/file/d/", "")
