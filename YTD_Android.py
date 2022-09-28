@@ -121,7 +121,7 @@ else:
 #(Master) History:
 def history(link):
     import yt_dlp
-    history = "/data/data/com.termux/files/home/history.json"
+    history = "/data/data/com.termux/files/home/history.txt"
 
     opt =  {
         'skip_download' : True,
