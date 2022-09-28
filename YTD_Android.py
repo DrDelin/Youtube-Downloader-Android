@@ -118,6 +118,27 @@ if "music" in link:
 else:
     output_directory = "'/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s' "
 
+#(Master) History:
+history = "/data/data/com.termux/files/home/history.json"
+
+opt =  {
+    'skip_download' : True,
+    'quiet' : True
+}
+with yt_dlp.YoutubeDL(opt) as ytd:
+    info = ytd.extract_info(link)
+    N = info.get('title', None)
+
+with open(history, 'a+') as file:
+    with open(history, 'r') as fp:
+        line = len(fp.readlines())
+        fp.close()
+    x = (int(line) + int("1"))
+    No = str(x)
+    set = {"SNo": No , "Name": N, "URL": link}
+    file.write(json.dumps(set)+str("\n"))
+file.close()
+
 #(Torrent) Downloader
 def torrentCodec():
     print("Downloading a torrent:")
