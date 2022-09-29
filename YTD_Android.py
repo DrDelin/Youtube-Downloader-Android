@@ -137,7 +137,7 @@ def history(link, site):
             fp.close()
         x = (int(line) + int("1"))
         No = str(x)
-        set = {"SNo": No , "Name": N, "URL": link, "Site": site}
+        set = {"SNo": No , "Name": N[:25], "URL": link, "Site": site}
         file.write(json.dumps(set)+str("\n"))
     file.close()
 
@@ -185,7 +185,8 @@ def seedr():
 
 #(Youtube) Advanced download
 def advanced():
-    print("Downloading from YouTube - Advanced mode:")  
+    print("Downloading from YouTube - Advanced mode:")
+    history(link, site="Youtube (Advanced)")  
     os.system("yt-dlp -F " +link)
     vid = input('Video id: ')
     aid = input('Audio id: ')
@@ -214,12 +215,14 @@ def advanced():
 #(Youtube) Best
 def best():
     print("Downloading best one from YouTube:")
+    history(link, site="Youtube (Best)")
     code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" --format best " + "'" + link + "'"
     os.system(code)
 
 #(Youtube) Video
 def video():
     print("Downloading video from YouTube:")
+    history(link, site="Youtube")
     with open(json_path, "r") as defaultFile:
         data  = json.load(defaultFile)
 
