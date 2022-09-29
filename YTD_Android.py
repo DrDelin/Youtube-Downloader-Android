@@ -28,7 +28,7 @@ else:
     locEngx = locEng [1]
     loc_eng_id = locEngx.replace("Engine ","")
     eng_ID = eng_id.split(".",2)
-    loc_eng_ID = eng_id.split(".",2)
+    loc_eng_ID = loc_eng_id.split(".",2)
     if eng_ID[0] == loc_eng_ID[0]:
         open('/data/data/com.termux/files/home/noobjection.temp', 'a').close()
     else:

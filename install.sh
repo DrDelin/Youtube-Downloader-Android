@@ -23,7 +23,7 @@ else
 fi
 
 #Binaries installation:
-if [ -e '/data/data/com.termux/files/home/noobjection.temp']; then
+if [ -e '/data/data/com.termux/files/home/noobjection.temp' ]; then
     rm -rf '/data/data/com.termux/files/home/noobjection.temp'
     #Completion msg:
     echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
