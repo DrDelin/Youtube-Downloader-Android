@@ -1,5 +1,5 @@
 #Version 4.2.3.0
-#Engine 3.3
+#Engine 3.4
 
 #(Master) imports
 import os
@@ -25,11 +25,12 @@ if engine == locEng [1]:
     pass
 else:
     eng_id = engine.replace("Engine ", "")
-    loc_eng_id = locEng[1].replace("Engine ","")
+    locEngx = locEng [1]
+    loc_eng_id = locEngx.replace("Engine ","")
     eng_ID = eng_id.split(".",2)
     loc_eng_ID = eng_id.split(".",2)
     if eng_ID[0] == loc_eng_ID[0]:
-        open("noobjection.temp", 'a').close()
+        open('/data/data/com.termux/files/home/noobjection.temp', 'a').close()
     else:
         pass
     print("Upgrading Engine......")

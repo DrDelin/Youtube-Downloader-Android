@@ -24,15 +24,13 @@ fi
 
 #Binaries installation:
 if [ -e '/data/data/com.termux/files/home/noobjection.temp']; then
-    rm '/data/data/com.termux/files/home/noobjection.temp'
+    rm -rf '/data/data/com.termux/files/home/noobjection.temp'
     #Completion msg:
     echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
-
     #Setup package purging:
     rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
     sleep 5
     exit
-
 else  
     pkg up -y
     pkg install python -y
@@ -46,18 +44,16 @@ else
     pkg install wget -y
     apt install transmission-gtk -y
     pip install gdown
-
     #Updates and upgrades:
     apt update -y -y -y
     apt upgrade -y -y -y
     apt update -y -y -y
-    
     #Completion msg:
     echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
-
     #Setup package purging:
     rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
     sleep 5
     exit
 fi
 
+exit
