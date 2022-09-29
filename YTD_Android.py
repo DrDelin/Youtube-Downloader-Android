@@ -137,7 +137,7 @@ def history(link, site):
             fp.close()
         x = (int(line) + int("1"))
         No = str(x)
-        set = {"SNo": No , "Name": N[:25], "URL": link, "Site": site}
+        set = {"SNo": No , "Name": N[:50], "URL": link, "Site": site}
         file.write(json.dumps(set)+str("\n"))
     file.close()
 
