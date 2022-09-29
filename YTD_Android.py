@@ -130,14 +130,15 @@ def history(link, site):
     with yt_dlp.YoutubeDL(opt) as ytd:
         info = ytd.extract_info(link)
         N = info.get('title', None)
-
+        Title0 = N.replace('"',"`")
+        Title = Title0.replace("'", "`")
     with open(history, 'a+') as file:
         with open(history, 'r') as fp:
             line = len(fp.readlines())
             fp.close()
         x = (int(line) + int("1"))
         No = str(x)
-        set = {"SNo": No , "Name": N[:50], "URL": link, "Site": site}
+        set = {"SNo": No , "Name": Title[:50], "URL": link, "Site": site}
         file.write(json.dumps(set)+str("\n"))
     file.close()
 
