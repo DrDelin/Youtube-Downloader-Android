@@ -1,5 +1,5 @@
-#Version 4.2.2.0
-#Engine 3.2
+#Version 4.2.3.0
+#Engine 3.3
 
 #(Master) imports
 import os
@@ -24,6 +24,14 @@ locEng = e.readlines()
 if engine == locEng [1]:
     pass
 else:
+    eng_id = engine.replace("Engine ", "")
+    loc_eng_id = locEng[1].replace("Engine ","")
+    eng_ID = eng_id.split(".",2)
+    loc_eng_ID = eng_id.split(".",2)
+    if eng_ID[0] == loc_eng_ID[0]:
+        open("noobjection.temp", 'a').close()
+    else:
+        pass
     print("Upgrading Engine......")
     code = "sh '/data/data/com.termux/files/home/refresh.sh'"
     os.system(code)

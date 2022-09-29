@@ -23,28 +23,41 @@ else
 fi
 
 #Binaries installation:
-pkg up -y
-pkg install python -y
-pkg install aria2 -y
-pkg install ffmpeg -y
-pip install mutagen
-pip install --no-deps -U yt-dlp
-pip install yt-dlp
-pip3 install termux-apt-repo
-pkg install x11-repo
-pkg install wget -y
-apt install transmission-gtk -y
-pip install gdown
+if [ -e '/data/data/com.termux/files/home/noobjection.temp']; then
+    rm '/data/data/com.termux/files/home/noobjection.temp'
+    #Completion msg:
+    echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
 
-#Updates and upgrades:
-apt update -y -y -y
-apt upgrade -y -y -y
-apt update -y -y -y
+    #Setup package purging:
+    rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
+    sleep 5
+    exit
 
-#Completion msg:
-echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
+else  
+    pkg up -y
+    pkg install python -y
+    pkg install aria2 -y
+    pkg install ffmpeg -y
+    pip install mutagen
+    pip install --no-deps -U yt-dlp
+    pip install yt-dlp
+    pip3 install termux-apt-repo
+    pkg install x11-repo
+    pkg install wget -y
+    apt install transmission-gtk -y
+    pip install gdown
 
-#Setup package purging:
-rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
-sleep 5
-exit
+    #Updates and upgrades:
+    apt update -y -y -y
+    apt upgrade -y -y -y
+    apt update -y -y -y
+    
+    #Completion msg:
+    echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
+
+    #Setup package purging:
+    rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
+    sleep 5
+    exit
+fi
+
