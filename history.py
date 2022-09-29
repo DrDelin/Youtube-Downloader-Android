@@ -1,7 +1,7 @@
 import os
 import json
 
-history = "/data/data/com.termux/files/home/history.txt"
+history = "history.txt"
 
 histlist = []
 with open(history, 'r+') as f:
