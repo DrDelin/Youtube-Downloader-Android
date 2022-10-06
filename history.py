@@ -12,13 +12,14 @@ histlist2 = str(histlist).replace("'",'"')
 input_dict = json.loads(histlist2)
 
 for i in input_dict:
+    print("\nHistory: \n")
     print(i["SNo"]+")", i["Name"]+"||", i["Site"])
 
-print("What to do!? \n")
+print("\nWhat to do!? \n")
 print("Select 1 to redownload from history: \nSelect 2 to clear history: \nSkip to close this script:\n")
-choice = input("Your Choice:")
+choice = input("Your Choice:\n")
 if choice=="1":
-    ask = input("Enter the SNo:")
+    ask = input("Enter the SNo:\n")
     output_dict = [a for a in input_dict if a["SNo"] == ask]
     for j in output_dict:
         print(j["SNo"]+")", j["Name"]+"||", j["Site"])
