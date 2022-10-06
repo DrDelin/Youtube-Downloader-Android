@@ -428,8 +428,9 @@ def audio():
                             ]
                      }
         with yt_dlp.YoutubeDL(ytd_opts) as ydl:
-            ydl.download(link)
-        history(link, site="Youtube Music")
+            info = ydl.extract_info(link, download=True)
+            title = info.get('title', None)
+        history_2(title, site="Youtube Music")
     else:
         code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
         history(link, site="Youtube Music")
