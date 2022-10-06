@@ -150,6 +150,46 @@ def history(link, site):
         file.write(json.dumps(set)+str("\n"))
     file.close()
 
+#(Master) History 2.0:
+def history_2(title, site):
+    history = "/data/data/com.termux/files/home/history.txt"
+    Title0 = title.replace('"',"`")
+    Title = Title0.replace("'", "`")
+    with open(history, 'a+') as file:
+        with open(history, 'r') as fp:
+            line = len(fp.readlines())
+            fp.close()
+        x = (int(line) + int("1"))
+        No = str(x)
+        set = {"SNo": No , "Name": Title[:50], "URL": link, "Site": site}
+        file.write(json.dumps(set)+str("\n"))
+    file.close()
+
+#(Others) Social Media and download supported video steaming sites:
+def others():
+    if "www" in link:
+        l1 = link.split("www.")
+    else:
+        l1 = link.split("://")
+    l2 = l1[1].split(".")
+    dir_name = l2[0].capitalize()
+    print("Downloading from " +dir_name)
+    path = '/storage/emulated/0/Termux_Downloader/'+ dir_name +'/'
+    if os.path.isdir(path):
+        pass
+    else:
+        os.mkdir(path)
+    
+    import yt_dlp
+    ytd_opts = {                
+                    'outtmpl': path + "%(title).50s.%(ext)s",
+                    'external_downloader': 'aria2c', 
+                }
+    with yt_dlp.YoutubeDL(ytd_opts) as ydl:
+            info = ydl.extract_info(link, download=True)
+            title = info.get('title', None)
+    history_2(title, site= dir_name)   
+
 #(Torrent) Downloader
 def torrentCodec():
     print("Downloading a torrent:")
@@ -162,24 +202,6 @@ def torrentCodec():
     else:
         torrentCodec()
     os.system(code)
-
-#(Others) Social Media and download supported video steaming sites:
-def others():
-    if "www" in link:
-        l1 = link.split("www.")
-    else:
-        l1 = link.split("://")
-    l2 = l1[1].split(".")
-    dir_name = l2[0].capitalize()
-    print("Downloading from " +dir_name)
-    path = '/storage/emulated/0/Termux_Downloader/'+ dir_name +'/'
-    code = 'yt-dlp --external-downloader aria2c -o ' + '"' + path + '%(title).50s.%(ext)s" "' + link + ' " '
-    history(link, site= dir_name)
-    if os.path.isdir(path):
-        os.system(code)
-    else:
-        os.mkdir(path)
-        os.system(code)
 
 #(Seedr)From Seedr ftp:
 def seedr():
