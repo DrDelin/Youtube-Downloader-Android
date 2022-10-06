@@ -1,4 +1,4 @@
-#Version 4.2.5.0
+#Version 4.3.5.0
 #Engine 3.5
 
 #(Master) imports
@@ -40,7 +40,7 @@ e.close()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Engine)Low data Engine bug fixes.\n(Engine)Update bug during server failure fixed.\n(Engine)Decreased program booting time\n(Alpha Feature)History of dowloads\n")
+print("(Main)Performance update Stage III\n(Engine)Update bug during server failure fixed.\n(Engine)Decreased program booting time\n(Alpha Feature)History of dowloads\n")
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
 
