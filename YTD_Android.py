@@ -407,9 +407,7 @@ def audio():
     
     if "playlist" in link:
         import yt_dlp
-
-        path = "/storage/emulated/0/Termux_Downloader/YTmusic/"
-        
+        path = "/storage/emulated/0/Termux_Downloader/YTmusic/"     
         ytd_opts = {
                     'format' : codec,
                     'writethumbnail' : 'True',
@@ -431,11 +429,31 @@ def audio():
             info = ydl.extract_info(link, download=True)
             title = info.get('title', None)
         history_2(title, site="Youtube Music")
+
     else:
-        code = "yt-dlp --embed-thumbnail --add-metadata -o "+output_directory+" -x --audio-format "+codec+" '"+link + "'"
-        history(link, site="Youtube Music")
-        os.system(code)
-        
+        import yt_dlp
+        path = "/storage/emulated/0/Termux_Downloader/YTmusic/"             
+        ytd_opts = {
+                            'format' : codec,
+                            'writethumbnail' : 'True',
+                            'ignoreerrors': True,
+                            'outtmpl': path + '%(title)s.%(ext)s',
+                            'postprocessors' :
+                                    [
+                                            {
+                                                'key': 'FFmpegMetadata',
+                                                'add_metadata' : True,     
+                                            },
+                                            {
+                                                "key" : 'EmbedThumbnail',
+                                                'already_have_thumbnail'  : False,
+                                            }
+                                    ]
+                            }
+        with yt_dlp.YoutubeDL(ytd_opts) as ydl:
+            info = ydl.extract_info(link, download=True)
+            title = info.get('title', None)
+        history_2(title, site="Youtube Music")     
 
 #(Drive) Google Drive:
 def drive():
