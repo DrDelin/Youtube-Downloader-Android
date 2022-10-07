@@ -222,12 +222,13 @@ def advanced():
     aid = input('Audio id: ')
     sub = input("Subtitle y/n: ")
     format = str(vid)+" + "+str(aid)
+    path = '/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s'
     
     if sub=="y":
         print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
         opt = {
                 'external_downloader' : 'aria2c',
-                'outtmpl' : output_directory,
+                'outtmpl' : path,
                 'writesubtitles' : True,
                 'subtitle' : "--sub-lang en-en-US --sub-lang en-GB --sub-lang en --convert-sub srt --write-sub --embed-subs",
                 'merge_output_format' : 'mp4',
@@ -249,7 +250,7 @@ def advanced():
     elif sub=="n":
         opt = {
             'external_downloader' : 'aria2c',
-            'outtmpl' : output_directory,
+            'outtmpl' : path,
             'merge_output_format' : 'mp4',
             'writethumbnail' : True,
             'format' : format,
