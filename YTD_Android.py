@@ -217,12 +217,11 @@ def seedr():
 #(Youtube) Advanced download
 def advanced():
     print("Downloading from YouTube - Advanced mode:")
-    history(link, site="Youtube (Advanced)")  
     os.system("yt-dlp -F " +link)
     vid = input('Video id: ')
     aid = input('Audio id: ')
     sub = input("Subtitle y/n: ")
-    format = '"'+str(vid)+" + "+str(aid)+'"'
+    format = str(vid)+" + "+str(aid)
     
     if sub=="y":
         print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
