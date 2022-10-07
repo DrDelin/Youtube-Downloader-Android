@@ -222,26 +222,61 @@ def advanced():
     vid = input('Video id: ')
     aid = input('Audio id: ')
     sub = input("Subtitle y/n: ")
-    fit = ' -f "'
-    format = fit+str(vid)+" + "+str(aid)
+    format = '"'+str(vid)+" + "+str(aid)+'"'
     
-    def nsv():
-        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+format+'" --merge-output-format mp4 ' + "'" +link + "'"
-        os.system(code)
-    
-    def sv():
-        print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
-        code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -ci "+format+'" --sub-lang en-en-US --sub-lang en-GB --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 ' + "'" +link + "'"
-        os.system(code)
-
     if sub=="y":
-        sv()
+        print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
+        opt = {
+                'external_downloader' : 'aria2c',
+                'outtmpl' : output_directory,
+                'writesubtitles' : True,
+                'subtitle' : "--sub-lang en-en-US --sub-lang en-GB --sub-lang en --convert-sub srt --write-sub --embed-subs",
+                'merge_output_format' : 'mp4',
+                'writethumbnail' : True,
+                'format' : format,
+                'postprocessors' :
+                                    [
+                                        {
+                                            'key' : 'FFmpegMetadata',
+                                            'add_metadata' : True
+                                        },
+                                        {
+                                            'key' : 'EmbedThumbnail',
+                                            'already_have_thumbnail' : False
+                                        }
+                                    ]
 
+            }
     elif sub=="n":
-        nsv()
+        opt = {
+            'external_downloader' : 'aria2c',
+            'outtmpl' : output_directory,
+            'merge_output_format' : 'mp4',
+            'writethumbnail' : True,
+            'format' : format,
+            'postprocessors' :
+                                [
+                                    {
+                                        'key' : 'FFmpegMetadata',
+                                        'add_metadata' : True
+                                    },
+                                    {
+                                        'key' : 'EmbedThumbnail',
+                                        'already_have_thumbnail' : False
+                                    }
+                                ]
 
+        }
     else:
         advanced()
+    
+    import yt_dlp
+    
+    with yt_dlp.YoutubeDL(opt) as yt:
+        info = yt.extract_info(link, download=True)
+        title = info.get('title', None)
+        history_2(title, site= "Youtube Advanced")
+
 
 #(Youtube) Best
 def best():
