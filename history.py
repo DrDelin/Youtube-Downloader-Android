@@ -15,7 +15,7 @@ for i in input_dict:
     print(i["SNo"]+")", i["Name"]+"||", i["Site"])
 
 print("\nWhat to do!? \n")
-print("Select 1 to redownload from history: \nSelect 2 to clear history: \nSkip to close this script:\n")
+print("Select 1 to redownload from history: \nSelect 2 to revisit the site of download: \nSelect 3 to clear history: \nSkip to close this script:\n")
 choice = input("Your Choice:")
 if choice=="1":
     ask = input("\nEnter the SNo:")
@@ -27,6 +27,18 @@ if choice=="1":
         os.system('python main.py "'+url+'"')
         exit()
 elif choice=="2":
-    os.remove(history)
+    ask = input("\nEnter the SNo:")
+    output_dict = [a for a in input_dict if a["SNo"] == ask]
+    for j in output_dict:
+        url = j["URL"]
+        os.system('termux-open-url "' + url + '"')
+        exit()
+elif choice=="3":
+    confirm = input("\nType YES to confirm clear history:\n")
+    if confirm=="YES":
+        os.remove(history)
+        exit()
+    else:
+        exit()
 else:
     exit()
