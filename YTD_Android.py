@@ -1,4 +1,4 @@
-#Version 4.4.0.0
+#Version 4.4.0.1
 #Engine 4.0
 
 #(Master) imports
@@ -444,12 +444,16 @@ def audio():
         import yt_dlp
         path = "/storage/emulated/0/Termux_Downloader/YTmusic/"     
         ytd_opts = {
-                    'format' : codec,
+                    'format' : 'bestaudio/best',
                     'writethumbnail' : 'True',
                     'ignoreerrors': True,
                     'outtmpl': path + '/%(playlist)s/%(title)s.%(ext)s',
                     'postprocessors' :
                             [
+                                    {
+                                        'key' : 'FFmpegExtractAudio',
+                                        'preferredcodec' : codec,
+                                    },
                                     {
                                         'key': 'FFmpegMetadata',
                                         'add_metadata' : True,     
@@ -469,12 +473,16 @@ def audio():
         import yt_dlp
         path = "/storage/emulated/0/Termux_Downloader/YTmusic/"             
         ytd_opts = {
-                            'format' : codec,
+                            'format' : 'bestaudio/best',
                             'writethumbnail' : 'True',
                             'ignoreerrors': True,
                             'outtmpl': path + '%(title)s.%(ext)s',
                             'postprocessors' :
                                     [
+                                            {
+                                                'key' : 'FFmpegExtractAudio',
+                                                'preferredcodec' : codec,
+                                            },
                                             {
                                                 'key': 'FFmpegMetadata',
                                                 'add_metadata' : True,     
