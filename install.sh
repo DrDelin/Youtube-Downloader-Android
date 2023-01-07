@@ -36,8 +36,8 @@ else
     pkg install python -y
     pkg install aria2 -y
     pkg install ffmpeg -y
-    pip install beautifulsoup4
-    pip install requests
+    pip install beautifulsoup4 -y
+    pip install requests -y
     pip install mutagen
     pip install --no-deps -U yt-dlp
     pip install yt-dlp
