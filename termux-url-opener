@@ -1,6 +1,7 @@
 #Link capture
 url=$1
-
+#Update download
+timeout 5 wget -P '/data/data/com.termux/files/home/' -q 'https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/master/YTD_Android.py'
 #Script integrity verification
 if [ -e '/data/data/com.termux/files/home/updater.py' ]; then
     if [ -e '/data/data/com.termux/files/home/main.py' ]; then
