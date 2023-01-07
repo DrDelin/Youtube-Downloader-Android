@@ -44,5 +44,6 @@ else:
         code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
         os.system(code)
     m.close()
+    u.close()
     
 quit()
