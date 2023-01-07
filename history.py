@@ -10,7 +10,7 @@ with open(history, 'r+') as f:
         histlist.append(Dict)
 histlist2 = str(histlist).replace("'",'"')
 histlist3 = histlist2.replace("\\","/")
-input_dict = json.loads(histlist2)
+input_dict = json.loads(histlist3)
 print("\nHistory: \n")
 for i in input_dict:
     print(i["SNo"]+")", i["Name"]+"||", i["Site"])
