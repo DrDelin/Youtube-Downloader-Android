@@ -1,4 +1,4 @@
-#Version 4.5.0.1
+#Version 4.5.0.0
 #Engine 5.0
 
 #(Master) imports
@@ -40,7 +40,7 @@ e.close()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Engine)New Update Mechanism \n(History)Fatal Backslash error fix \n")
+print("(Engine)New Update Mechanism \n(History)Fatal Backslash error fix")
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
 
