@@ -14,10 +14,10 @@ soup = BeautifulSoup(data, 'html.parser')
 
 #Cloud Version No:
 ver = soup.find(id="LC1")
-c_version = ver.text.strip()
+c_version = ver.text.strip() + "\n"
 #Cloud Engine No:
 eng = soup.find(id="LC2")
-c_engine = eng.text.strip()
+c_engine = eng.text.strip() + "\n"
 
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
@@ -28,7 +28,7 @@ l_engine = linecache.getline(r"/data/data/com.termux/files/home/main.py", 2)
 code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
 
 if c_engine == l_engine:
-    print("\nNo Engine upgrade available...\n\nChecking Version Update...\n")
+    print("\nNo Engine upgrade available...\nChecking Version Update...\n")
     if c_version == l_version:
         print("\nNo new update...\n")
         os.system(code)
