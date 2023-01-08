@@ -1,28 +1,45 @@
 import os
 import sys
-print("WELCOME TO TERMUX DOWNLOAD MANAGER")
-if os.path.isfile("/data/data/com.termux/files/home/YTD_Android.py"):
-    with open("/data/data/com.termux/files/home/YTD_Android.py") as u:
-        update = u.readline().rstrip()
-    with open("/data/data/com.termux/files/home/main.py") as m:
-        main = m.readline().rstrip()
-    if update==main:
-        os.remove("/data/data/com.termux/files/home/YTD_Android.py")
-        print("\nNo New Update...\n")
-        code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
+import linecache
+import requests
+from bs4 import BeautifulSoup
+
+print("WELCOME TO TERMUX DOWNLOADER")
+
+#Getting cloud edition's version and engine number
+url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/master/YTD_Android.py"
+r  = requests.get(url)
+data = r.text
+soup = BeautifulSoup(data, 'html.parser')
+
+#Cloud Version No:
+ver = soup.find(id="LC1")
+c_version = ver.text.strip()
+#Cloud Engine No:
+eng = soup.find(id="LC2")
+c_engine = eng.text.strip()
+
+#Local Version No:
+l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
+#Local Engine No:
+l_engine = linecache.getline(r"/data/data/com.termux/files/home/main.py", 2)
+
+#Code to pass link to the downloader
+code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
+
+if c_engine == l_engine:
+    print("\nNo Engine upgrade available...\n\nChecking Version Update...\n")
+    if c_version == l_version:
+        print("\nNo new update...\n")
         os.system(code)
     else:
-        print("\nUpdating......\n")
-        os.remove("/data/data/com.termux/files/home/main.py")
-        os.system("mv YTD_Android.py main.py")
-        os.system("sleep 5")
-        print("\nUpdated..!\n")
-        code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
+        print("\nNew version available...\n\nUpdating...\n\n")
+        open('/data/data/com.termux/files/home/noobjection.temp', 'a').close()
+        os.system("sh refresh.sh")
+        print("\nUpdated...!\n")
         os.system(code)
-    m.close()
-    u.close()
 else:
-    print("\nUpdate server busy or down!\nUpdate skipped...!")
-    code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
+    print("/nNew Engine Upgrade available.../n/nUpgrading.../n")
+    os.system("sh refresh.sh")
+    print("Upgraded...!")
     os.system(code)
-quit()

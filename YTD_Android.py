@@ -1,5 +1,5 @@
-#Version 4.4.0.1
-#Engine 4.0
+#Version 5.0.0.0
+#Engine 5.0
 
 #(Master) imports
 import os
@@ -17,30 +17,10 @@ engine = (linecache.getline(linecache.sys.argv[0],2))
 print(engine.replace("#", ""))
 linecache.clearcache()
 
-#Engine Upgrade:
-e = open("/data/data/com.termux/files/home/refresh.sh")
-locEng = e.readlines()
-
-if engine == locEng [1]:
-    pass
-else:
-    eng_id = engine.replace("Engine ", "")
-    locEngx = locEng [1]
-    loc_eng_id = locEngx.replace("Engine ","")
-    eng_ID = eng_id.split(".",2)
-    loc_eng_ID = loc_eng_id.split(".",2)
-    if eng_ID[0] == loc_eng_ID[0]:
-        open('/data/data/com.termux/files/home/noobjection.temp', 'a').close()
-    else:
-        pass
-    print("Upgrading Engine......")
-    code = "sh '/data/data/com.termux/files/home/refresh.sh'"
-    os.system(code)
-e.close()
-
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Engine)Fatal Update system bug fix \n(Engine Update)New version binary \n(Alpha)Revisit the site from the file downloaded from history")
+print("(Engine) New Update and Upgrade Mechanism \n(Engine) Update server changed \n(Main) Downloader performance optimized \n")
+
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
 
