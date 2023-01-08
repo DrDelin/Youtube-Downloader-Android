@@ -28,7 +28,7 @@ l_engine = linecache.getline(r"/data/data/com.termux/files/home/main.py", 2)
 code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
 
 if c_engine == l_engine:
-    print("\nNo Engine upgrade available...\nChecking Version Update...\n")
+    print("\nNo Engine upgrade available...\n\nChecking Version Update...\n")
     if c_version == l_version:
         print("\nNo new update...\n")
         os.system(code)
@@ -39,7 +39,7 @@ if c_engine == l_engine:
         print("\nUpdated...!\n")
         os.system(code)
 else:
-    print("/nNew Engine Upgrade available.../n/nUpgrading.../n")
+    print("\nNew Engine Upgrade available...\n\nUpgrading...\n")
     os.system("sh refresh.sh")
     print("Upgraded...!")
     os.system(code)
