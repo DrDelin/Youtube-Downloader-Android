@@ -39,6 +39,7 @@ else
     pip install beautifulsoup4
     pip install requests
     pip install mutagen
+    pip install wheel
     pip install --no-deps -U yt-dlp
     pip install yt-dlp
     pip3 install termux-apt-repo
