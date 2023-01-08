@@ -41,5 +41,5 @@ if c_engine == l_engine:
 else:
     print("\nNew Engine Upgrade available...\n\nUpgrading...\n")
     os.system("sh refresh.sh")
-    print("Upgraded...!")
+    print("Upgraded...!\n")
     os.system(code)
