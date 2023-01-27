@@ -23,7 +23,7 @@
      (arm64 recommended ,use arm only for device lower than android 7)
   2. Type the commands or just copy and paste in termux:
         1) **`pkg up -y`**
-        2) **``pkg install git -y`**
+        2) **`pkg install git -y`**
         3) **`git clone https://github.com/DrDelin/Youtube-Downloader-Android`**
         4) **`cd Youtube-Downloader-Android`**
         5) **`sh install.sh`**
