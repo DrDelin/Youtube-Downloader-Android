@@ -159,7 +159,6 @@ def others():
         pass
     else:
         os.mkdir(path)
-        temp = "1" #Temporary marker to indicate directory created is NEW
     import yt_dlp
     ytd_opts = {                
                     'outtmpl': path + "%(title).50s.%(ext)s",
@@ -170,11 +169,8 @@ def others():
                 info = ydl.extract_info(link, download=True)
                 title = info.get('title', None)
         history_2(title, site= dir_name)   
-    except: #Else delete the folder created to download if only site is not downloadable / Failsafe to prevent deletion of non-empty folder
-        if temp == "1":
-            os.remove(path)
-        else:
-            pass
+    except: #Else delete the folder created to download if only site is not downloadable
+        os.rmdir(path)
 
 #(Torrent) Downloader
 def torrentCodec():
