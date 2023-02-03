@@ -32,7 +32,7 @@ if [ -e '/data/data/com.termux/files/home/noobjection.temp' ]; then
     sleep 5
     exit
 else  
-    pkg up -y
+    pkg up -y -y -y -y
     pkg install python -y
     pkg install aria2 -y
     pkg install ffmpeg -y
@@ -51,7 +51,7 @@ else
     apt update -y -y -y
     apt upgrade -y -y -y
     apt update -y -y -y
-    cat README.md
+    cat /data/data/com.termux/files/home/Youtube-Downloader-Android/README.md
     #Completion msg:
     echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###
     #Setup package purging:

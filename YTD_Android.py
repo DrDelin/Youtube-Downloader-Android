@@ -159,16 +159,22 @@ def others():
         pass
     else:
         os.mkdir(path)
-    
+        temp = "1" #Temporary marker to indicate directory created is NEW
     import yt_dlp
     ytd_opts = {                
                     'outtmpl': path + "%(title).50s.%(ext)s",
                     'external_downloader': 'aria2c', 
                 }
-    with yt_dlp.YoutubeDL(ytd_opts) as ydl:
-            info = ydl.extract_info(link, download=True)
-            title = info.get('title', None)
-    history_2(title, site= dir_name)   
+    try: #Try the video is downloadable from the site           
+        with yt_dlp.YoutubeDL(ytd_opts) as ydl:
+                info = ydl.extract_info(link, download=True)
+                title = info.get('title', None)
+        history_2(title, site= dir_name)   
+    except: #Else delete the folder created to download if only site is not downloadable / Failsafe to prevent deletion of non-empty folder
+        if temp == "1":
+            os.remove(path)
+        else:
+            pass
 
 #(Torrent) Downloader
 def torrentCodec():
@@ -560,6 +566,21 @@ def masterDirectory():
     path = "/storage/emulated/0/Termux_Downloader/"
     exist = os.path.isdir(path)
     if exist:
+        #Empty directory scanner and remover
+        def list():
+            empty_Dir = []
+            for root, dirs, files in os.walk(path):
+                if not len(dirs) and not len(files):
+                    empty_Dir.append(root)
+            
+            if not len(empty_Dir) == int("0"):
+                for x in empty_Dir:
+                    os.rmdir(x + "/")
+                empty_Dir.clear()
+                list()
+            else:
+                pass
+        list()      
         linkDistributor()
     else:
         os.mkdir(path)
