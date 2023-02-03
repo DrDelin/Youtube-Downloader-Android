@@ -1,11 +1,11 @@
 # Termux Downloader Android (...aka Youtube-Downloader-Android)
   ### History of developement of this script
-    Hi all! This script was once intended to download video and audio, only from youtube. Later it is extended to download videos from almost all sites and social media, torrents and Google drive. This script based on Termux app for downloading. Hence it is Termux Downloader.
+  Hi all! This script was once intended to download video and audio, only from youtube. Later it is extended to download videos from almost all sites and social media, torrents and Google drive. This script based on Termux app for downloading. Hence it is Termux Downloader.
   
   ### Developers
-    Owner and Developer: Dr.Delin @DrDelin
-    Co-Developer and script optimizer: Dr.Senthil Manikandan @Senthil360
-    Script watcher and contributor: Dr.Dhinesh cool
+  Owner and Developer: **Dr.Delin @DrDelin**
+  Co-Developer and script optimizer: **Dr.Senthil Manikandan @Senthil360**
+  Script watcher and contributor: **Dr.Dhinesh cool**
 
 ## Installation:
   1. Install termux from github https://github.com/termux/termux-app/releases
