@@ -519,7 +519,7 @@ def linkDistributor():
         drive()
     elif "music" in link:
         YTmusicDirectory()
-    elif "youtube" or "youtu.be" in link:
+    elif "youtube" in link or "youtu.be" in link:
         path = "/storage/emulated/0/Termux_Downloader/Youtube/"
         if os.path.isdir(path):
             codec()
