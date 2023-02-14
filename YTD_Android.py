@@ -347,6 +347,7 @@ def YTmusicDirectory():
 def audio():
     with open(json_path, "r") as defaultFile:
         data = json.load(defaultFile)
+        
     #json key first time allotment
     if data["default"][0]["codec"] == "":
         print('Enter the Format of audio (mp3, aac, m4a, flac....)')
