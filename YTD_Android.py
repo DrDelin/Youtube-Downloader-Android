@@ -145,6 +145,14 @@ def history_2(title, site):
         file.write(json.dumps(set)+str("\n"))
     file.close()
 
+#(YT-DLP) Downloader:
+def downloader(opt, site):
+    import yt_dlp
+    with yt_dlp.YoutubeDL(opt) as yt:
+        info = yt.extract_info(link, download=True)
+        title = info.get('title', None)
+        history_2(title, site)
+
 #(Others) Social Media and download supported video steaming sites:
 def others():
     if "www" in link:
@@ -159,16 +167,13 @@ def others():
         pass
     else:
         os.mkdir(path)
-    import yt_dlp
-    ytd_opts = {                
+
+    opt = {                
                     'outtmpl': path + "%(title).50s.%(ext)s",
                     'external_downloader': 'aria2c', 
                 }
     try: #Try the video is downloadable from the site           
-        with yt_dlp.YoutubeDL(ytd_opts) as ydl:
-                info = ydl.extract_info(link, download=True)
-                title = info.get('title', None)
-        history_2(title, site= dir_name)   
+        downloader(opt,site = dir_name)   
     except: #Else delete the folder created to download if only site is not downloadable
         os.rmdir(path)
 
@@ -200,65 +205,41 @@ def seedr():
 def advanced():
     print("Downloading from YouTube - Advanced mode:")
     os.system("yt-dlp -F " +link)
+    
     vid = input('Video id: ')
     aid = input('Audio id: ')
-    sub = input("Subtitle y/n: ")
-    format = str(vid)+" + "+str(aid)
     path = '/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s'
     
-    if sub=="y":
+    if input("Do you need subtitle? If yes, type 'y' or skip: ") == "y":
         print("Note: If the video doesn't have default subtitle on URL, Subtitle won't available")
-        opt = {
-                'external_downloader' : 'aria2c',
-                'outtmpl' : path,
-                'writesubtitles' : True,
-                'subtitle' : "--sub-lang en-en-US --sub-lang en-GB --sub-lang en --convert-sub srt --write-sub --embed-subs",
-                'merge_output_format' : 'mp4',
-                'writethumbnail' : True,
-                'format' : format,
-                'postprocessors' :
-                                    [
-                                        {
-                                            'key' : 'FFmpegMetadata',
-                                            'add_metadata' : True
-                                        },
-                                        {
-                                            'key' : 'EmbedThumbnail',
-                                            'already_have_thumbnail' : False
-                                        }
-                                    ]
-
-            }
-    elif sub=="n":
-        opt = {
+        choice = bool(True)
+    else:
+        choice = bool(False)
+    
+    opt = {
             'external_downloader' : 'aria2c',
             'outtmpl' : path,
+            'writesubtitles' : choice,
             'merge_output_format' : 'mp4',
             'writethumbnail' : True,
-            'format' : format,
+            'format' : str(vid)+" + "+str(aid),
             'postprocessors' :
                                 [
                                     {
-                                        'key' : 'FFmpegMetadata',
-                                        'add_metadata' : True
+                                        'key' : 'FFmpegEmbedSubtitle',
+                                        'already_have_subtitle' : False
                                     },
                                     {
-                                        'key' : 'EmbedThumbnail',
-                                        'already_have_thumbnail' : False
+                                            'key' : 'FFmpegMetadata',
+                                            'add_metadata' : True
+                                    },
+                                    {
+                                            'key' : 'EmbedThumbnail',
+                                            'already_have_thumbnail' : False
                                     }
                                 ]
-
         }
-    else:
-        advanced()
-    
-    import yt_dlp
-    
-    with yt_dlp.YoutubeDL(opt) as yt:
-        info = yt.extract_info(link, download=True)
-        title = info.get('title', None)
-        history_2(title, site= "Youtube Advanced")
-
+    downloader(opt, site = "Youtube Advanced")   
 
 #(Youtube) Best
 def best():
