@@ -177,19 +177,6 @@ def others():
     except: #Else delete the folder created to download if only site is not downloadable
         os.rmdir(path)
 
-#(Torrent) Downloader
-def torrentCodec():
-    print("Downloading a torrent:")
-    magnet = "'" +link +"'"
-    engine = input(" a for aria (or) t for transmission: ")
-    if engine=="a":
-        code = "aria2c -d '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
-    elif engine=="t":
-        code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
-    else:
-        torrentCodec()
-    os.system(code)
-
 #(Seedr)From Seedr ftp:
 def seedr():
     print("Downloading from seedr:")
@@ -480,11 +467,10 @@ def codec():
   
     #(Youtube Music) Redirection to Audio Function Without confirmation for Youtube music links
     if "music" in link:
-          audio()
+        audio()
   
     else:
         print('***Enter \n(v) for Video \n(a) for audio \n(m) for advanced \n(b) for best')
-   
         T = input('v or a or m or b: ')
    
         if T=="v":
@@ -502,24 +488,26 @@ def codec():
             quit()
         else:
             codec()
-
-#(Youtube) Youtube Download Directory
-def youtubeDirectory():
-    path = "/storage/emulated/0/Termux_Downloader/Youtube/"
-    if os.path.isdir(path):
-        codec()
-    else:
-        os.mkdir(path)
-        codec()
-
-#(Torrent) Download Directory creation and verification
+  
+#(Torrent) Downloader
 def torrentDownload():
     path = '/storage/emulated/0/Termux_Downloader/Torrent/'
+    
     if os.path.isdir(path):
-        torrentCodec()
+        pass
     else:
         os.mkdir(path)
-        torrentCodec()
+        
+    print("Downloading a torrent:")
+    magnet = "'" +link +"'"
+    engine = input(" a for aria (or) t for transmission: ")
+    if engine=="a":
+        code = "aria2c -d '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
+    elif engine=="t":
+        code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
+    else:
+        torrentDownload()
+    os.system(code)
 
 #(Master) Link Assortment (Distributor)
 def linkDistributor():
@@ -531,10 +519,13 @@ def linkDistributor():
         drive()
     elif "music" in link:
         YTmusicDirectory()
-    elif "youtube" in link:
-        youtubeDirectory()
-    elif "youtu.be" in link:
-        youtubeDirectory()
+    elif "youtube" or "youtu.be" in link:
+        path = "/storage/emulated/0/Termux_Downloader/Youtube/"
+        if os.path.isdir(path):
+            codec()
+        else:
+            os.mkdir(path)
+            codec()
     else:
         others()
 
