@@ -390,63 +390,34 @@ def audio():
                 codec = data["default"][0]["codec"]
             default.close
     
+    path = "/storage/emulated/0/Termux_Downloader/YTmusic/" 
     if "playlist" in link:
-        import yt_dlp
-        path = "/storage/emulated/0/Termux_Downloader/YTmusic/"     
-        ytd_opts = {
-                    'format' : 'bestaudio/best',
-                    'writethumbnail' : 'True',
-                    'ignoreerrors': True,
-                    'outtmpl': path + '/%(playlist)s/%(title)s.%(ext)s',
-                    'postprocessors' :
-                            [
-                                    {
-                                        'key' : 'FFmpegExtractAudio',
-                                        'preferredcodec' : codec,
-                                    },
-                                    {
-                                        'key': 'FFmpegMetadata',
-                                        'add_metadata' : True,     
-                                    },
-                                    {
-                                        "key" : 'EmbedThumbnail',
-                                        'already_have_thumbnail'  : False,
-                                    }
-                            ]
-                     }
-        with yt_dlp.YoutubeDL(ytd_opts) as ydl:
-            info = ydl.extract_info(link, download=True)
-            title = info.get('title', None)
-        history_2(title, site="Youtube Music")
-
+        op_path =  path + '/%(playlist)s/%(title)s.%(ext)s'
     else:
-        import yt_dlp
-        path = "/storage/emulated/0/Termux_Downloader/YTmusic/"             
-        ytd_opts = {
-                            'format' : 'bestaudio/best',
-                            'writethumbnail' : 'True',
-                            'ignoreerrors': True,
-                            'outtmpl': path + '%(title)s.%(ext)s',
-                            'postprocessors' :
-                                    [
-                                            {
-                                                'key' : 'FFmpegExtractAudio',
-                                                'preferredcodec' : codec,
-                                            },
-                                            {
-                                                'key': 'FFmpegMetadata',
-                                                'add_metadata' : True,     
-                                            },
-                                            {
-                                                "key" : 'EmbedThumbnail',
-                                                'already_have_thumbnail'  : False,
-                                            }
-                                    ]
-                            }
-        with yt_dlp.YoutubeDL(ytd_opts) as ydl:
-            info = ydl.extract_info(link, download=True)
-            title = info.get('title', None)
-        history_2(title, site="Youtube Music")     
+        op_path =  path + '%(title)s.%(ext)s'     
+    
+    opt = {
+            'format' : 'bestaudio/best',
+            'writethumbnail' : 'True',
+            'ignoreerrors': True,
+            'outtmpl': op_path,
+            'postprocessors' :
+                [
+                    {
+                        'key' : 'FFmpegExtractAudio',
+                        'preferredcodec' : codec,
+                    },
+                    {
+                        'key': 'FFmpegMetadata',
+                        'add_metadata' : True,     
+                    },
+                    {
+                        "key" : 'EmbedThumbnail',
+                        'already_have_thumbnail'  : False,
+                    }
+                ]
+             }
+    downloader(opt, site="Youtube Music") 
 
 #(Drive) Google Drive:
 def drive():
