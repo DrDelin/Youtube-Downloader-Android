@@ -223,6 +223,7 @@ def video(mode):
                 'external_downloader' : 'aria2c',
                 'outtmpl' : path,
                 'writesubtitles' : choice,
+                'writeautomaticsub' : choice,
                 'merge_output_format' : 'mp4',
                 'writethumbnail' : True,
                 'format' : format,
