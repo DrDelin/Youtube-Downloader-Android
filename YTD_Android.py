@@ -104,7 +104,7 @@ link = sys.argv[1]
 if "music" in link:
     output_directory = "'/storage/emulated/0/Termux_Downloader/YTmusic/%(title)s.%(ext)s' "
 else:
-    output_directory = "'/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s' "
+    output_directory = " "
 
 #(Master) History:
 def history(link, site):
@@ -238,6 +238,7 @@ def best():
 #(Youtube) Video
 def video():
     print("Downloading video from YouTube:")
+    path = '/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s'
 
     #Default creation, import and modification segment:
     with open(json_path, "r") as defaultFile:
@@ -318,7 +319,7 @@ def video():
             choice = bool(False)
     opt = {
                 'external_downloader' : 'aria2c',
-                'outtmpl' : output_directory,
+                'outtmpl' : path,
                 'writesubtitles' : choice,
                 'merge_output_format' : 'mp4',
                 'writethumbnail' : True,
