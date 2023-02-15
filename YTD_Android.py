@@ -199,6 +199,7 @@ def video(mode):
         usr = input("Do you need to go advanced mode type (y) else skip: ")
         if usr=="y":
             video(mode= "advanced")
+            quit()
         else:
             pass
         format = 'bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]'
@@ -245,6 +246,7 @@ def video(mode):
 
 #(Youtube) Audio
 def audio(dir):
+    print("Downloading songs from "+dir+": ")
     with open(json_path, "r") as defaultFile:
         data = json.load(defaultFile)
         
@@ -291,7 +293,6 @@ def audio(dir):
                 codec = data["default"][0]["codec"]
             default.close
     
-    print("Downloading songs from "+dir+": ")
     path = "/storage/emulated/0/Termux_Downloader/"+dir+"/"
     exist = os.path.isdir(path)
     if exist:
