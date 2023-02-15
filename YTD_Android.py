@@ -238,7 +238,8 @@ def best():
 #(Youtube) Video
 def video():
     print("Downloading video from YouTube:")
-    history(link, site="Youtube")
+
+    #Default creation, import and modification segment:
     with open(json_path, "r") as defaultFile:
         data  = json.load(defaultFile)
 
@@ -307,32 +308,39 @@ def video():
             default.close
     
     print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced')
-
     usr = input("Do you need to go advanced mode type (y) else skip: ")
-    
     if usr=="y":
         advanced()
-
     else:
-        def nsv():
-            format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --merge-output-format mp4 '
-            code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -f "+format + "'" + link + "'"
-            os.system(code)
-
-        def sv():
-            format = '"bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]" --sub-lang en-en-US --sub-lang en-GB --sub-lang en --write-auto-subs --convert-subs srt --write-sub --embed-sub --merge-output-format mp4 '
-            code = "yt-dlp --external-downloader aria2c --embed-thumbnail --add-metadata -o "+output_directory+" -ci -f "+format + "'" +link + "'"
-            os.system(code)
-
-        subs = input('With Subtitle (y) or skip: ')
-
-        if subs=="y":
-            sv()
+        if input("Do you need subtitle? If yes, type 'y' or skip! :") == "y":
+            choice = bool(True)
         else:
-            nsv()
-
-
-#(Youtube Music) Directory creation
+            choice = bool(False)
+    opt = {
+                'external_downloader' : 'aria2c',
+                'outtmpl' : output_directory,
+                'writesubtitles' : choice,
+                'merge_output_format' : 'mp4',
+                'writethumbnail' : True,
+                'format' : 'bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]',
+                'postprocessors' :
+                                    [
+                                        {
+                                            'key' : 'FFmpegEmbedSubtitle',
+                                            'already_have_subtitle' : False
+                                        },
+                                        {
+                                                'key' : 'FFmpegMetadata',
+                                                'add_metadata' : True
+                                        },
+                                        {
+                                                'key' : 'EmbedThumbnail',
+                                                'already_have_thumbnail' : False
+                                        }
+                                    ]
+            }   
+    downloader(opt, site = "Youtube") 
+        
 def YTmusicDirectory():
     print("Downloading songs from YouTube Music:")
     path = "/storage/emulated/0/Termux_Downloader/YTmusic/"
