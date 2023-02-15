@@ -325,7 +325,11 @@ def audio(dir):
                     }
                 ]
              }
-    downloader(opt, site="Youtube Music") 
+    if dir == "YTmusic":
+        site = "Youtube Music"
+    else:
+        site = "Youtube"
+    downloader(opt, site= site) 
 
 #(Others) Social Media and download supported video steaming sites:
 def others():
