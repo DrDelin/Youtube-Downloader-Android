@@ -31,7 +31,8 @@ if [ -e '/data/data/com.termux/files/home/noobjection.temp' ]; then
     rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
     sleep 5
     exit
-else  
+else
+    python patch0.1.py
     pkg up -y -y -y -y
     pkg install python -y
     pkg install aria2 -y
