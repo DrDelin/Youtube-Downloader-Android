@@ -31,7 +31,8 @@ else:
         "default" : [
             {
                 "code" : "",
-                "codec" : ""
+                "codec" : "",
+                "last_upgrade": ""
             }],
         "1" : [
             {
