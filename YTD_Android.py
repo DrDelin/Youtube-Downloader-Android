@@ -1,5 +1,5 @@
 #Version 6.0.0.0
-#Engine 6.0
+#Engine 6.5
 
 #(Master) imports
 import os
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Engine)Binary update \n(Main)Complete rebase and optimizaion of code \n(Subtitle)Subtitle embeded with video \n(Download)Improved download speed and decreased code execution time \n(Patch)Empty folder remover \n(Engine) New Update and Upgrade Mechanism \n")
+print("(Engine)Binary Auto update mechanism \n(Main)Complete rebase and optimizaion of code \n(Subtitle)Subtitle embeded with video \n(Patch)Empty folder remover \n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"

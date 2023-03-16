@@ -51,7 +51,7 @@ if c_engine == l_engine:
                 defaultFile.close
         dates = datetime.strptime(date1, "%d/%m/%Y")  - datetime.strptime(date2, "%d/%m/%Y")
         if int(dates.days) > int("28"):
-            print("Outdated Binaries, auto upgrading...")
+            print("\nOutdated Binaries, auto upgrading...\n")
             with open(path, "r") as defaultFile:
                 data = json.load(defaultFile)
                 data["default"][0]["last_upgrade"] = date1
