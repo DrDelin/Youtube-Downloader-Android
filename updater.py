@@ -50,7 +50,6 @@ if c_engine == l_engine:
                 print("Script previously upgraded on: "+date2)
                 defaultFile.close
         dates = datetime.strptime(date1, "%d/%m/%Y")  - datetime.strptime(date2, "%d/%m/%Y")
-        print(dates.days)
         if int(dates.days) > int("28"):
             print("Outdated Binaries, auto upgrading...")
             with open(path, "r") as defaultFile:
