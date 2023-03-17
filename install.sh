@@ -23,6 +23,9 @@ else
     termux-setup-storage
 fi
 
+#Patch installation:
+python patch0.1.py
+
 #Binaries installation:
 if [ -e '/data/data/com.termux/files/home/noobjection.temp' ]; then
     rm -rf '/data/data/com.termux/files/home/noobjection.temp'
@@ -33,7 +36,6 @@ if [ -e '/data/data/com.termux/files/home/noobjection.temp' ]; then
     sleep 5
     exit
 else
-    python patch0.1.py
     pkg up -y -y -y -y
     pkg install python -y
     pkg install aria2 -y
