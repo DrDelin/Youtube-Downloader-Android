@@ -30,6 +30,9 @@ print("(Engine)Binary Auto update mechanism \n(Main)Complete rebase and optimiza
 #(Default) JSON file creation or verification:
 json_path = "/ytd-win/default.json"
 
+#Set Default Path
+default_path = os.path.join(os.getcwd(), 'ytd_win')
+
 if os.path.isfile(json_path):
     pass
 else:
@@ -108,7 +111,7 @@ link = sys.argv[1]
 
 #(Master) History:
 def history(title, site):
-    history = "/ytd_win/history.txt"
+    history = default_path + "/history.txt"
     Title0 = title.replace('"',"`")
     Title = Title0.replace("'", "`")
     with open(history, 'a+') as file:
@@ -301,7 +304,7 @@ def audio(dir):
                 codec = data["default"][0]["codec"]
             default.close
     
-    path = "/ytd_win/"+dir+"/"
+    path = default_path+dir+"/"
     exist = os.path.isdir(path)
     if exist:
         pass
@@ -349,7 +352,7 @@ def others():
     l2 = l1[1].split(".")
     dir_name = l2[0].capitalize()
     print("Downloading from " +dir_name)
-    path = '/ytd_win/'+ dir_name +'/'
+    path = default_path + dir_name +'/'
     if os.path.isdir(path):
         pass
     else:
@@ -418,7 +421,7 @@ def linkDistributor():
     elif "music" in link:
         audio(dir= "YTmusic")
     elif "youtube" in link or "youtu.be" in link:
-        path = '/ytd_win/Youtube/'
+        path = default_path+'/Youtube/'
         if os.path.isdir(path):
             pass
         else:
