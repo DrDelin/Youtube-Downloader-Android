@@ -7,6 +7,10 @@ import sys
 import linecache
 import json
 
+#To-Do
+#Add Proper Paths and Links for binaries
+#Set os.realpath for Default Directory
+
 #Version Info:
 version = (linecache.getline(linecache.sys.argv[0],1))
 print(version.replace("#", ""))
@@ -21,8 +25,10 @@ linecache.clearcache()
 print("(Changelog)Whats new...!\n")
 print("(Engine)Binary Auto update mechanism \n(Main)Complete rebase and optimizaion of code \n(Subtitle)Subtitle embeded with video \n(Patch)Empty folder remover \n")
 
+#Using this as a development brach for Windows
+
 #(Default) JSON file creation or verification:
-json_path = "/data/data/com.termux/files/home/default.json"
+json_path = "/ytd-win/default.json"
 
 if os.path.isfile(json_path):
     pass
@@ -102,7 +108,7 @@ link = sys.argv[1]
 
 #(Master) History:
 def history(title, site):
-    history = "/data/data/com.termux/files/home/history.txt"
+    history = "/ytd_win/history.txt"
     Title0 = title.replace('"',"`")
     Title = Title0.replace("'", "`")
     with open(history, 'a+') as file:
@@ -125,7 +131,7 @@ def downloader(opt, site):
 
 #(Youtube) Video
 def video(mode):
-    path = '/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s'
+    path = '/ytd_win/Youtube/%(title)s.%(ext)s'
     if mode == "Youtube":
         print("Downloading video from YouTube:")
         #Default creation, import and modification segment:
@@ -295,7 +301,7 @@ def audio(dir):
                 codec = data["default"][0]["codec"]
             default.close
     
-    path = "/storage/emulated/0/Termux_Downloader/"+dir+"/"
+    path = "/ytd_win/"+dir+"/"
     exist = os.path.isdir(path)
     if exist:
         pass
@@ -343,7 +349,7 @@ def others():
     l2 = l1[1].split(".")
     dir_name = l2[0].capitalize()
     print("Downloading from " +dir_name)
-    path = '/storage/emulated/0/Termux_Downloader/'+ dir_name +'/'
+    path = '/ytd_win/'+ dir_name +'/'
     if os.path.isdir(path):
         pass
     else:
@@ -361,7 +367,7 @@ def others():
 #(Seedr)From Seedr ftp:
 def seedr():
     print("Downloading from seedr:")
-    path = "/storage/emulated/0/Termux_Downloader/Seedr/"
+    path = "/ytd_win/Seedr/"
     code = "aria2c -d '"+ path + "' '"+ link + "' --file-allocation=none"
     if os.path.isdir(path):
         os.system(code)
@@ -374,7 +380,7 @@ def drive():
     id1 = link.replace("https://drive.google.com/file/d/", "")
     split = id1.split("/", 1)
     id = split[0]
-    path = "/storage/emulated/0/Termux_Downloader/Gdrive/"
+    path = "/ytd_win/Gdrive/"
     code = "gdown -O '" + path + "' --id '" + id + "'"
     exist = os.path.isdir(path)
     if exist:
@@ -385,7 +391,7 @@ def drive():
   
 #(Torrent) Downloader
 def torrentDownload():
-    path = '/storage/emulated/0/Termux_Downloader/Torrent/'
+    path = '/ytd_win/Torrent/'
     if os.path.isdir(path):
         pass
     else:
@@ -394,9 +400,9 @@ def torrentDownload():
     magnet = "'" +link +"'"
     engine = input(" a for aria (or) t for transmission: ")
     if engine=="a":
-        code = "aria2c -d '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
+        code = "aria2c -d '/ytd_win/Torrent/' " +magnet+ " --file-allocation=none"
     elif engine=="t":
-        code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
+        code = "transmission-cli -w '/ytd_win/Torrent/' " +magnet
     else:
         torrentDownload()
     os.system(code)
@@ -412,7 +418,7 @@ def linkDistributor():
     elif "music" in link:
         audio(dir= "YTmusic")
     elif "youtube" in link or "youtu.be" in link:
-        path = '/storage/emulated/0/Termux_Downloader/Youtube/'
+        path = '/ytd_win/Youtube/'
         if os.path.isdir(path):
             pass
         else:
@@ -435,7 +441,7 @@ def linkDistributor():
 
 #(Master) General Directory in Internal Storage
 def masterDirectory():
-    path = "/storage/emulated/0/Termux_Downloader/"
+    path = "/ytd_win/"
     exist = os.path.isdir(path)
     if exist:
         #Empty directory scanner and remover
