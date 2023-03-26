@@ -25,13 +25,13 @@ linecache.clearcache()
 print("(Changelog)Whats new...!\n")
 print("(Engine)Binary Auto update mechanism \n(Main)Complete rebase and optimizaion of code \n(Subtitle)Subtitle embeded with video \n(Patch)Empty folder remover \n")
 
-#Using this as a development brach for Windows
-
-#(Default) JSON file creation or verification:
-json_path = "/ytd-win/default.json"
+#Using this as a development branch for Windows
 
 #Set Default Path
 default_path = os.path.join(os.getcwd(), 'ytd_win')
+
+#(Default) JSON file creation or verification:
+json_path = default_path + "/default.json"
 
 if os.path.isfile(json_path):
     pass
@@ -41,7 +41,9 @@ else:
             {
                 "code" : "",
                 "codec" : "",
-                "last_upgrade": ""
+                "last_upgrade": "",
+                "advanced": "",
+                "subtitle": ""
             }],
         "1" : [
             {
@@ -168,50 +170,23 @@ def video(mode):
                 default.close
                 
             else:
-                with open(json_path, "r") as default:
-                    data = json.load(default)
-                    code = data["default"][0]["code"]
-                    k = data[code][0]["res"]
-                    choice = input("Default resolution is " +k+ ". If you want to download in different resolution type (y) or skip:" )
-                
-                    if choice =="y":
-                        print('Enter the respective code for Required Resolution:')
-                        print('[code] - [Resolution]')
-                        print('1 - 4k')
-                        print('2 - 2k')
-                        print('3 - 1080p')
-                        print('4 - 720p')
-                        print("5 - 480p")
-                        print('6 - 360p')
-                        print('7 - 240p')
-                        print('8 - 144p')
+                pass
 
-                        i = input('Resolution Code: ')  
-                        data["default"][0]["code"] = i
-                    
-                        with open(json_path, "w") as defaultFile:
-                            json.dump(data, defaultFile)
-                        defaultFile.close
-
-                        with open(json_path, "r") as default:
-                            data = json.load(default)
-                            code = data["default"][0]["code"]
-                            j = data[code][0]["height"]
-                            k = data[code][0]["res"]
-                        default.close
-                
-                    else:
-                        j = data[code][0]["height"]
-                        k = data[code][0]["res"]
-                default.close
-
+        
         print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced')
-        usr = input("Do you need to go advanced mode type (y) else skip: ")
-        if usr=="y":
-            video(mode= "advanced")
-            quit()
-        else:
-            pass
+        with open(json_path, "w") as defaultFile:
+            if data["default"][0]["advanced"] == "no":
+                pass
+            else:
+                usr = input("Do you need to go advanced mode type (y) else skip: ")
+                if usr=="y":
+                    video(mode= "advanced")
+                    quit()
+                else:
+                    data["default"][0]["advanced"] = "no"                
+                    json.dump(data, defaultFile)
+        defaultFile.close
+                
         format = 'bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]'
     elif mode == "best":
         print("Downloading best one from YouTube:")
@@ -225,10 +200,18 @@ def video(mode):
     else:
         linkDistributor()
 
-    if input("Do you need subtitle? If yes, type 'y' or skip! :") == "y":
-        choice = bool(True)
-    else:
-        choice = bool(False)
+    with open(json_path, "w") as defaultFile:
+        if data["default"][0]["subtitle"] == "no":
+            pass
+        else:
+            if input("Do you need subtitle? If yes, type 'y' or skip! :") == "y":
+                choice = bool(True)
+            else:
+                choice = bool(False)
+                data["default"][0]["subtitle"] = "no"
+                json.dump(data, defaultFile)
+    defaultFile.close
+
     opt = {
                 'external_downloader' : 'aria2c',
                 'outtmpl' : path,
