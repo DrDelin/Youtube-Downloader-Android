@@ -34,7 +34,7 @@ default_path = os.path.join(os.getcwd(), 'ytd_win')
 json_path = default_path + "/default.json"
 
 if os.path.isfile(json_path):
-    pass
+    print('Json Present')
 else:
     jsonnew = {
         "default" : [
@@ -170,8 +170,42 @@ def video(mode):
                 default.close
                 
             else:
-                pass
+                with open(json_path, "r") as default:
+                    data = json.load(default)
+                    code = data["default"][0]["code"]
+                    k = data[code][0]["res"]
+                    choice = input("Default resolution is " +k+ ". If you want to download in different resolution type (y) or skip:" )
+                
+                    if choice =="y":
+                        print('Enter the respective code for Required Resolution:')
+                        print('[code] - [Resolution]')
+                        print('1 - 4k')
+                        print('2 - 2k')
+                        print('3 - 1080p')
+                        print('4 - 720p')
+                        print("5 - 480p")
+                        print('6 - 360p')
+                        print('7 - 240p')
+                        print('8 - 144p')
 
+                        i = input('Resolution Code: ')  
+                        data["default"][0]["code"] = i
+                    
+                        with open(json_path, "w") as defaultFile:
+                            json.dump(data, defaultFile)
+                        defaultFile.close
+
+                        with open(json_path, "r") as default:
+                            data = json.load(default)
+                            code = data["default"][0]["code"]
+                            j = data[code][0]["height"]
+                            k = data[code][0]["res"]
+                        default.close
+                
+                    else:
+                        j = data[code][0]["height"]
+                        k = data[code][0]["res"]
+                default.close
         
         print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced')
         with open(json_path, "w") as defaultFile:
@@ -202,7 +236,7 @@ def video(mode):
 
     with open(json_path, "w") as defaultFile:
         if data["default"][0]["subtitle"] == "no":
-            pass
+            choice = bool(False)
         else:
             if input("Do you need subtitle? If yes, type 'y' or skip! :") == "y":
                 choice = bool(True)
