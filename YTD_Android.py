@@ -210,10 +210,13 @@ def video(mode):
         print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced')
         with open(json_path, "w") as defaultFile:
             if data["default"][0]["advanced"] == "no":
-                pass
+                data["default"][0]["advanced"] = "no"
+                json.dump(data, defaultFile)
             else:
                 usr = input("Do you need to go advanced mode type (y) else skip: ")
                 if usr=="y":
+                    data["default"][0]["advanced"] = "yes"
+                    json.dump(data, defaultFile)
                     video(mode= "advanced")
                     quit()
                 else:
@@ -237,13 +240,17 @@ def video(mode):
     with open(json_path, "w") as defaultFile:
         if data["default"][0]["subtitle"] == "no":
             choice = bool(False)
+            data["default"][0]["subtitle"] = "no"
+            json.dump(data, defaultFile, indent=4)
         else:
             if input("Do you need subtitle? If yes, type 'y' or skip! :") == "y":
                 choice = bool(True)
+                data["default"][0]["subtitle"] = "yes"
+                json.dump(data, defaultFile, indent=4)
             else:
                 choice = bool(False)
                 data["default"][0]["subtitle"] = "no"
-                json.dump(data, defaultFile)
+                json.dump(data, defaultFile, indent=4)
     defaultFile.close
 
     opt = {
