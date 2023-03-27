@@ -1,5 +1,6 @@
 import os , json , sys
-path = "/data/data/com.termux/files/home/default.json"
+default_path = os.path.join(os.getcwd(), 'ytd_win')
+path = default_path + "/default.json"
 if os.path.isfile(path):
     with open(path, 'r') as js:
         jfile = json.load(js)
