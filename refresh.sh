@@ -1,7 +1,6 @@
 #!/bin/bash
 
-if [ $1 == "" ]
-then
+if ! [[ $1 == "auto" ]]; then
     python updater.py forced
 fi
 
