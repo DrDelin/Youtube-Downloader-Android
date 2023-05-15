@@ -79,6 +79,7 @@ if not sys.argv[1] == "forced":
         os.system("sh refresh.sh auto")
         print("Upgraded...!\n")
         os.system(code)
+#Forced Manual upgrade / Troubleshoot date recorder
 else:
     path = "/data/data/com.termux/files/home/default.json"
     if os.path.isfile(path):
