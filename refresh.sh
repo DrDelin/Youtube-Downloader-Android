@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ $1 == "" ]
+then
+    python updater.py forced
+fi
+
 rm main.py
 rm updater.py
 rm history.py
