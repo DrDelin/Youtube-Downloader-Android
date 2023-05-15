@@ -60,7 +60,6 @@ if not sys.argv[1] == "forced":
                         json.dump(data, defaultFile, indent=4)
                         defaultFile.close
                     os.system("sh refresh.sh auto")
-                    os.system(code)
             else:
                 print("\nBinaries seems to be new. Auto upgrade skipped...\n\nChecking version update...\n")
         else:
