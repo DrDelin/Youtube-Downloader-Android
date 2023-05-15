@@ -125,7 +125,10 @@ def downloader(opt, site):
 
 #(Youtube) Video
 def video(mode):
-    path = '/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s'
+    if "playlist" in link:
+        path = '/storage/emulated/0/Termux_Downloader/Youtube/%(playlist)s/%(title)s.%(ext)s'
+    else:
+        path = '/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s'
     if mode == "Youtube":
         print("Downloading video from YouTube:")
         #Default creation, import and modification segment:

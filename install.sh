@@ -19,12 +19,11 @@ cd "/data/data/com.termux/files/home/"
 #Storage permission:
 if [ -e '/data/data/com.termux/files/home/default.json' ]; then
     termux-setup-storage -y
+    python patch0.1.py
 else
     termux-setup-storage
+    rm -rf patch0.1.py
 fi
-
-#Patch installation:
-python patch0.1.py
 
 #Binaries installation:
 if [ -e '/data/data/com.termux/files/home/noobjection.temp' ]; then
