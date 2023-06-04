@@ -100,6 +100,10 @@ dependency()
 #(Master) Automated link grabbing from Termux url Opener
 link = sys.argv[1]
 
+#General Path
+
+genPath = "/storage/emulated/0/"
+
 #(Master) History:
 def history(title, site):
     history = "/data/data/com.termux/files/home/history.txt"
@@ -126,9 +130,9 @@ def downloader(opt, site):
 #(Youtube) Video
 def video(mode):
     if "playlist" in link:
-        path = '/storage/emulated/0/Termux_Downloader/Youtube/%(playlist)s/%(title)s.%(ext)s'
+        path = genPath+'Termux_Downloader/Youtube/%(playlist)s/%(title)s.%(ext)s'
     else:
-        path = '/storage/emulated/0/Termux_Downloader/Youtube/%(title)s.%(ext)s'
+        path = genPath+'Termux_Downloader/Youtube/%(title)s.%(ext)s'
     if mode == "Youtube":
         print("Downloading video from YouTube:")
         #Default creation, import and modification segment:
@@ -298,7 +302,7 @@ def audio(dir):
                 codec = data["default"][0]["codec"]
             default.close
     
-    path = "/storage/emulated/0/Termux_Downloader/"+dir+"/"
+    path = genPath+"Termux_Downloader/"+dir+"/"
     exist = os.path.isdir(path)
     if exist:
         pass
@@ -346,7 +350,7 @@ def others():
     l2 = l1[1].split(".")
     dir_name = l2[0].capitalize()
     print("Downloading from " +dir_name)
-    path = '/storage/emulated/0/Termux_Downloader/'+ dir_name +'/'
+    path = genPath+'Termux_Downloader/'+ dir_name +'/'
     if os.path.isdir(path):
         pass
     else:
@@ -364,7 +368,7 @@ def others():
 #(Seedr)From Seedr ftp:
 def seedr():
     print("Downloading from seedr:")
-    path = "/storage/emulated/0/Termux_Downloader/Seedr/"
+    path = genPath+"Termux_Downloader/Seedr/"
     code = "aria2c -d '"+ path + "' '"+ link + "' --file-allocation=none"
     if os.path.isdir(path):
         os.system(code)
@@ -377,7 +381,7 @@ def drive():
     id1 = link.replace("https://drive.google.com/file/d/", "")
     split = id1.split("/", 1)
     id = split[0]
-    path = "/storage/emulated/0/Termux_Downloader/Gdrive/"
+    path = genPath+"Termux_Downloader/Gdrive/"
     code = "gdown -O '" + path + "' --id '" + id + "'"
     exist = os.path.isdir(path)
     if exist:
@@ -388,7 +392,7 @@ def drive():
   
 #(Torrent) Downloader
 def torrentDownload():
-    path = '/storage/emulated/0/Termux_Downloader/Torrent/'
+    path = genPath+'Termux_Downloader/Torrent/'
     if os.path.isdir(path):
         pass
     else:
@@ -397,9 +401,9 @@ def torrentDownload():
     magnet = "'" +link +"'"
     engine = input(" a for aria (or) t for transmission: ")
     if engine=="a":
-        code = "aria2c -d '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
+        code = "aria2c -d '"+genPath+"Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
     elif engine=="t":
-        code = "transmission-cli -w '/storage/emulated/0/Termux_Downloader/Torrent/' " +magnet
+        code = "transmission-cli -w '"+genPath+"Termux_Downloader/Torrent/' " +magnet
     else:
         torrentDownload()
     os.system(code)
@@ -415,7 +419,7 @@ def linkDistributor():
     elif "music" in link:
         audio(dir= "YTmusic")
     elif "youtube" in link or "youtu.be" in link:
-        path = '/storage/emulated/0/Termux_Downloader/Youtube/'
+        path = genPath + 'Termux_Downloader/Youtube/'
         if os.path.isdir(path):
             pass
         else:
@@ -438,7 +442,7 @@ def linkDistributor():
 
 #(Master) General Directory in Internal Storage
 def masterDirectory():
-    path = "/storage/emulated/0/Termux_Downloader/"
+    path = genPath + "Termux_Downloader/"
     exist = os.path.isdir(path)
     if exist:
         #Empty directory scanner and remover
