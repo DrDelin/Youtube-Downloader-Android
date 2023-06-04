@@ -1,4 +1,4 @@
-#Version 6.1.0.0
+#Version 6.1.1.0
 #Engine 6.5
 
 #(Master) imports
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Youtube)Entire Playlist download feature\n(Automation)Automatic upgrade mech improved\n(Bug fixes)Overall bug fixes and improvements")
+print("(Main)Maintainance Update\n(Bug fixes)Overall bug fixes and improvements\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
