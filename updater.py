@@ -14,9 +14,9 @@ request  = requests.get(url)
 soup = BeautifulSoup(request.content, 'html.parser')
 
 #Cloud Version No:
-c_version = (soup.find('span', {'class': 'pl-c'})).string
+c_version = (soup.find('span', {'class': 'pl-c'})).string + "\n"
 #Cloud Engine No:
-c_engine = (soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})).string
+c_engine = (soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})).string + "\n"
 
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
