@@ -14,15 +14,20 @@ request  = requests.get(url)
 soup = BeautifulSoup(request.content, 'html.parser')
 
 #Cloud Version No:
-c_version = soup.find('span', {'class': 'pl-c'})
+c_version = (soup.find('span', {'class': 'pl-c'})).string
 #Cloud Engine No:
-c_engine = soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})
+c_engine = (soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})).string
 
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
 #Local Engine No:
 l_engine = linecache.getline(r"/data/data/com.termux/files/home/main.py", 2)
 
+print(c_version)
+print(c_engine)
+
+print(l_version)
+print(l_engine)
 #Code to pass link to the downloader / Manual upgrader
 if not sys.argv[1] == "forced":
     code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
