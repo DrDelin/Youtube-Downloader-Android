@@ -10,16 +10,13 @@ print("WELCOME TO TERMUX DOWNLOADER")
 
 #Getting cloud edition's version and engine number
 url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/master/YTD_Android.py"
-r  = requests.get(url)
-data = r.text
-soup = BeautifulSoup(data, 'html.parser')
+request  = requests.get(url)
+soup = BeautifulSoup(request.content, 'html.parser')
 
 #Cloud Version No:
-ver = soup.find(id="LC1")
-c_version = ver.text.strip() + "\n"
+c_version = soup.find('span', {'class': 'pl-c'})
 #Cloud Engine No:
-eng = soup.find(id="LC2")
-c_engine = eng.text.strip() + "\n"
+c_engine = soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})
 
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
