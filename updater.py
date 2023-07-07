@@ -8,20 +8,28 @@ from datetime import date , datetime
 
 print("WELCOME TO TERMUX DOWNLOADER")
 
-#Getting cloud edition's version and engine number
-url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/master/YTD_Android.py"
-request  = requests.get(url)
-soup = BeautifulSoup(request.content, 'html.parser')
-
-#Cloud Version No:
-c_version = (soup.find('span', {'class': 'pl-c'})).string + "\n"
-#Cloud Engine No:
-c_engine = (soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})).string + "\n"
-
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
 #Local Engine No:
 l_engine = linecache.getline(r"/data/data/com.termux/files/home/main.py", 2)
+
+#Update Failsafe Bypasser
+try:
+    #Getting cloud edition's version and engine number
+    url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/master/YTD_Android.py"
+    request  = requests.get(url)
+    soup = BeautifulSoup(request.content, 'html.parser')
+
+    #Cloud Version No:
+    c_version = (soup.find('span', {'class': 'pl-c'})).string + "\n"
+    #Cloud Engine No:
+    c_engine = (soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})).string + "\n"
+
+except:
+    print("\nUpdate Server: Down/Broken \nAuto Upgrade System: Active \nServer repair: Soon\n")
+    c_version = l_version
+    c_engine = l_engine 
+
 
 print(c_version)
 print(c_engine)
