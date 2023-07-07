@@ -26,7 +26,7 @@ try:
     c_engine = (soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})).string + "\n"
 
 except:
-    print("\nUpdate Server: Down/Broken \nAuto Upgrade System: Active \nServer repair: Soon\n")
+    print("\nFailsafe Update Verification System By-Passer: ACTIVATED\nUpdate Server: BROKEN OR DOWN\nAuto Upgrade System: ACTIVE \nServer repair: ONGOING\nDownloader: ACTIVE & RUNNING\n")
     c_version = l_version
     c_engine = l_engine 
 
