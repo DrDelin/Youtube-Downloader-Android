@@ -30,12 +30,6 @@ except:
     c_version = l_version
     c_engine = l_engine 
 
-
-print(c_version)
-print(c_engine)
-
-print(l_version)
-print(l_engine)
 #Code to pass link to the downloader / Manual upgrader
 if not sys.argv[1] == "forced":
     code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
