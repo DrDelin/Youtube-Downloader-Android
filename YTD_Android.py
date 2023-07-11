@@ -134,7 +134,7 @@ def video(mode):
     else:
         path = genPath+'Termux_Downloader/Youtube/%(title)s.%(ext)s'
     if mode == "Youtube":
-        print("Downloading video from YouTube:")
+        print("Downloading video from YouTube:\n\n")
         #Default creation, import and modification segment:
         with open(json_path, "r") as defaultFile:
             data  = json.load(defaultFile)
@@ -151,7 +151,8 @@ def video(mode):
                 print('7 - 240p')
                 print('8 - 144p')
 
-                i = input('Resolution Code: ')  
+                i = input('Resolution Code: ')
+                print("\n\n")  
                 data["default"][0]["code"] = i
                 
                 with open(json_path, "w") as defaultFile:
@@ -171,7 +172,7 @@ def video(mode):
                     code = data["default"][0]["code"]
                     k = data[code][0]["res"]
                     choice = input("Default resolution is " +k+ ". If you want to download in different resolution type (y) or skip:" )
-                
+                    print("\n\n")
                     if choice =="y":
                         print('Enter the respective code for Required Resolution:')
                         print('[code] - [Resolution]')
@@ -184,7 +185,8 @@ def video(mode):
                         print('7 - 240p')
                         print('8 - 144p')
 
-                        i = input('Resolution Code: ')  
+                        i = input('Resolution Code: ')
+                        print("\n\n")  
                         data["default"][0]["code"] = i
                     
                         with open(json_path, "w") as defaultFile:
@@ -203,8 +205,9 @@ def video(mode):
                         k = data[code][0]["res"]
                 default.close
 
-        print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced')
+        print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced\n')
         usr = input("Do you need to go advanced mode type (y) else skip: ")
+        print("\n\n")
         if usr=="y":
             video(mode= "advanced")
             quit()
@@ -212,14 +215,18 @@ def video(mode):
             pass
         format = 'bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]'
     elif mode == "best":
-        print("Downloading best one from YouTube:")
+        print("Downloading best one from YouTube:\n\n")
         format = 'best'
     elif mode == "advanced":
-        print("Downloading from YouTube - Advanced mode:")
+        print("Downloading from YouTube - Advanced mode:\n\n")
         os.system("yt-dlp -F " +link)
-        vid = input('Video id: ')
-        aid = input('Audio id: ')
-        format = str(vid)+" + "+str(aid)
+        if "youtube" in link or "youtu.be" in link:
+            vid = input('Video id: \n')
+            aid = input('Audio id: \n')
+            format = str(vid)+" + "+str(aid)
+        else:
+            format = input("Enter the format code from above list:")
+            print("\n\n")
     else:
         linkDistributor()
 
@@ -227,6 +234,7 @@ def video(mode):
         choice = bool(True)
     else:
         choice = bool(False)
+    print("\n\n")
     opt = {
                 'external_downloader' : 'aria2c',
                 'outtmpl' : path,
@@ -255,7 +263,7 @@ def video(mode):
 
 #(Youtube) Audio
 def audio(dir):
-    print("Downloading songs from "+dir+": ")
+    print("Downloading songs from "+dir+": \n\n")
     with open(json_path, "r") as defaultFile:
         data = json.load(defaultFile)
         
@@ -280,11 +288,11 @@ def audio(dir):
             data = json.load(default)
             notification = data["default"][0]["codec"]
             choice = input("Default audio codec is " +notification+ ". If you need to download in different codec type (y) or else skip:")
-    
+            print("\n\n")
             if choice == "y":
-                print('Enter the Format of audio (mp3, aac, m4a, flac....)')
+                print('Enter the Format of audio (mp3, aac, m4a, flac....)\n')
                 lateCodec = input('Enter the format: ')
-                
+                print("\n\n")                
                 with open(json_path, "r") as defaultFile:
                     data = json.load(defaultFile)
                     data["default"][0]["codec"] = lateCodec
@@ -350,6 +358,7 @@ def others():
     l2 = l1[1].split(".")
     dir_name = l2[0].capitalize()
     print("Downloading from " +dir_name)
+    print("\n\n")
     path = genPath+'Termux_Downloader/'+ dir_name +'/'
     if os.path.isdir(path):
         pass
@@ -367,7 +376,7 @@ def others():
 
 #(Seedr)From Seedr ftp:
 def seedr():
-    print("Downloading from seedr:")
+    print("Downloading from seedr:\n\n")
     path = genPath+"Termux_Downloader/Seedr/"
     code = "aria2c -d '"+ path + "' '"+ link + "' --file-allocation=none"
     if os.path.isdir(path):
@@ -397,9 +406,10 @@ def torrentDownload():
         pass
     else:
         os.mkdir(path)
-    print("Downloading a torrent:")
+    print("Downloading a torrent: \n\n")
     magnet = "'" +link +"'"
     engine = input(" a for aria (or) t for transmission: ")
+    print("\n\n")
     if engine=="a":
         code = "aria2c -d '"+genPath+"Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
     elif engine=="t":
@@ -425,7 +435,8 @@ def linkDistributor():
         else:
             os.mkdir(path)
         print('Enter \n*(v) for Video \n*(a) for audio \n*(m) for advanced \n*(b) for best')
-        T = input('v or a or m or b: ') 
+        T = input('v or a or m or b: ')
+        print("\n\n") 
         if T=="v":
             video(mode= "Youtube")
         elif T=="m":
