@@ -1,4 +1,4 @@
-#Version 7.0.0.1
+#Version 7.0.1.0
 #Engine 7.0
 
 #(Master) imports
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Bug Fix)Fatal Startup failure fix\n(Updater)New Update verification mechanism\n(Updater)Failsafe Updater Bypass mechanism\n(Updater)New Update server\n(General)Overall code maintainance\n")
+print("(General)Cosmetic update for clean interface\n(Main)(Beta)Advanced mode improved\n(Bug Fix)Fatal Startup failure fix\n(Updater)Failsafe Updater Bypass mechanism\n(General)Overall code maintainance\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -134,7 +134,7 @@ def video(mode):
     else:
         path = genPath+'Termux_Downloader/Youtube/%(title)s.%(ext)s'
     if mode == "Youtube":
-        print("Downloading video from YouTube:\n\n")
+        print("Downloading video from YouTube:\n")
         #Default creation, import and modification segment:
         with open(json_path, "r") as defaultFile:
             data  = json.load(defaultFile)
@@ -152,7 +152,7 @@ def video(mode):
                 print('8 - 144p')
 
                 i = input('Resolution Code: ')
-                print("\n\n")  
+                print("\n")  
                 data["default"][0]["code"] = i
                 
                 with open(json_path, "w") as defaultFile:
@@ -172,7 +172,7 @@ def video(mode):
                     code = data["default"][0]["code"]
                     k = data[code][0]["res"]
                     choice = input("Default resolution is " +k+ ". If you want to download in different resolution type (y) or skip:" )
-                    print("\n\n")
+                    print("\n")
                     if choice =="y":
                         print('Enter the respective code for Required Resolution:')
                         print('[code] - [Resolution]')
@@ -186,7 +186,7 @@ def video(mode):
                         print('8 - 144p')
 
                         i = input('Resolution Code: ')
-                        print("\n\n")  
+                        print("\n")  
                         data["default"][0]["code"] = i
                     
                         with open(json_path, "w") as defaultFile:
@@ -207,7 +207,7 @@ def video(mode):
 
         print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced\n')
         usr = input("Do you need to go advanced mode type (y) else skip: ")
-        print("\n\n")
+        print("\n")
         if usr=="y":
             video(mode= "advanced")
             quit()
@@ -215,10 +215,10 @@ def video(mode):
             pass
         format = 'bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]'
     elif mode == "best":
-        print("Downloading best one from YouTube:\n\n")
+        print("Downloading best one from YouTube:\n")
         format = 'best'
     elif mode == "advanced":
-        print("Downloading from YouTube - Advanced mode:\n\n")
+        print("Downloading from YouTube - Advanced mode:\n")
         os.system("yt-dlp -F " +link)
         if "youtube" in link or "youtu.be" in link:
             vid = input('Video id: \n')
@@ -226,7 +226,7 @@ def video(mode):
             format = str(vid)+" + "+str(aid)
         else:
             format = input("Enter the format code from above list:")
-            print("\n\n")
+            print("\n")
     else:
         linkDistributor()
 
@@ -234,7 +234,7 @@ def video(mode):
         choice = bool(True)
     else:
         choice = bool(False)
-    print("\n\n")
+    print("\n")
     opt = {
                 'external_downloader' : 'aria2c',
                 'outtmpl' : path,
@@ -263,7 +263,7 @@ def video(mode):
 
 #(Youtube) Audio
 def audio(dir):
-    print("Downloading songs from "+dir+": \n\n")
+    print("Downloading songs from "+dir+": \n")
     with open(json_path, "r") as defaultFile:
         data = json.load(defaultFile)
         
@@ -288,11 +288,11 @@ def audio(dir):
             data = json.load(default)
             notification = data["default"][0]["codec"]
             choice = input("Default audio codec is " +notification+ ". If you need to download in different codec type (y) or else skip:")
-            print("\n\n")
+            print("\n")
             if choice == "y":
                 print('Enter the Format of audio (mp3, aac, m4a, flac....)\n')
                 lateCodec = input('Enter the format: ')
-                print("\n\n")                
+                print("\n")                
                 with open(json_path, "r") as defaultFile:
                     data = json.load(defaultFile)
                     data["default"][0]["codec"] = lateCodec
@@ -358,7 +358,7 @@ def others():
     l2 = l1[1].split(".")
     dir_name = l2[0].capitalize()
     print("Downloading from " +dir_name)
-    print("\n\n")
+    print("\n")
     path = genPath+'Termux_Downloader/'+ dir_name +'/'
     if os.path.isdir(path):
         pass
@@ -376,7 +376,7 @@ def others():
 
 #(Seedr)From Seedr ftp:
 def seedr():
-    print("Downloading from seedr:\n\n")
+    print("Downloading from seedr:\n")
     path = genPath+"Termux_Downloader/Seedr/"
     code = "aria2c -d '"+ path + "' '"+ link + "' --file-allocation=none"
     if os.path.isdir(path):
@@ -406,10 +406,10 @@ def torrentDownload():
         pass
     else:
         os.mkdir(path)
-    print("Downloading a torrent: \n\n")
+    print("Downloading a torrent: \n")
     magnet = "'" +link +"'"
     engine = input(" a for aria (or) t for transmission: ")
-    print("\n\n")
+    print("\n")
     if engine=="a":
         code = "aria2c -d '"+genPath+"Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
     elif engine=="t":
@@ -436,7 +436,7 @@ def linkDistributor():
             os.mkdir(path)
         print('Enter \n*(v) for Video \n*(a) for audio \n*(m) for advanced \n*(b) for best')
         T = input('v or a or m or b: ')
-        print("\n\n") 
+        print("\n") 
         if T=="v":
             video(mode= "Youtube")
         elif T=="m":
