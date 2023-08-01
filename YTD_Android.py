@@ -1,5 +1,5 @@
-#Version 7.0.1.0
-#Engine 7.0
+#Version 7.1.0.0
+#Engine 7.1
 
 #(Master) imports
 import os
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(General)Cosmetic update for clean interface\n(Main)(Beta)Advanced mode improved\n(Bug Fix)Fatal Startup failure fix\n(Updater)Failsafe Updater Bypass mechanism\n(General)Overall code maintainance\n")
+print("(Updater)New updater Mechanism (Ver 4.0)\n(Updater)Ping or server response time indicator\n(Overall)Maintainance\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"

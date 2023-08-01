@@ -54,6 +54,7 @@ else
     apt update -y -y -y
     apt upgrade -y -y -y
     apt update -y -y -y
+    apt autoremove -y -y -y
     cat /data/data/com.termux/files/home/Youtube-Downloader-Android/README.md
     #Completion msg:
     echo ###Installation Done Successfully...Select Termux in share option of youtube app..."###

@@ -39,7 +39,7 @@ except:
 
 #Ping:
 end = time.time()
-print(f"Ping: {(end-start)*10**3:.02f}mS \n")
+print(f"\n[Ping: {(end-start)*10**3:.02f}mS]\n")
 
 #Code to pass link to the downloader / Manual upgrader
 if not sys.argv[1] == "forced":
