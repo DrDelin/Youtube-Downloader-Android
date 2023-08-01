@@ -32,6 +32,8 @@ try:
     eng = soup[eindex + len("#Engine"):eindex + len("#Engine") + 4]
     c_engine = "#Engine"+eng+"\n"
 
+    print("\nUpdate Server: ACTIVE\nFailsafe Update Verification System By-Passer: DEACTIVATED\nAuto Upgrade System: ACTIVE\nDownloader: ACTIVE & RUNNING\n")
+
 except:
     print("\nFailsafe Update Verification System By-Passer: ACTIVATED\nUpdate Server: BROKEN OR DOWN\nAuto Upgrade System: ACTIVE \nServer repair: ONGOING\nDownloader: ACTIVE & RUNNING\n")
     c_version = l_version
