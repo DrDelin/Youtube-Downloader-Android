@@ -5,6 +5,8 @@ import linecache
 import requests
 from bs4 import BeautifulSoup
 from datetime import date , datetime
+import time
+start = time.time()
 
 print("WELCOME TO TERMUX DOWNLOADER")
 
@@ -18,17 +20,26 @@ try:
     #Getting cloud edition's version and engine number
     url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/master/YTD_Android.py"
     request  = requests.get(url)
-    soup = BeautifulSoup(request.content, 'html.parser')
+    soup = BeautifulSoup(request.content, 'html.parser').text
 
     #Cloud Version No:
-    c_version = (soup.find('span', {'class': 'pl-c'})).string + "\n"
+    vindex = soup.find("#Version")
+    ver = soup[vindex + len("#Version"):vindex + len("#Version") + 8]
+    c_version = "#Version" +ver+"\n"
+    
     #Cloud Engine No:
-    c_engine = (soup.find('span', {'class': 'pl-c'}).findNext('span', {'class': 'pl-c'})).string + "\n"
+    eindex = soup.find("#Engine")
+    eng = soup[eindex + len("#Engine"):eindex + len("#Engine") + 4]
+    c_engine = "#Engine"+eng+"\n"
 
 except:
     print("\nFailsafe Update Verification System By-Passer: ACTIVATED\nUpdate Server: BROKEN OR DOWN\nAuto Upgrade System: ACTIVE \nServer repair: ONGOING\nDownloader: ACTIVE & RUNNING\n")
     c_version = l_version
     c_engine = l_engine 
+
+#Ping:
+end = time.time()
+print(f"Ping: {(end-start)*10**3:.02f}mS \n")
 
 #Code to pass link to the downloader / Manual upgrader
 if not sys.argv[1] == "forced":

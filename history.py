@@ -1,8 +1,10 @@
 import os
 import json
+import time
 
 history = "history.txt"
 
+start = time.time()
 histlist = []
 with open(history, 'r+') as f:
     for jsonObj in f:
@@ -14,7 +16,9 @@ input_dict = json.loads(histlist3)
 print("\nHistory: \n")
 for i in input_dict:
     print(i["SNo"]+")", i["Name"]+"||", i["Site"])
-
+end = time.time()
+end = time.time()
+print(f"\nListing time: {(end-start)*10**3:.02f}mS\n")
 print("\nWhat to do!? \n")
 print("Select 1 to redownload from history: \nSelect 2 to revisit the site of download: \nSelect 3 to clear history: \nSkip to close this script:\n")
 choice = input("Your Choice:")
