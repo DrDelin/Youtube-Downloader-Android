@@ -1,5 +1,5 @@
 #Version 7.1.0.0
-#Engine 7.1
+#Engine 7.2
 
 #(Master) imports
 import os
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Updater)New updater Mechanism (Ver 4.0)\n(Updater)Ping or server response time indicator\n(Overall)Maintainance\n")
+print("(Engine)Engine Update for Twitter\n(Updater)Ping or server response time indicator\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
