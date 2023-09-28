@@ -1,4 +1,4 @@
-#Version 7.1.0.0
+#Version 7.2.0.0
 #Engine 7.2
 
 #(Master) imports
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Engine)Engine Update for Twitter\n(Updater)Ping or server response time indicator\n")
+print("(Main)Yt music playlist download fix\n(Engine)Engine Update for Twitter\n(Updater)Ping or server response time indicator\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -319,12 +319,14 @@ def audio(dir):
         
     if "playlist" in link:
         op_path =  path + '/%(playlist)s/%(title)s.%(ext)s'
+        thumb = bool(False)
     else:
         op_path =  path + '%(title)s.%(ext)s'     
-    
+        thumb = bool(True)
+        
     opt = {
             'format' : 'bestaudio/best',
-            'writethumbnail' : 'True',
+            'writethumbnail' : thumb,
             'ignoreerrors': True,
             'outtmpl': op_path,
             'postprocessors' :
