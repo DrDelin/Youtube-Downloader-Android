@@ -29,6 +29,7 @@ fi
 if [ -e '/data/data/com.termux/files/home/noobjection.temp' ]; then
     rm -rf '/data/data/com.termux/files/home/noobjection.temp'
     #Completion msg:
+    echo
     echo UPDATE / UPGRADE SUCCESSFUL!
     #Setup package purging:
     rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
@@ -46,8 +47,8 @@ else
     pip install gdown
     
     #Removed Features
-    pip3 remove termux-apt-repo
-    pkg remove x11-repo
+    pip3 remove termux-apt-repo -y
+    pkg remove x11-repo -y
     pkg remove wget -y
     apt remove transmission-gtk -y
 
@@ -63,6 +64,7 @@ else
     rm -rf "/data/data/com.termux/files/home/Youtube-Downloader-Android"
     
     #Installation completion message
+    echo
     echo INSTALLTION SUCCESSFUL!
     sleep 5
     exit
