@@ -1,5 +1,5 @@
-#Version 7.2.0.0
-#Engine 7.2
+#Version 8.0.0.0
+#Engine 8.0
 
 #(Master) imports
 import os
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Main)Yt music playlist download fix\n(Engine)Engine Update for Twitter\n(Updater)Ping or server response time indicator\n")
+print("(Feature)Extended download support(FTP links)\n(Engine)Less data usage for updates\n(Engine)Cache removal after every download\n(Main)Advanced mode prompt inside YT-Video selection removed\n(Engine)Unwanted binaries removed\n(Torrent)Improved Torrent downloader\n(Overall)App storage size reducion,script optimization and bug fixes\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -372,12 +372,12 @@ def others():
 #(Seedr)From Seedr ftp:
 def genDown():
     if "magnet" in link:
-        print("Downloading torrent file from magnet link:\n")
+        print("Downloading Torrent file from Magnet link:\n")
         path = genPath+"Termux_Downloader/Torrents/"
     else:
         print("Downloading from FTP link:")
         path = genPath+"Termux_Downloader/Downloads/"
-        
+
     code = "aria2c -d '"+ path + "' '"+ link + "' --file-allocation=none"
     if os.path.isdir(path):
         os.system(code)
