@@ -13,3 +13,6 @@ else
     sh /data/data/com.termux/files/home/refresh.sh
     python "/data/data/com.termux/files/home/updater.py" $url
 fi
+
+#Cache Removal
+rm -rf .cache
