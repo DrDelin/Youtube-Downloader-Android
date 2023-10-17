@@ -401,30 +401,9 @@ def drive():
         os.mkdir(path)
         os.system(code)
   
-#(Torrent) Downloader
-def torrentDownload():
-    path = genPath+'Termux_Downloader/Torrent/'
-    if os.path.isdir(path):
-        pass
-    else:
-        os.mkdir(path)
-    print("Downloading a torrent: \n")
-    magnet = "'" +link +"'"
-    engine = input(" a for aria (or) t for transmission: ")
-    print("\n")
-    if engine=="a":
-        code = "aria2c -d '"+genPath+"Termux_Downloader/Torrent/' " +magnet+ " --file-allocation=none"
-    elif engine=="t":
-        code = "transmission-cli -w '"+genPath+"Termux_Downloader/Torrent/' " +magnet
-    else:
-        torrentDownload()
-    os.system(code)
-
 #(Master) Link Assortment (Distributor)
 def linkDistributor():
-    if "magnet" in link:
-        torrentDownload()
-    elif "seedr" in link:
+    if "seedr" in link:
         seedr()
     elif "drive" in link:
         drive()
