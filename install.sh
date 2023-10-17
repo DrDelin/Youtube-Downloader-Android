@@ -47,7 +47,7 @@ else
     pip install gdown
     
     #Removed Features
-    pip3 remove termux-apt-repo -y
+    pip3 uninstall termux-apt-repo -y
     pkg remove x11-repo -y
     pkg remove wget -y
     apt remove transmission-gtk -y
