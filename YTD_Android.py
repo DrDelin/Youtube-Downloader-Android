@@ -205,14 +205,7 @@ def video(mode):
                         k = data[code][0]["res"]
                 default.close
 
-        print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL. And if you want to get list of available formats and different fps and quality go to advanced\n')
-        usr = input("Do you need to go advanced mode type (y) else skip: ")
-        print("\n")
-        if usr=="y":
-            video(mode= "advanced")
-            quit()
-        else:
-            pass
+        print('Note: The video will download in '+k+' Resolution if youtube has such resolution. If not it will download the Best of resolution available in URL.\n')
         format = 'bestvideo[height<='+j+']+bestaudio[ext=m4a]/best[height<='+j+']/best[ext=m4a]'
     elif mode == "best":
         print("Downloading best one from YouTube:\n")
