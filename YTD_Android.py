@@ -403,9 +403,7 @@ def drive():
   
 #(Master) Link Assortment (Distributor)
 def linkDistributor():
-    if "seedr" in link:
-        seedr()
-    elif "drive" in link:
+    if "drive" in link:
         drive()
     elif "music" in link:
         audio(dir= "YTmusic")
@@ -430,7 +428,10 @@ def linkDistributor():
         else:
             linkDistributor()  
     else:
-        others()
+        try:
+            others()
+        except:
+            seedr()
 
 #(Master) General Directory in Internal Storage
 def masterDirectory():
