@@ -370,9 +370,14 @@ def others():
         os.rmdir(path)
 
 #(Seedr)From Seedr ftp:
-def seedr():
-    print("Downloading from seedr:\n")
-    path = genPath+"Termux_Downloader/Seedr/"
+def genDown():
+    if "magnet" in link:
+        print("Downloading torrent file from magnet link:\n")
+        path = genPath+"Termux_Downloader/Torrents/"
+    else:
+        print("Downloading from FTP link:")
+        path = genPath+"Termux_Downloader/Downloads/"
+        
     code = "aria2c -d '"+ path + "' '"+ link + "' --file-allocation=none"
     if os.path.isdir(path):
         os.system(code)
@@ -424,7 +429,7 @@ def linkDistributor():
         try:
             others()
         except:
-            seedr()
+            genDown()
 
 #(Master) General Directory in Internal Storage
 def masterDirectory():
