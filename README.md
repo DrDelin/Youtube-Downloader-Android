@@ -12,11 +12,11 @@
      (arm64 recommended ,use arm only for device lower than android 7)
   2. Type the commands or just copy and paste in termux:
         ```
-        **`pkg up -y -y -y -y`**
-        **`pkg install git -y`**
-        **`git clone https://github.com/DrDelin/Youtube-Downloader-Android`**
-        **`cd Youtube-Downloader-Android`**
-        **`sh install.sh`**
+        pkg up -y -y -y -y
+        pkg install git -y
+        git clone https://github.com/DrDelin/Youtube-Downloader-Android
+        cd Youtube-Downloader-Android
+        sh install.sh
         ```
   3. Press ALLOW to give storage permission
   4. (Important) For Android 10 or above users: Go to app settings -> Termux app settings -> Give ALLOW to "Display over other apps" permission for working of this script 
