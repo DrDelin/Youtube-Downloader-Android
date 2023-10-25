@@ -53,25 +53,22 @@
   2. If you are facing any issue on new update or having any suggestions on a new feature, make it a note in issue section
 
 ## (Not Recommended!)(Developers only)Beta Channel installation or switch over btw Stable and Beta:
-  
   Warning! This Channel is only for DEVELOPER'S BETA TESTING! May have bugs and fatal flaws. Hence, PROCEED WITH CAUTION.
-
-  ### Beta channel fresh installation:
-      ```
+  ## Beta channel fresh installation:
+    ```
       pkg up -y -y -y -y
       pkg install git -y
       git clone https://github.com/DrDelin/Youtube-Downloader-Android/ -b Sigma-D --single-branch
       cd Youtube-Downloader-Android
       sh install.sh
-      ```
-
-  ### Switch between Stable and Beta:
+    ```
+  ## Switch between Stable and Beta:
     1. Open termux
-    2. (For first time only) ```pkg install vim-gtk -y```
+    2. (For first time only) pkg install vim-gtk -y
     3. Edit refresh.sh file with ```vi refresh.sh```
     4. Change the 12th line,
-      4a. Stable -> Beta: change **master** to **Sigma-D**
-      4b. Beta -> Stable: change **Sigma-D** to **master**
+      4a. Stable -> Beta: change ***master*** to ***Sigma-D***
+      4b. Beta -> Stable: change ***Sigma-D*** to ***master***
     5. Exit vim editor(esc -> :wq -> enter)
     6. Then, run ```sh refresh.sh```
 
