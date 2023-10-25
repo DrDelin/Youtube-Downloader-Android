@@ -1,4 +1,4 @@
-#(Beta) Version 8.0.0.3
+#(Beta) Version 8.0.0.0
 #(Beta) Engine 8.0
 #(Branch) Sigma-D
 
@@ -24,8 +24,8 @@ print(engine.replace("#", ""))
 linecache.clearcache()
 
 #Update news:
-print("Planned Feature for next update!\n")
-print("\nStoring Links which are not downloaded or intrupted while downloading\n")
+print("Planned Feature for next update!")
+print("\n   1.Storing Links which are not downloaded or intrupted while downloading\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
