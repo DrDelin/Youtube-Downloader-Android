@@ -10,7 +10,7 @@
 ## Installation(Stable version):
   1. Install termux from github https://github.com/termux/termux-app/releases
      (arm64 recommended ,use arm only for device lower than android 7)
-  2. Type the commands or just copy and paste in termux:
+  2. Type the commands or just copy or use the *copy button* provided and **Paste it on termux**:
       ```
       pkg up -y -y -y -y
       pkg install git -y
