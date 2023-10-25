@@ -24,14 +24,14 @@ try:
     soup = BeautifulSoup(request.content, 'html.parser').text
 
     #Cloud Version No:
-    vindex = soup.find("#Version")
-    ver = soup[vindex + len("#Version"):vindex + len("#Version") + 8]
-    c_version = "#Version" +ver+"\n"
+    vindex = soup.find("#(Beta) Version")
+    ver = soup[vindex + len("#(Beta) Version"):vindex + len("#(Beta) Version") + 8]
+    c_version = "#(Beta) Version" +ver+"\n"
     
     #Cloud Engine No:
-    eindex = soup.find("#Engine")
-    eng = soup[eindex + len("#Engine"):eindex + len("#Engine") + 4]
-    c_engine = "#Engine"+eng+"\n"
+    eindex = soup.find("#(Beta) Engine")
+    eng = soup[eindex + len("#(Beta) Engine"):eindex + len("#(Beta) Engine") + 4]
+    c_engine = "#(Beta) Engine"+eng+"\n"
 
     print("\nUpdate Server: ACTIVE\nFailsafe Update Verification System By-Passer: DEACTIVATED\nAuto Upgrade System: ACTIVE\nDownloader: ACTIVE & RUNNING\n")
 
