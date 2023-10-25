@@ -9,6 +9,7 @@ import time
 start = time.time()
 
 print("WELCOME TO TERMUX DOWNLOADER")
+print("\nDEVELOPER'S VERSION!!\n")
 print("\nWarning! This is BETA script with new featuers but with lots of bugs and fatal error! Proceed with caution!\n")
 
 #Local Version No:
