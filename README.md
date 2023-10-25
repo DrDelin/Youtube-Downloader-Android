@@ -43,8 +43,8 @@
   1. The name, site of download, and URL of the files downloaded by this script are saved as history. 
   2. Don't get panicked... Only typing a code makes it visible, otherwise none will know about history.
   3. History feature is created to:
-    > Redownload the file which is previously downloaded
-    > Revisit the site from which the file is downloaded
+      > Redownload the file which is previously downloaded
+      > Revisit the site from which the file is downloaded
   4. You can clear the history too...!!
   5. Code to see history is ```python history.py```
 
@@ -67,8 +67,8 @@
   2. (For first time only) pkg install vim-gtk -y
   3. Edit refresh.sh file with ```vi refresh.sh```
   4. Change the 12th line,
-    a. Stable -> Beta: change ***master*** to ***Sigma-D***
-    b. Beta -> Stable: change ***Sigma-D*** to ***master***
+      > a. Stable -> Beta: change ***master*** to ***Sigma-D***
+      > b. Beta -> Stable: change ***Sigma-D*** to ***master***
   5. Exit vim editor(esc -> :wq -> enter)
   6. Then, run ```sh refresh.sh```
 
