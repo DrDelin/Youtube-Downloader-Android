@@ -9,7 +9,7 @@ import time
 start = time.time()
 
 print("WELCOME TO TERMUX DOWNLOADER")
-print("\nWarning! This is BETA script with new featuers with bugs and lots of fatal error! Proceed with caution!\n")
+print("\nWarning! This is BETA script with new featuers but with lots of bugs and fatal error! Proceed with caution!\n")
 
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
