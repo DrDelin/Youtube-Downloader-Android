@@ -1,4 +1,4 @@
-#(Beta) Version 8.0.0.2
+#(Beta) Version 8.0.0.3
 #(Beta) Engine 8.0
 #(Branch) Sigma-D
 
@@ -24,8 +24,8 @@ print(engine.replace("#", ""))
 linecache.clearcache()
 
 #Update news:
-print("(Changelog)Whats new...!\n")
-print("(Feature)Extended download support(FTP links)\n(Engine)Less data usage for updates\n(Engine)Cache removal after every download\n(Main)Advanced mode prompt inside YT-Video selection removed\n(Engine)Unwanted binaries removed\n(Torrent)Improved Torrent downloader\n(Overall)App storage size reducion,script optimization and bug fixes\n")
+print("Planned Feature for next update!\n")
+print("\nStoring Links which are not downloaded or intrupted while downloading\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
