@@ -55,13 +55,13 @@
 ## (Not Recommended!)(Developers only)Beta Channel installation or switch over btw Stable and Beta:
   Warning! This Channel is only for DEVELOPER'S BETA TESTING! May have bugs and fatal flaws. Hence, PROCEED WITH CAUTION.
   ## Beta channel fresh installation:
-    ```
+  
       pkg up -y -y -y -y
       pkg install git -y
       git clone https://github.com/DrDelin/Youtube-Downloader-Android/ -b Sigma-D --single-branch
       cd Youtube-Downloader-Android
       sh install.sh
-    ```
+  
   ## Switch between Stable and Beta:
     1. Open termux
     2. (For first time only) pkg install vim-gtk -y
