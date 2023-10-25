@@ -1,5 +1,6 @@
-#Version 8.0.0.0
-#Engine 8.0
+#(Beta) Version 8.0.0.0
+#(Beta) Engine 8.0
+#(Branch) Sigma-D
 
 #(Master) imports
 import os
@@ -14,6 +15,11 @@ linecache.clearcache()
 
 #Engine info:
 engine = (linecache.getline(linecache.sys.argv[0],2))
+print(engine.replace("#", ""))
+linecache.clearcache()
+
+#Branch info:
+engine = (linecache.getline(linecache.sys.argv[0],3))
 print(engine.replace("#", ""))
 linecache.clearcache()
 

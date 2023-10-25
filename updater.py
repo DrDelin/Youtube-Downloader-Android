@@ -9,6 +9,7 @@ import time
 start = time.time()
 
 print("WELCOME TO TERMUX DOWNLOADER")
+print("\nWarning! This is BETA script with new featuers with bugs and lots of fatal error! Proceed with caution!\n")
 
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
@@ -18,7 +19,7 @@ l_engine = linecache.getline(r"/data/data/com.termux/files/home/main.py", 2)
 #Update Failsafe Bypasser
 try:
     #Getting cloud edition's version and engine number
-    url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/master/YTD_Android.py"
+    url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/Sigma-D/YTD_Android.py"
     request  = requests.get(url)
     soup = BeautifulSoup(request.content, 'html.parser').text
 
