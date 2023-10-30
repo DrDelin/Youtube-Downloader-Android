@@ -24,8 +24,8 @@ print(engine.replace("#", ""))
 linecache.clearcache()
 
 #Update news:
-print("(Changelog)Whats new...!\n")
-print("(Engine)Failed Resume download bug Fix\n(Main)Torrent download error fix\n")
+print("Planned Feature for next update!")
+print("\n   1.Storing Links which are not downloaded or intrupted while downloading\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
