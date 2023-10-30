@@ -12,3 +12,6 @@ rm -rf bin
 git clone https://github.com/DrDelin/Youtube-Downloader-Android/ -b Sigma-D --single-branch
 cd Youtube-Downloader-Android
 sh install.sh
+
+#Cache Removal
+rm -rf .cache
