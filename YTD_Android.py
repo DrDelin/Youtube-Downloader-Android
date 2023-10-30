@@ -1,4 +1,4 @@
-#Version 8.0.0.0
+#Version 8.0.1.0
 #Engine 8.0
 
 #(Master) imports
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Feature)Extended download support(FTP links)\n(Engine)Less data usage for updates\n(Engine)Cache removal after every download\n(Main)Advanced mode prompt inside YT-Video selection removed\n(Engine)Unwanted binaries removed\n(Torrent)Improved Torrent downloader\n(Overall)App storage size reducion,script optimization and bug fixes\n")
+print("(Engine)Failed Resume download bug Fix\n(Main)Torrent download error fix\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -403,6 +403,8 @@ def drive():
 def linkDistributor():
     if "drive" in link:
         drive()
+    elif "magnet" in link:
+        genDown()
     elif "music" in link:
         audio(dir= "YTmusic")
     elif "youtube" in link or "youtu.be" in link:
