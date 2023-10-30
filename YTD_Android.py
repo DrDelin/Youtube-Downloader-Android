@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 #(Beta) Version 8.0.0.0
 #(Beta) Engine 8.0
 #(Branch) Sigma-D
+=======
+#Version 8.0.1.0
+#Engine 8.0
+>>>>>>> baa21b9 ((Stable) Resume download, Torrent download bug fix)
 
 #(Master) imports
 import os
@@ -24,8 +29,13 @@ print(engine.replace("#", ""))
 linecache.clearcache()
 
 #Update news:
+<<<<<<< HEAD
 print("Planned Feature for next update!")
 print("\n   1.Storing Links which are not downloaded or intrupted while downloading\n")
+=======
+print("(Changelog)Whats new...!\n")
+print("(Engine)Failed Resume download bug Fix\n(Main)Torrent download error fix\n")
+>>>>>>> baa21b9 ((Stable) Resume download, Torrent download bug fix)
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -409,6 +419,8 @@ def drive():
 def linkDistributor():
     if "drive" in link:
         drive()
+    elif "magnet" in link:
+        genDown()
     elif "music" in link:
         audio(dir= "YTmusic")
     elif "youtube" in link or "youtu.be" in link:
