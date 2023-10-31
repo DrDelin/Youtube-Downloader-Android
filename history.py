@@ -52,10 +52,10 @@ def history_mod():
 
 def temp_mod():
     temp_link = open(temp,'r').readlines()[0]
-    print("Previously failed link:")
+    print("\nPreviously failed link:")
     print("\n"+temp_link+"\n")
-    print("What to do:")
-    sel = input("Enter:\n 1.To Resume or attempt redownload\n 2.To open the site with link:\n >Skip to exit:")
+    print("What to do:\n 1.To Resume or attempt redownload\n 2.To open the site with link\n >Skip to exit\n")
+    sel = input("Enter: ")
         
     if sel == "1":
         print("Attempting Redownload.....")
@@ -68,7 +68,7 @@ def temp_mod():
         exit()
 
 if os.path.isfile(temp):
-    if input("Previously failed to download exists..Want to resume it(type 'y') or skip to view history") == "y":
+    if input("\n    Previously failed to download exists..Want to resume it(type 'y') or skip to view history: ") == "y":
         temp_mod()
     else:
         history_mod()
