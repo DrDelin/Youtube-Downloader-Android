@@ -1,4 +1,4 @@
-#(Beta) Version 8.0.1.0
+#(Beta) Version 8.0.1.1
 #(Beta) Engine 8.0
 #(Branch) Sigma-D
 
@@ -24,8 +24,8 @@ print(engine.replace("#", ""))
 linecache.clearcache()
 
 #Update news:
-print("Planned Feature for next update!")
-print("\n   1.Storing Links which are not downloaded or intrupted while downloading\n")
+print("New feature-Beta")
+print("\n   Storing Links which are not downloaded or intrupted while downloading\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -106,8 +106,20 @@ dependency()
 #(Master) Automated link grabbing from Termux url Opener
 link = sys.argv[1]
 
-#General Path
+#Temp file:
+temp_loc = "/data/data/com.termux/files/home/temp.txt"
+    #Purging previous temp file:
+if os.path.isfile(temp_loc):
+    os.remove(temp_loc)
+else:
+    pass
 
+    #Creating new temp file:
+with open(temp_loc,"x") as temp:
+    temp.write(link)
+    temp.close()
+
+#General Path
 genPath = "/storage/emulated/0/"
 
 #(Master) History:
@@ -124,6 +136,7 @@ def history(title, site):
         set = {"SNo": No , "Name": Title[:50], "URL": link, "Site": site}
         file.write(json.dumps(set)+str("\n"))
     file.close()
+    os.remove(temp_loc)
 
 #(YT-DLP) Downloader:
 def downloader(opt, site):
@@ -375,7 +388,7 @@ def others():
     except: #Else delete the folder created to download if only site is not downloadable
         os.rmdir(path)
 
-#(Seedr)From Seedr ftp:
+#(General Downloader)From FTP links and Torrent:
 def genDown():
     if "magnet" in link:
         print("Downloading Torrent file from Magnet link:\n")
