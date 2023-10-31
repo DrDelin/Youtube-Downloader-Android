@@ -67,3 +67,10 @@ def temp_mod():
         print("Skipping....")
         exit()
 
+if os.path.isfile(temp):
+    if input("Previously failed to download exists..Want to resume it(type 'y') or skip to view history") == "y":
+        temp_mod()
+    else:
+        history_mod()
+else:
+    history_mod()
