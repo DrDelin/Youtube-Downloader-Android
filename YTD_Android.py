@@ -1,4 +1,4 @@
-#(Beta) Version 8.0.1.3
+#(Beta) Version 8.0.1.4
 #(Beta) Engine 8.0
 #(Branch) Sigma-D
 
@@ -24,8 +24,8 @@ print(engine.replace("#", ""))
 linecache.clearcache()
 
 #Update news:
-print("New feature-Beta")
-print("\n   Storing Links which are not downloaded or intrupted while downloading\n")
+print("Hot Fix")
+print("\n   >Youtube Video Playlist download-error bug fix\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -150,8 +150,10 @@ def downloader(opt, site):
 def video(mode):
     if "playlist" in link:
         path = genPath+'Termux_Downloader/Youtube/%(playlist)s/%(title)s.%(ext)s'
+        thumb = bool(False)
     else:
         path = genPath+'Termux_Downloader/Youtube/%(title)s.%(ext)s'
+        thumb = bool(True)
     if mode == "Youtube":
         print("Downloading video from YouTube:\n")
         #Default creation, import and modification segment:
@@ -253,7 +255,7 @@ def video(mode):
                 'writesubtitles' : choice,
                 'writeautomaticsub' : choice,
                 'merge_output_format' : 'mp4',
-                'writethumbnail' : True,
+                'writethumbnail' : thumb,
                 'format' : format,
                 'postprocessors' :
                                     [
