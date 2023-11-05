@@ -1,4 +1,4 @@
-#Version 8.0.2.0
+#Version 8.0.3.0
 #Engine 8.0
 
 #(Master) imports
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("(Engine)Failed Resume download bug Fix\n(Main)Torrent download error fix\n(History)Resume option for intrupted and failed downloads[use python history.py]\n")
+print("    >(Main)Yt-Video playlist download-error bug fix\n   >(History)Resume option for intrupted and failed downloads[use python history.py]\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -144,8 +144,10 @@ def downloader(opt, site):
 def video(mode):
     if "playlist" in link:
         path = genPath+'Termux_Downloader/Youtube/%(playlist)s/%(title)s.%(ext)s'
+        thumb = bool(False)
     else:
         path = genPath+'Termux_Downloader/Youtube/%(title)s.%(ext)s'
+        thumb = bool(True)
     if mode == "Youtube":
         print("Downloading video from YouTube:\n")
         #Default creation, import and modification segment:
@@ -247,7 +249,7 @@ def video(mode):
                 'writesubtitles' : choice,
                 'writeautomaticsub' : choice,
                 'merge_output_format' : 'mp4',
-                'writethumbnail' : True,
+                'writethumbnail' : thumb,
                 'format' : format,
                 'postprocessors' :
                                     [
