@@ -73,3 +73,5 @@
   6. Then, run ```sh refresh.sh```
 
   Warning!! Again this is strictly for developers.. So, Recommended to use Stable version.
+ 
+ *BETA*
