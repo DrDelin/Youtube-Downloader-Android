@@ -72,4 +72,4 @@
   5. Exit vim editor(esc -> :wq -> enter)
   6. Then, run ```sh refresh.sh```
 
-  Warning!! Again this is strictly for developers.. So, Recommended to use Stable version.  
+  Warning!! Again this is strictly for developers.. So, Recommended to use Stable version.
