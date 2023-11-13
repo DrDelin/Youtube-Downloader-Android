@@ -31,7 +31,7 @@ def history_mod():
             print(j["SNo"]+")", j["Name"]+"||", j["Site"])
             url = j["URL"]
             print("\n")
-            os.system('python main.py "'+url+'"')
+            os.system('sudo python main.py "'+url+'"')
             exit()
     elif choice=="2":
         ask = input("\nEnter the SNo:")
@@ -59,7 +59,7 @@ def temp_mod():
         
     if sel == "1":
         print("Attempting Redownload.....")
-        os.system('python main.py "'+temp_link+'"')
+        os.system('sudo python main.py "'+temp_link+'"')
     elif sel == "2":
         print("Opening the link in browser or supported app.....")
         os.system('termux-open-url "' +temp_link+ '"')

@@ -1,4 +1,4 @@
-#Version 1.0.0.0
+#Version 1.0.1.0
 #Engine 1.0
 #Mode: Root
 
@@ -25,7 +25,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("    >(Main)Root Mode.\n    >(Main)External SD card support\n")
+print("    >(Main)Root Mode.\n    >(Main)External SD card support\n    >(History)Root access for history\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
