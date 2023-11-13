@@ -1,4 +1,4 @@
-# Termux Downloader Android (...aka Youtube-Downloader-Android) (ROOT MODE)(EXTERNAL SD CARD)
+# Termux Downloader Android (...aka Youtube-Downloader-Android) (ROOT MODE)(Preferable with EXTERNAL SD CARD)
   ### History of developement of this script
   Hi all! This script was once intended to download video and audio, only from youtube. Later it is extended to download videos from almost all sites and social media, torrents and Google drive. This script based on Termux app for downloading. Hence it is Termux Downloader.
   
