@@ -131,6 +131,7 @@ else:
     else:
         genPath = "/storage/emulated/0/"
     print("\n")
+    
 #(Master) History:
 def history(title, site):
     history = "/data/data/com.termux/files/home/history.txt"
