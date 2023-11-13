@@ -45,7 +45,7 @@ print(f"\n[Ping: {(end-start)*10**3:.02f}mS]\n")
 
 #Code to pass link to the downloader / Manual upgrader
 if not sys.argv[1] == "forced":
-    code = "python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
+    code = "sudo python '/data/data/com.termux/files/home/main.py' '" +sys.argv[1] +"'"
     
     if c_engine == l_engine:
         print("\nNo Engine upgrade available from developer...\n")

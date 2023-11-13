@@ -1,4 +1,4 @@
-# Termux Downloader Android (...aka Youtube-Downloader-Android)
+# Termux Downloader Android (...aka Youtube-Downloader-Android) (ROOT MODE)(EXTERNAL SD CARD)
   ### History of developement of this script
   Hi all! This script was once intended to download video and audio, only from youtube. Later it is extended to download videos from almost all sites and social media, torrents and Google drive. This script based on Termux app for downloading. Hence it is Termux Downloader.
   
@@ -7,14 +7,14 @@
   * Co-Developer and script optimizer: **Dr.Senthil Manikandan @Senthil360**
   * Script watcher and contributor: **Dr.Dhinesh cool**
 
-## Installation(Stable version):
+## Installation(ROOT version)(Use this only if your device is rooted, with external SD CARD):
   1. Install termux from github https://github.com/termux/termux-app/releases
      (arm64 recommended ,use arm only for device lower than android 7)
   2. Type the commands or just copy or use the *copy button* provided and **Paste it on termux**:
       ```
       pkg up -y -y -y -y
       pkg install git -y
-      git clone https://github.com/DrDelin/Youtube-Downloader-Android/ -b master --single-branch
+      git clone https://github.com/DrDelin/Youtube-Downloader-Android/ -b root --single-branch
       cd Youtube-Downloader-Android
       sh install.sh
         ```
@@ -32,10 +32,11 @@
   1. Open the desired video or audio or playlist or site in which the video is present.
   2. Select share option (used to share the link)
   3. Select TERMUX from the share list
-  4. Thats all! Your video / audio / playlist will download (Location: Internal storage of your device -> Termux-Downloader)
-  5. (For Youtube Download) Select Video / audio / best -> Select required resolution once, later it is set as default (can be changed if you type "y") -> skip next (unless if you want custom format) -> type "y" if you need subtitle(Subtitle only available if only youtube has..) -> Forget rest!... My script will take care
-  6. (For Youtube Music / audio from youtube) Type your favourite audio codec (like mp3, m4a, aac, webm, flac...) for one time as default (can be changed later) -> Audio will be downloaded in your favourite codec
-  7. Note: This script is completely automated, hence the program closes itself after downloading.. Hence, Share your link to Termux.. Go get some coffee..! See your file will be in internal storage of the device 
+  4. If you have external SD card -> type 'e' to store on it or else won't bother
+  5. Thats all! Your video / audio / playlist will download (Location: Internal storage of your device -> Termux-Downloader)
+  6. (For Youtube Download) Select Video / audio / best -> Select required resolution once, later it is set as default (can be changed if you type "y") -> skip next (unless if you want custom format) -> type "y" if you need subtitle(Subtitle only available if only youtube has..) -> Forget rest!... My script will take care
+  7. (For Youtube Music / audio from youtube) Type your favourite audio codec (like mp3, m4a, aac, webm, flac...) for one time as default (can be changed later) -> Audio will be downloaded in your favourite codec
+  8. Note: This script is completely automated, hence the program closes itself after downloading.. Hence, Share your link to Termux.. Go get some coffee..! See your file will be in internal storage of the device 
   
 
 ## Features:
@@ -51,25 +52,15 @@
   ### Updates:
   1. Updates are completly automatic and you won't need to worry about it.
   2. If you are facing any issue on new update or having any suggestions on a new feature, make it a note in issue section
-
-## (Not Recommended!)(Developers only)Beta Channel installation or switch over btw Stable and Beta:
-  Warning! This Channel is only for DEVELOPER'S BETA TESTING! May have bugs and fatal flaws. Hence, PROCEED WITH CAUTION.
-  ## Beta channel fresh installation:
   
-      pkg up -y -y -y -y
-      pkg install git -y
-      git clone https://github.com/DrDelin/Youtube-Downloader-Android/ -b Sigma-D --single-branch
-      cd Youtube-Downloader-Android
-      sh install.sh
-  
-  ### Switch between Stable and Beta:
+  ### Switch between Stable and Root:
   1. Open termux
   2. (For first time only) pkg install vim-gtk -y
   3. Edit refresh.sh file with ```vi refresh.sh```
   4. Change the 12th line,  
-      a. Stable -> Beta: change ***master*** to ***Sigma-D***   
-      b. Beta -> Stable: change ***Sigma-D*** to ***master***  
+      a. Stable -> Root: change ***master*** to ***root***   
+      b. Root -> Stable: change ***root*** to ***master***  
   5. Exit vim editor(esc -> :wq -> enter)
   6. Then, run ```sh refresh.sh```
 
-  Warning!! Again this is strictly for developers.. So, Recommended to use Stable version.  
+  Warning!! Again this is strictly for rooted device preferably with external SD card.. So, Recommended to use Stable version.  

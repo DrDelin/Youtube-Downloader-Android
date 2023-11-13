@@ -1,5 +1,6 @@
-#Version 8.0.3.0
-#Engine 8.0
+#Version 1.0.0.0
+#Engine 1.0
+#Mode: Root
 
 #(Master) imports
 import os
@@ -17,9 +18,14 @@ engine = (linecache.getline(linecache.sys.argv[0],2))
 print(engine.replace("#", ""))
 linecache.clearcache()
 
+#Mode info:
+mode = (linecache.getline(linecache.sys.argv[0],3))
+print(mode.replace("#", ""))
+linecache.clearcache()
+
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("    >(Main)Yt-Video playlist download-error bug fix\n   >(History)Resume option for intrupted and failed downloads[use python history.py]\n")
+print("    >(Main)Root Mode.\n    >(Main)External SD card support\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -113,8 +119,16 @@ with open(temp_loc,"x") as temp:
     temp.write(link)
     temp.close()
 
-#General Path
-genPath = "/storage/emulated/0/"
+#Storage Path:
+storage = os.listdir("/storage/")
+ex_sd = "".join([i for i in storage if "-" in i])
+if ex_sd == "":
+    genPath = "/storage/emulated/0/"
+else:
+    if input("\nType 'e' for EXTERNAL SD CARD as download location or SKIP for INTERNAL STORAGE") == "e":
+        genPath = "/storage/"+ex_sd+'/'
+    else:
+        genPath = "/storage/emulated/0/"
 
 #(Master) History:
 def history(title, site):

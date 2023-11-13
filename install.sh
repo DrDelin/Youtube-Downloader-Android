@@ -40,6 +40,7 @@ else
     pkg install python -y
     pkg install aria2 -y
     pkg install ffmpeg -y
+    pkg install tsu -y
     pip install beautifulsoup4
     pip install requests
     pip install wheel
