@@ -125,7 +125,7 @@ ex_sd = "".join([i for i in storage if "-" in i])
 if ex_sd == "":
     genPath = "/storage/emulated/0/"
 else:
-    if input("\nType 'e' for EXTERNAL SD CARD as download location or SKIP for INTERNAL STORAGE") == "e":
+    if input("\nType 'e' for EXTERNAL SD CARD as download location or SKIP for INTERNAL STORAGE: ") == "e":
         genPath = "/storage/"+ex_sd+'/'
     else:
         genPath = "/storage/emulated/0/"
