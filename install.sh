@@ -19,10 +19,10 @@ cd "/data/data/com.termux/files/home/"
 #Storage permission:
 if [ -e '/data/data/com.termux/files/home/default.json' ]; then
     termux-setup-storage -y
-    python patch0.1.py
+    python patch-0.2.py
 else
     termux-setup-storage
-    rm -rf patch0.1.py
+    rm -rf patch-0.2.py
 fi
 
 #Binaries installation:
@@ -45,6 +45,7 @@ else
     pip install wheel
     pip install yt-dlp
     pip install gdown
+    apt install rclone -y
     
     #Removed Features
     pip3 uninstall termux-apt-repo -y
