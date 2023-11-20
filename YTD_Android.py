@@ -38,8 +38,7 @@ else:
             {
                 "code" : "",
                 "codec" : "",
-                "last_upgrade": "",
-                "history_backup": "" 
+                "last_upgrade": ""
             }],
         "1" : [
             {
@@ -120,7 +119,6 @@ with open(temp_loc,"x") as temp:
     temp.write(link)
     temp.close()
 
-<<<<<<< HEAD
 #Storage Path:
 storage = os.listdir("/storage/")
 ex_sd = "".join([i for i in storage if "-" in i])
@@ -134,40 +132,6 @@ else:
         genPath = "/storage/emulated/0/"
     print("\n")
     
-=======
-#General Path
-genPath = "/storage/emulated/0/"
-
-#(Sync)Rclone-Gdrive Sync
-def sync():
-    loc_path = os.path.dirname(sys.argv[0])
-    history_file = loc_path + "/history.txt"
-    config = loc_path + "/rclone.conf"
-    rc_temp = "rclone --config=" + config
-
-    #Config File Verifications:
-    if not os.path.isfile(config):
-        os.system(rc_temp+" config")
-
-    remote = open(config, 'r').readline().replace('[','').replace(']', '').replace('\n','')+":"
-    
-    #History File Restore:
-    if not os.path.isfile(history_file):
-        os.system(rc_temp+" copy "+remote+"/history.txt "+loc_path)
-    
-    #Sync
-    print("\nSYNCING WITH CLOUD:\n")
-    os.system(rc_temp+ " --verbose copy --update " + history_file +" "+remote)
-
-#Sync Config and History Restore:
-with open(json_path, "r") as defaultFile:
-    data  = json.load(defaultFile)
-if data["default"][0]["history_backup"] == "y":
-    sync()
-else:
-    pass
-
->>>>>>> 6d7fba7 (New Optional Feature: Backup History - Cloud)
 #(Master) History:
 def history(title, site):
     history = "/data/data/com.termux/files/home/history.txt"
@@ -182,16 +146,7 @@ def history(title, site):
         set = {"SNo": No , "Name": Title[:50], "URL": link, "Site": site}
         file.write(json.dumps(set)+str("\n"))
     file.close()
-    
-    #History Sync:
-    with open(json_path, "r") as defaultFile:
-            data  = json.load(defaultFile)
-    if data["default"][0]["history_backup"] == "y":
-        sync()
-    else:
-        pass    
     os.remove(temp_loc)
-    exit()
 
 #(YT-DLP) Downloader:
 def downloader(opt, site):
