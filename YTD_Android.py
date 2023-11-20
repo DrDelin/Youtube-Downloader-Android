@@ -1,5 +1,5 @@
-#Version 1.0.1.0
-#Engine 1.0
+#Version 2.0.0.0
+#Engine 2.0
 #Mode: Root
 
 #(Master) imports
@@ -120,7 +120,6 @@ with open(temp_loc,"x") as temp:
     temp.write(link)
     temp.close()
 
-<<<<<<< HEAD
 #Storage Path:
 storage = os.listdir("/storage/")
 ex_sd = "".join([i for i in storage if "-" in i])
@@ -134,10 +133,6 @@ else:
         genPath = "/storage/emulated/0/"
     print("\n")
     
-=======
-#General Path
-genPath = "/storage/emulated/0/"
-
 #(Sync)Rclone-Gdrive Sync
 def sync():
     loc_path = os.path.dirname(sys.argv[0])
@@ -167,7 +162,6 @@ if data["default"][0]["history_backup"] == "y":
 else:
     pass
 
->>>>>>> 6d7fba7 (New Optional Feature: Backup History - Cloud)
 #(Master) History:
 def history(title, site):
     history = "/data/data/com.termux/files/home/history.txt"
