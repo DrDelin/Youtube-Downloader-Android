@@ -6,7 +6,7 @@ mv "YTD_Android.py" "/data/data/com.termux/files/home/main.py"
 mv "termux-url-opener" "/data/data/com.termux/files/home/termux-url-opener"
 mv "updater.py" "/data/data/com.termux/files/home/updater.py"
 mv "history.py" "/data/data/com.termux/files/home/history.py"
-mv "patch0.1.py" "/data/data/com.termux/files/home/patch0.1.py"
+mv "patch-0.2.py" "/data/data/com.termux/files/home/patch0.1.py"
 
 #Bin file creation and permission elevation:
 cd "/data/data/com.termux/files/home/"
