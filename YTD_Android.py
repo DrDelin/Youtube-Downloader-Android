@@ -1,4 +1,4 @@
-#(Beta) Version 9.0.0.0
+#(Beta) Version 9.0.1.0
 #(Beta) Engine 9.0
 #(Branch) Sigma-D
 
@@ -144,6 +144,14 @@ def sync():
     print("\nSYNCING WITH CLOUD:\n")
     os.system(rc_temp+ " --verbose copy --update " + history_file +" "+remote)
 
+#Sync Config and History Restore:
+with open(json_path, "r") as defaultFile:
+    data  = json.load(defaultFile)
+if data["default"][0]["history_backup"] == "y":
+    sync()
+else:
+    pass
+
 #(Master) History:
 def history(title, site):
     history = "/data/data/com.termux/files/home/history.txt"
@@ -159,7 +167,7 @@ def history(title, site):
         file.write(json.dumps(set)+str("\n"))
     file.close()
     
-    #Sync or Not:
+    #History Sync:
     with open(json_path, "r") as defaultFile:
             data  = json.load(defaultFile)
     if data["default"][0]["history_backup"] == "y":
