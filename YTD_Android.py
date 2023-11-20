@@ -1,5 +1,5 @@
 #Version 8.0.3.0
-#Engine 8.0
+#Engine 8.1
 
 #(Master) imports
 import os
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("    >(Main)Yt-Video playlist download-error bug fix\n   >(History)Resume option for intrupted and failed downloads[use python history.py]\n")
+print("   >(Main)Yt-Video playlist download-error bug fix\n   >(History)Resume option for intrupted and failed downloads[use python history.py]\n   >(Engine)Maintainance Update\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
