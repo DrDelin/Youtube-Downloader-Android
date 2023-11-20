@@ -6,7 +6,7 @@ mv "YTD_Android.py" "/data/data/com.termux/files/home/main.py"
 mv "termux-url-opener" "/data/data/com.termux/files/home/termux-url-opener"
 mv "updater.py" "/data/data/com.termux/files/home/updater.py"
 mv "history.py" "/data/data/com.termux/files/home/history.py"
-mv "patch0.1.py" "/data/data/com.termux/files/home/patch0.1.py"
+mv "patch-0.2.py" "/data/data/com.termux/files/home/patch-0.2.py"
 
 #Bin file creation and permission elevation:
 cd "/data/data/com.termux/files/home/"
@@ -19,10 +19,10 @@ cd "/data/data/com.termux/files/home/"
 #Storage permission:
 if [ -e '/data/data/com.termux/files/home/default.json' ]; then
     termux-setup-storage -y
-    python patch0.1.py
+    python patch-0.2.py
 else
     termux-setup-storage
-    rm -rf patch0.1.py
+    rm -rf patch-0.2.py
 fi
 
 #Binaries installation:
@@ -46,6 +46,7 @@ else
     pip install wheel
     pip install yt-dlp
     pip install gdown
+    apt install rclone -y
     
     #Removed Features
     pip3 uninstall termux-apt-repo -y
