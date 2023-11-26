@@ -7,6 +7,7 @@ mv "termux-url-opener" "/data/data/com.termux/files/home/termux-url-opener"
 mv "updater.py" "/data/data/com.termux/files/home/updater.py"
 mv "history.py" "/data/data/com.termux/files/home/history.py"
 mv "patch-0.2.py" "/data/data/com.termux/files/home/patch-0.2.py"
+mv "patch-0.3.py" "/data/data/com.termux/files/home/patch-0.3.py"
 
 #Bin file creation and permission elevation:
 cd "/data/data/com.termux/files/home/"
@@ -20,9 +21,12 @@ cd "/data/data/com.termux/files/home/"
 if [ -e '/data/data/com.termux/files/home/default.json' ]; then
     termux-setup-storage -y
     python patch-0.2.py
+    python patch-0.3.py
 else
     termux-setup-storage
     rm -rf patch-0.2.py
+    python patch-0.3.py
+    
 fi
 
 #Binaries installation:
@@ -41,6 +45,7 @@ else
     pkg install aria2 -y
     pkg install ffmpeg -y
     pkg install tsu -y
+    pkg install x11-repo -y
     pkg install vim-gtk -y
     pip install beautifulsoup4
     pip install requests

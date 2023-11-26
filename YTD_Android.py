@@ -1,4 +1,4 @@
-#Version 2.0.0.0
+#Version 2.0.1.0
 #Engine 2.0
 #Mode: Root
 
@@ -39,7 +39,8 @@ else:
                 "code" : "",
                 "codec" : "",
                 "last_upgrade": "",
-                "history_backup": "" 
+                "history_backup": "",
+                "incognito" : ""
             }],
         "1" : [
             {
@@ -193,7 +194,14 @@ def downloader(opt, site):
     with yt_dlp.YoutubeDL(opt) as yt:
         info = yt.extract_info(link, download=True)
         title = info.get('title', None)
-        history(title, site)
+
+        #Incognito Mode
+        with open(json_path, "r") as defaultFile:
+            data  = json.load(defaultFile)
+        if data["default"][0]["incognito"] == "y":
+            exit()
+        else:
+            history(title, site)
 
 #(Youtube) Video
 def video(mode):
