@@ -41,6 +41,7 @@ else
     pkg install aria2 -y
     pkg install ffmpeg -y
     pkg install tsu -y
+    pkg install vim-gtk -y
     pip install beautifulsoup4
     pip install requests
     pip install wheel
