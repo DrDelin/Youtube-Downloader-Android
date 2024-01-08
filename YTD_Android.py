@@ -1,5 +1,5 @@
-#Version 2.0.1.0
-#Engine 2.1
+#Version 2.0.2.0
+#Engine 2.2
 #Mode: Root
 
 #(Master) imports
@@ -25,7 +25,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("    >(Main)Root Mode.\n    >(Main)External SD card support\n    >(History)Root access for history\n")
+print("    >(Main)Root Mode.\n    >(Main)External SD card support\n    >(History)Root access for history\n    >(Main)'No-Thumbnail' for playlists error fix")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -207,7 +207,7 @@ def downloader(opt, site):
 def video(mode):
     if "playlist" in link:
         path = genPath+'Termux_Downloader/Youtube/%(playlist)s/%(title)s.%(ext)s'
-        thumb = bool(False)
+        thumb = bool(True)
     else:
         path = genPath+'Termux_Downloader/Youtube/%(title)s.%(ext)s'
         thumb = bool(True)
@@ -390,7 +390,7 @@ def audio(dir):
         
     if "playlist" in link:
         op_path =  path + '/%(playlist)s/%(title)s.%(ext)s'
-        thumb = bool(False)
+        thumb = bool(True)
     else:
         op_path =  path + '%(title)s.%(ext)s'     
         thumb = bool(True)
