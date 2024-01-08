@@ -1,5 +1,5 @@
-#Version 8.0.3.0
-#Engine 8.1
+#Version 8.0.4.0
+#Engine 8.2
 
 #(Master) imports
 import os
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("   >(Main)Yt-Video playlist download-error bug fix\n   >(History)Resume option for intrupted and failed downloads[use python history.py]\n   >(Engine)Maintainance Update\n")
+print("   >(Main)Yt-Video playlist No thumbnail error fix\n   >(Engine)Maintainance Update\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
@@ -183,7 +183,7 @@ def downloader(opt, site):
 def video(mode):
     if "playlist" in link:
         path = genPath+'Termux_Downloader/Youtube/%(playlist)s/%(title)s.%(ext)s'
-        thumb = bool(False)
+        thumb = bool(True)
     else:
         path = genPath+'Termux_Downloader/Youtube/%(title)s.%(ext)s'
         thumb = bool(True)
@@ -366,7 +366,7 @@ def audio(dir):
         
     if "playlist" in link:
         op_path =  path + '/%(playlist)s/%(title)s.%(ext)s'
-        thumb = bool(False)
+        thumb = bool(True)
     else:
         op_path =  path + '%(title)s.%(ext)s'     
         thumb = bool(True)
