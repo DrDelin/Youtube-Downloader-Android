@@ -43,7 +43,8 @@ else
     pip install beautifulsoup4
     pip install requests
     pip install wheel
-    pip install yt-dlp
+    pip install yt-dlp -U
+    pip install ffmpeg
     pip install gdown
     apt install rclone -y
     

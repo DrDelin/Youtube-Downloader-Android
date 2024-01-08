@@ -1,5 +1,5 @@
-#(Beta) Version 9.0.1.0
-#(Beta) Engine 9.0
+#(Beta) Version 9.0.2.0
+#(Beta) Engine 9.1
 #(Branch) Sigma-D
 
 #(Master) imports
@@ -189,7 +189,7 @@ def downloader(opt, site):
 def video(mode):
     if "playlist" in link:
         path = genPath+'Termux_Downloader/Youtube/%(playlist)s/%(title)s.%(ext)s'
-        thumb = bool(False)
+        thumb = bool(True)
     else:
         path = genPath+'Termux_Downloader/Youtube/%(title)s.%(ext)s'
         thumb = bool(True)
@@ -372,7 +372,7 @@ def audio(dir):
         
     if "playlist" in link:
         op_path =  path + '/%(playlist)s/%(title)s.%(ext)s'
-        thumb = bool(False)
+        thumb = bool(True)
     else:
         op_path =  path + '%(title)s.%(ext)s'     
         thumb = bool(True)
