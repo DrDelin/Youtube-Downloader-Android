@@ -1,5 +1,5 @@
-#Version 8.0.4.0
-#Engine 8.2
+#Version 8.0.5.0
+#Engine 8.5
 
 #(Master) imports
 import os
@@ -19,7 +19,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("   >(Main)Yt-Video playlist No thumbnail error fix\n   >(Engine)Maintainance Update\n")
+print("   >(Engine)Engine Upgrade Bootloop Fix\n   >(Engine)Maintainance Update\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
