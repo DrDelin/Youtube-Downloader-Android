@@ -17,21 +17,28 @@ l_engine = linecache.getline(r"/data/data/com.termux/files/home/main.py", 2)
 
 #Update Failsafe Bypasser
 try:
+    #Cloud Version No:
+    def cv(soup):
+        vindex = soup.find("#Version")
+        ver = soup[vindex + len("#Version"):vindex + len("#Version") + 8]
+        c_version = "#Version" +ver+"\n"
+        return c_version
+    
+    #Cloud Engine No:
+    def ce(soup):
+        eindex = soup.find("#Engine")
+        eng = soup[eindex + len("#Engine"):eindex + len("#Engine") + 4]
+        c_engine = "#Engine"+eng+"\n"
+        return c_engine
+
     #Getting cloud edition's version and engine number
     url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/root/YTD_Android.py"
     request  = requests.get(url)
     soup = BeautifulSoup(request.content, 'html.parser').text
-
-    #Cloud Version No:
-    vindex = soup.find("#Version")
-    ver = soup[vindex + len("#Version"):vindex + len("#Version") + 8]
-    c_version = "#Version" +ver+"\n"
     
-    #Cloud Engine No:
-    eindex = soup.find("#Engine")
-    eng = soup[eindex + len("#Engine"):eindex + len("#Engine") + 4]
-    c_engine = "#Engine"+eng+"\n"
-
+    c_version = cv(soup)
+    c_engine = ce(soup)
+    
     print("\nUpdate Server: ACTIVE\nFailsafe Update Verification System By-Passer: DEACTIVATED\nAuto Upgrade System: ACTIVE\nDownloader: ACTIVE & RUNNING\n")
 
 except:
