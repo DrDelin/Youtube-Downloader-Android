@@ -1,5 +1,6 @@
-#Version 8.0.5.0
+#Version 8.0.5.1
 #Engine 8.5
+#Stable version
 
 #(Master) imports
 import os
@@ -17,9 +18,14 @@ engine = (linecache.getline(linecache.sys.argv[0],2))
 print(engine.replace("#", ""))
 linecache.clearcache()
 
+#Build info:
+build = (linecache.getline(linecache.sys.argv[0],2))
+print("Build: "+ build.replace("#", ""))
+linecache.clearcache()
+
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("   >(Engine)Engine Upgrade Bootloop Fix\n   >(Engine)Maintainance Update\n")
+print("   >(General)Maintainance Update\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
