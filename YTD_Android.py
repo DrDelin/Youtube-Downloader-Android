@@ -1,4 +1,4 @@
-#Version 8.0.5.1
+#Version 8.0.5.2
 #Engine 8.5
 #Stable version
 
@@ -19,7 +19,7 @@ print(engine.replace("#", ""))
 linecache.clearcache()
 
 #Build info:
-build = (linecache.getline(linecache.sys.argv[0],2))
+build = (linecache.getline(linecache.sys.argv[0],3))
 print("Build: "+ build.replace("#", ""))
 linecache.clearcache()
 
