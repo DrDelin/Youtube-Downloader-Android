@@ -30,7 +30,7 @@ try:
         if re.match(v_pattern, v):
             return c_version
         else:
-            print("__Update_server_timeout__")
+            print("\n__Update_server_timeout__")
             return l_version
     
     #Cloud Engine No:
@@ -45,7 +45,7 @@ try:
         if re.match(e_pattern, e):
             return c_engine
         else:
-            print("__Update_server_timeout__")
+            print("\n__Update_server_timeout__")
             return l_engine
 
     #Getting cloud edition's version and engine number
