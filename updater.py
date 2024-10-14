@@ -26,8 +26,7 @@ try:
 
         #Version number pattern verification:
         v = ver.replace(" ","")
-        print(v)
-        v_pattern = r"^\d+:\d+:\d+:\d+$"
+        v_pattern = r"^\d+.\d+.\d+.\d+$"
         if re.match(v_pattern, v):
             return c_version
         else:
@@ -42,7 +41,7 @@ try:
 
         #Engine number pattern verification:
         e = eng.replace(" ","")
-        e_pattern = r"^\d+:\d+$"
+        e_pattern = r"^\d+.\d+$"
         if re.match(e_pattern, e):
             return c_engine
         else:
