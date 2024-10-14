@@ -26,6 +26,7 @@ try:
 
         #Version number pattern verification:
         v = ver.replace(" ","")
+        print(v)
         v_pattern = r"^\d+:\d+:\d+:\d+$"
         if re.match(v_pattern, v):
             return c_version
