@@ -3,6 +3,7 @@ import sys
 import json
 import linecache
 import requests
+import re
 from bs4 import BeautifulSoup
 from datetime import date , datetime
 import time
@@ -22,14 +23,30 @@ try:
         vindex = soup.find("#Version")
         ver = soup[vindex + len("#Version"):vindex + len("#Version") + 8]
         c_version = "#Version" +ver+"\n"
-        return c_version
+
+        #Version number pattern verification:
+        v = ver.replace(" ","")
+        v_pattern = r"^\d+:\d+:\d+:\d+$"
+        if re.match(v_pattern, v):
+            return c_version
+        else:
+            print("__Update_server_timeout__")
+            return l_version
     
     #Cloud Engine No:
     def ce(soup):
         eindex = soup.find("#Engine")
         eng = soup[eindex + len("#Engine"):eindex + len("#Engine") + 4]
         c_engine = "#Engine"+eng+"\n"
-        return c_engine
+
+        #Engine number pattern verification:
+        e = eng.replace(" ","")
+        e_pattern = r"^\d+:\d+$"
+        if re.match(e_pattern, e):
+            return c_engine
+        else:
+            print("__Update_server_timeout__")
+            return l_engine
 
     #Getting cloud edition's version and engine number
     url = "https://github.com/DrDelin/Youtube-Downloader-Android/blob/master/YTD_Android.py"
