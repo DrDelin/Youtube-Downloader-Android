@@ -1,6 +1,6 @@
-#Version 3.0.0.0
-#Engine 3.0
-#Mode: Root
+#Version 4.0.0.0
+#Engine 4.0
+#Build: Root mode
 
 #(Master) imports
 import os
@@ -25,7 +25,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("    >(Main)Root Mode.\n    >(Main)External SD card support\n    >(History)Root access for history\n    >(Main)'No-Thumbnail' for playlists error fix")
+print("    >(Main)Root Mode.\n    >(Main)External SD card support\n    >(History)Root access for history\n    >(Server)Server timeout feature added\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
