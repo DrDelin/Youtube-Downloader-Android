@@ -118,6 +118,18 @@ if not sys.argv[1] == "forced":
             os.system(code)
     else:
         print("\nNew Engine Upgrade available...\n\nUpgrading...\n")
+
+        #Upgrade date recording:
+        path = "/data/data/com.termux/files/home/default.json"
+        date1 = date.today().strftime("%d/%m/%Y")
+        with open(path, "r") as defaultFile:
+                    data = json.load(defaultFile)
+                    data["default"][0]["last_upgrade"] = date1
+                    with open(path, "w") as defaultFile:
+                        json.dump(data, defaultFile, indent=4)
+                        defaultFile.close
+
+        #Upgrade                
         os.system("sh refresh.sh auto")
         print("Upgraded...!\n")
         os.system(code)
