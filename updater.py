@@ -4,12 +4,13 @@ import json
 import linecache
 import requests
 import re
+from termcolor import colored , cprint
 from bs4 import BeautifulSoup
 from datetime import date , datetime
 import time
 start = time.time()
 
-print("WELCOME TO TERMUX DOWNLOADER")
+cprint("WELCOME TO TERMUX DOWNLOADER","cyan","on_red",attrs=["bold"])
 
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
@@ -30,7 +31,7 @@ try:
         if re.match(v_pattern, v):
             return c_version
         else:
-            print("\n__Update_server_timeout__")
+            print(colored('\n__Update_server_timeout__','red'))
             return l_version
     
     #Cloud Engine No:
@@ -45,7 +46,7 @@ try:
         if re.match(e_pattern, e):
             return c_engine
         else:
-            print("\n__Update_server_timeout__")
+            print(colored('\n__Update_server_timeout__','red'))   
             return l_engine
 
     #Getting cloud edition's version and engine number
@@ -56,10 +57,10 @@ try:
     c_version = cv(soup)
     c_engine = ce(soup)
     
-    print("\nUpdate Server: ACTIVE\nFailsafe Update Verification System By-Passer: DEACTIVATED\nAuto Upgrade System: ACTIVE\nDownloader: ACTIVE & RUNNING\n")
+    print("\nUpdate Server: "+colored('ACTIVE','green')+"\nFailsafe Update Verification System By-Passer: "+colored('DEACTIVATED','green')+"\nAuto Upgrade System: "+colored('ACTIVE','green')+"\nDownloader: "+colored('ACTIVE & RUNNING','green')+"\n")
 
 except:
-    print("\nFailsafe Update Verification System By-Passer: ACTIVATED\nUpdate Server: BROKEN OR DOWN\nAuto Upgrade System: ACTIVE \nServer repair: ONGOING\nDownloader: ACTIVE & RUNNING\n")
+    print("\nFailsafe Update Verification System By-Passer: "+colored('ACTIVATED','red')+"\nUpdate Server: "+colored('BROKEN OR DOWN','red')+"\nAuto Upgrade System: "+colored('ACTIVE','green')+" \nServer repair: "+colored('ONGOING','red')+"\nDownloader: "+colored('ACTIVE & RUNNING','green')+"\n")
     c_version = l_version
     c_engine = l_engine 
 

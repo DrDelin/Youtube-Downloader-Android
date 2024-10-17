@@ -41,6 +41,7 @@ else
     pkg install aria2 -y
     pkg install ffmpeg -y
     pip install beautifulsoup4
+    pip install termcolor
     pip install requests
     pip install wheel
     pip install yt-dlp -U

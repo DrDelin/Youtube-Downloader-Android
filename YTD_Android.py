@@ -1,5 +1,5 @@
-#Version 9.0.0.0
-#Engine 9.0
+#Version 9.1.0.0
+#Engine 9.1
 #Stable version
 
 #(Master) imports
@@ -25,7 +25,7 @@ linecache.clearcache()
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("   >(Engine)Unexpected engine upgrade bug fixed\n   >(Server)Update server timeout feature added\n   >(General)Maintainance Update\n")
+print("   >(Engine)Unexpected engine upgrade bug fixed\n   >(Server)Update server timeout feature added\n   >(General)Cosmetic updates\n")
 
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
