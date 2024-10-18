@@ -90,7 +90,7 @@ if not sys.argv[1] == "forced":
                     defaultFile.close
                 else:
                     date2 = data["default"][0]["last_upgrade"]
-                    print("Script previously upgraded on: "+date2)
+                    print("Script previously upgraded on: "+colored(date2,'blue'))
                     defaultFile.close
             dates = datetime.strptime(date1, "%d/%m/%Y")  - datetime.strptime(date2, "%d/%m/%Y")
             if int(dates.days) > int("28"):
