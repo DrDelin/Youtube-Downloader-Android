@@ -7,6 +7,7 @@ import os
 import sys
 import linecache
 import json
+from termcolor import colored
 
 #Version Info:
 version = (linecache.getline(linecache.sys.argv[0],1))
@@ -412,7 +413,7 @@ def others():
         l1 = link.split("://")
     l2 = l1[1].split(".")
     dir_name = l2[0].capitalize()
-    print("Downloading from " +dir_name)
+    print("Downloading from " +colored(dir_name,'magenta'))
     print("\n")
     path = genPath+'Termux_Downloader/'+ dir_name +'/'
     if os.path.isdir(path):
