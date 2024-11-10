@@ -1,0 +1,20 @@
+WELCOME TO TERMUX!
+
+Modified for : Youtube-Downloader-Android
+Modified by  : Dr.Delin (dev)
+
+Termux Official download site : https://github.com/termux/termux-app/releases
+Script Official download site : https://github.com/DrDelin/Youtube-Downloader-Android
+
+Script Troubleshooting:
+
+ - Factory resetting script type: sh refresh.sh
+
+Utilities:
+
+ - To view history  : python history.py
+ - To force upgrade : sh refresh.sh
+ 
+Languages used for scripting: Python, Shell, Json
+
+Report issues at https://github.com/DrDelin/Youtube-Downloader-Android/issues
