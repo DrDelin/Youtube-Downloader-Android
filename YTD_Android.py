@@ -1,4 +1,4 @@
-#Version 9.1.0.0
+#Version 9.1.1.0
 #Engine 9.2
 #Stable version
 
@@ -98,10 +98,6 @@ def dependency():
         import yt_dlp
     except ModuleNotFoundError():
         os.system('pip install --no-deps -U yt-dlp')
-    try:
-        import mutagen
-    except ModuleNotFoundError():
-        os.system('pip install mutagen')
 
 dependency()
 
