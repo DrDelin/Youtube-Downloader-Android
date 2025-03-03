@@ -22,7 +22,7 @@ try:
     #Cloud Version No:
     def cv(soup):
         vindex = soup.find("#Version")
-        ver = soup[vindex + len("#Version"):vindex + len("#Version") + 8]
+        ver = soup[vindex + len("#Version"):vindex + len("#Version") + 9]
         c_version = "#Version" +ver+"\n"
 
         #Version number pattern verification:
@@ -37,7 +37,7 @@ try:
     #Cloud Engine No:
     def ce(soup):
         eindex = soup.find("#Engine")
-        eng = soup[eindex + len("#Engine"):eindex + len("#Engine") + 4]
+        eng = soup[eindex + len("#Engine"):eindex + len("#Engine") + 5]
         c_engine = "#Engine"+eng+"\n"
 
         #Engine number pattern verification:
