@@ -85,7 +85,10 @@ elif choice == "4":
     
 #Delete History
 elif choice == "5":
-    os.remove('/data/data/com.termux/files/home/history.txt')
+    if input ("Type 'YES' to confirm delete: ")== "YES":
+        os.remove('/data/data/com.termux/files/home/history.txt')
+    else:
+        exit()
     
 #Factory Default Reset            
 elif choice == "6" or choice == "7":
