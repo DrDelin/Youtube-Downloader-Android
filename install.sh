@@ -8,6 +8,8 @@ mv "updater.py" "/data/data/com.termux/files/home/updater.py"
 mv "history.py" "/data/data/com.termux/files/home/history.py"
 mv "patch-0.2.py" "/data/data/com.termux/files/home/patch-0.2.py"
 mv "mod.txt" "/data/data/com.termux/files/usr/etc/motd"
+mv "tools.py" $PREFIX/bin/tools
+chmod +x $PREFIX/bin/tools
 
 #Bin file creation and permission elevation:
 cd "/data/data/com.termux/files/home/"
