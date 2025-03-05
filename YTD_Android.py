@@ -134,6 +134,7 @@ def history(title, site):
         set = {"SNo": No , "Name": Title[:50], "URL": link, "Site": site}
         file.write(json.dumps(set)+str("\n"))
     file.close()
+    os.remove(temp_loc)
 
 #(YT-DLP) Downloader:
 def downloader(opt, site):
@@ -147,6 +148,7 @@ def downloader(opt, site):
         if state == "off":
             history(title, site)
         else:
+            os.remove(temp_loc)
             exit()
 
 #(Youtube) Video
