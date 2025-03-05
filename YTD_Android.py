@@ -141,7 +141,7 @@ def downloader(opt, site):
     with yt_dlp.YoutubeDL(opt) as yt:
         info = yt.extract_info(link, download=True)
         title = info.get('title', None)
-        with open(json_path,r) as file:
+        with open(json_path,'r') as file:
             data = json.load(file)
             state = data["default"][0]["incognito"]
         if state == "off":
