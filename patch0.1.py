@@ -7,7 +7,7 @@ if os.path.isfile(path):
         with open(path,'r') as f:
             content = f.read()
         content = content.replace('"history_backup": ""','"incognito": "off"')
-        with open(loc,'w') as f:
+        with open(path,'w') as f:
             f.write(content)
             f.close()
         os.remove(sys.argv[0])
