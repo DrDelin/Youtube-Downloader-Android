@@ -59,8 +59,19 @@ def down():
     link = input("Enter the Link: \n")
     print("\n")
     os.system("python '/data/data/com.termux/files/home/main.py' '" +link +"'")
-    
-print("Tools:\n1. Manual Link download\n\nHistory:\n2. View Download History\n3. Backup History\n4. Import History\n5. Delete History\n\nTroubleshooting:\n6. Manual Upgrade\n7. Factory Reset\n\nInfo:\n8. Script Build Info\n9. Developers info\n")
+
+import json
+jpath = '/data/data/com.termux/files/home/default.json'
+with open(jpath, 'r') as file:
+    data = json.load(file)
+    Tstate = (data["default"][0]["incognito"]).capitalize()
+    if Tstate == "Off":
+        Twant = "On"
+    else:
+        Twant = "Off"
+    file.close()
+
+print(f"Tools:\n1. Manual Link download\n\nHistory:\n2. View Download History\n3. Turn {Twant} Incognito Mode\n4. Backup History\n5. Import History\n6. Delete History\n\nTroubleshooting:\n7. Manual Upgrade\n8. Factory Reset\n\nInfo:\n9. Script Build Info\n10. Developers info\n")
 choice = input("Choice:")
 print("\n")
 
@@ -72,30 +83,49 @@ if choice == "1":
 elif choice == "2":
     os.system("python '/data/data/com.termux/files/home/history.py'")
 
-# Backup History
+# Incognito Mode
 elif choice == "3":
+    import json
+    loc = '/data/data/com.termux/files/home/default.json'
+
+    with open(loc, 'r') as file:
+        data = json.load(file)
+        state = (data["default"][0]["incognito"]).capitalize()
+    if state == "Off":
+        want = "On"
+    else:
+        want = "Off"
+
+    data["default"][0]["incognito"] = want.lower()
+    with open(loc,'w') as file:
+        json.dump(data, file,indent=4)
+        file.close()
+    print(f'Incognito Mode Turned: {want}')
+
+# Backup History
+elif choice == "4":
     from datetime import datetime
     dest = '/storage/emulated/0/Termux_Downloader/history_backup_'+datetime.now().strftime("%d%m%y_%H%M%S")+".txt'"
     os.system("cp '/data/data/com.termux/files/home/history.txt' '"+dest)
     print("History Backup Done !!\nLocation: "+dest.replace("/storage/emulated/0/","Internal Storage > /")+"\n")
 
 # Import History
-elif choice == "4":
+elif choice == "5":
     his_imp()
     
 #Delete History
-elif choice == "5":
+elif choice == "6":
     if input ("Type 'YES' to confirm delete: ")== "YES":
         os.remove('/data/data/com.termux/files/home/history.txt')
     else:
         exit()
     
 #Factory Default Reset            
-elif choice == "6" or choice == "7":
+elif choice == "7" or choice == "8":
     os.system("sh refresh.sh")
     
 #Script Info
-elif choice == "8":
+elif choice == "9":
     import json
     from datetime import date , datetime
     sc_path = '/data/data/com.termux/files/home/main.py'
@@ -109,6 +139,7 @@ elif choice == "8":
     with open(j_path,"r") as j:
         data = json.load(j)
         date_old = data["default"][0]["last_upgrade"]
+        inc_state = (data["default"][0]["incognito"]).capitalize()
         j.close()
     
     date_new = date.today().strftime("%d/%m/%Y")
@@ -119,10 +150,11 @@ elif choice == "8":
     print("Build: " +linex[2].replace("#",""))
     print("Script previously upgraded on: "+ date_old)
     print(f'Script auto-upgrades in {days} days')
+    print(f'Incognito Mode Turned: {inc_state}')
     print("\n")
     
 #Developer info
-elif choice == "9":
+elif choice == "10":
     print("Choose to go to the page:\n1. Official Termux App GitHub page\n2. Official Terumux app download page\n3. Script Developer's GitHub page\n4. Script bugs/errors/feedback reporting page\n")
     i = input("Choice: ")
     if i == "1":

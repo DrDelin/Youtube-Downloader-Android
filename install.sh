@@ -6,7 +6,7 @@ mv "YTD_Android.py" "/data/data/com.termux/files/home/main.py"
 mv "termux-url-opener" "/data/data/com.termux/files/home/termux-url-opener"
 mv "updater.py" "/data/data/com.termux/files/home/updater.py"
 mv "history.py" "/data/data/com.termux/files/home/history.py"
-mv "patch-0.2.py" "/data/data/com.termux/files/home/patch-0.2.py"
+mv "patch0.1.py" "/data/data/com.termux/files/home/patch0.1.py"
 mv "mod.txt" "/data/data/com.termux/files/usr/etc/motd"
 mv "tools.py" $PREFIX/bin/tools
 chmod +x $PREFIX/bin/tools
@@ -22,10 +22,10 @@ cd "/data/data/com.termux/files/home/"
 #Storage permission:
 if [ -e '/data/data/com.termux/files/home/default.json' ]; then
     termux-setup-storage -y
-    python patch-0.2.py
+    python patch0.1.py
 else
     termux-setup-storage
-    rm -rf patch-0.2.py
+    rm -rf patch0.1.py
 fi
 
 #Binaries installation:
@@ -50,7 +50,7 @@ else
     pip install yt-dlp -U
     pip install ffmpeg
     pip install gdown
-    apt install rclone -y
+    apt remove rclone -y
 
     #Updates and upgrades:
     apt update -y -y -y
