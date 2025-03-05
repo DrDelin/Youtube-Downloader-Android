@@ -1,5 +1,5 @@
-#Version 10.0.0.0
-#Engine 10.0
+#Version 10.1.0.0
+#Engine 10.1
 #Stable version
 
 #(Master) imports
@@ -24,12 +24,20 @@ build = (linecache.getline(linecache.sys.argv[0],3))
 print("Build: "+ build.replace("#", ""))
 linecache.clearcache()
 
-#Update news:
-print("(Changelog)Whats new...!\n")
-print("   >(Feature)New Utility mode\n   >(Utility)Open Termux app and type 'tools' to open Termux downloader utilities\n   >(General)Maintainance\n")
-
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
+
+#Incognito status:
+with open(json_path, 'r') as file:
+        data = json.load(file)
+        state = (data["default"][0]["incognito"]).capitalize()
+        file.close()
+print(f"Incognito Mode: {state}\n") 
+
+#Update news:
+print("(Changelog)Whats new...!\n")
+print("   >(Feature)New Utility mode\n   >(Utility)Open Termux app and type 'tools' to open Termux downloader utilities\n   >(Utilities)New Incognito Mode\n   >(Engine)Removed Unwanted Binaries and Maintenance\n")
+
 
 if os.path.isfile(json_path):
     pass
