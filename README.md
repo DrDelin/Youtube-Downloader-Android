@@ -47,6 +47,7 @@ Termux-Downloader has an utilities option with various features
   7. Factory Default Reset
   8. Script Build Info
   9. App and Script Developers Info
+  10. Incognito Mode for Downloads
 
 ## Troubleshooting or repairing:
   Incase if the program not working properly or not downloading or showing errors, just follow these steps,
