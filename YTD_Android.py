@@ -8,6 +8,7 @@ import sys
 import linecache
 import json
 from termcolor import colored
+from datetime import date
 
 #Version Info:
 version = (linecache.getline(linecache.sys.argv[0],1))
@@ -31,12 +32,13 @@ json_path = "/data/data/com.termux/files/home/default.json"
 if os.path.isfile(json_path):
     pass
 else:
+    t_date = date.today().strftime("%d/%m/%Y")
     jsonnew = {
         "default" : [
             {
                 "code" : "",
                 "codec" : "",
-                "last_upgrade": "",
+                "last_upgrade": t_date,
                 "incognito": "off" 
             }],
         "1" : [
