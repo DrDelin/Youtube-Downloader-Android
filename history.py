@@ -6,6 +6,9 @@ history = "history.txt"
 temp = 'temp.txt'
 
 def history_mod():
+    if not os.path.isfile(history):
+        print("History is Not Yet Created! or History got deleted!!\nDownload atleast once to create history and make sure Incognito Mode turned off!!\n")
+        exit()
     start = time.time()
     histlist = []
     with open(history, 'r+') as f:

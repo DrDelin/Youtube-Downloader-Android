@@ -51,6 +51,7 @@ else
     pip install ffmpeg
     pip install gdown
     apt remove rclone -y
+    python "/data/data/com.termux/files/home/main.py" > /dev/null 2>&1
 
     #Updates and upgrades:
     apt update -y -y -y
