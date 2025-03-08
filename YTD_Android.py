@@ -27,17 +27,6 @@ linecache.clearcache()
 #(Default) JSON file creation or verification:
 json_path = "/data/data/com.termux/files/home/default.json"
 
-#Incognito status:
-with open(json_path, 'r') as file:
-        data = json.load(file)
-        state = (data["default"][0]["incognito"]).capitalize()
-        file.close()
-print(f"Incognito Mode: {state}\n") 
-
-#Update news:
-print("(Changelog)Whats new...!\n")
-print("   >(Feature)New Utility mode\n   >(Utility)Open Termux app and type 'tools' to open Termux downloader utilities\n   >(Utilities)New Incognito Mode\n   >(Engine)Removed Unwanted Binaries and Maintenance\n")
-
 
 if os.path.isfile(json_path):
     pass
@@ -95,6 +84,17 @@ else:
     with open(json_path, "w") as out:
         out.write(file)
     out.close
+
+#Incognito status:
+with open(json_path, 'r') as file:
+        data = json.load(file)
+        state = (data["default"][0]["incognito"]).capitalize()
+        file.close()
+print(f"Incognito Mode: {state}\n") 
+
+#Update news:
+print("(Changelog)Whats new...!\n")
+print("   >(Feature)New Utility mode\n   >(Utility)Open Termux app and type 'tools' to open Termux downloader utilities\n   >(Utilities)New Incognito Mode\n   >(Engine)Removed Unwanted Binaries and Maintenance\n")
 
 #(Master) Verification of dependencies
 def dependency():
