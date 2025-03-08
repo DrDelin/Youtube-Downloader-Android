@@ -1,5 +1,5 @@
-#Version 10.1.0.0
-#Engine 10.1
+#Version 10.2.0.0
+#Engine 10.2
 #Stable version
 
 #(Master) imports
@@ -96,7 +96,7 @@ print(f"Incognito Mode: {state}\n")
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("   >(Feature)New Utility mode\n   >(Utility)Open Termux app and type 'tools' to open Termux downloader utilities\n   >(Utilities)New Incognito Mode\n   >(Engine)Removed Unwanted Binaries and Maintenance\n")
+print("   >(Main)Fatal Bugs fixed\n   >(Feature)New Utility mode\n   >(Utility)Open Termux app and type 'tools' to open Termux downloader utilities\n   >(Utilities)New Incognito Mode\n   >(Engine)Removed Unwanted Binaries and Maintenance\n")
 
 #(Master) Verification of dependencies
 def dependency():

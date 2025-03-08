@@ -104,6 +104,9 @@ elif choice == "3":
 
 # Backup History
 elif choice == "4":
+    if not os.path.isfile('/data/data/com.termux/files/home/history.txt'):
+        print("There is no history file available to backup. Exiting....!\n\n")
+        exit()
     from datetime import datetime
     dest = '/storage/emulated/0/Termux_Downloader/history_backup_'+datetime.now().strftime("%d%m%y_%H%M%S")+".txt'"
     os.system("cp '/data/data/com.termux/files/home/history.txt' '"+dest)
@@ -115,6 +118,9 @@ elif choice == "5":
     
 #Delete History
 elif choice == "6":
+    if not os.path.isfile('/data/data/com.termux/files/home/history.txt'):
+        print("There is no history file available to Delete. Exiting....!\n\n")
+        exit()
     if input ("Type 'YES' to confirm delete: ")== "YES":
         os.remove('/data/data/com.termux/files/home/history.txt')
     else:
