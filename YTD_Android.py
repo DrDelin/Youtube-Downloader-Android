@@ -146,20 +146,205 @@ def history(title, site):
     file.close()
     os.remove(temp_loc)
 
-#(YT-DLP) Downloader:
+
+# Aria2 Accelerator:
+import time, subprocess
+
+AGGRESSIVE_ARGS = [
+    'aria2c',
+    '-x32', '-s32', '-k512K',
+    '--min-split-size=1M',
+    '--enable-http-pipelining=true',
+    '--max-connection-per-server=32',
+    '--continue=true',
+    '--file-allocation=none',
+    '--auto-file-renaming=false'
+]
+
+SAFE_ARGS = [
+    'aria2c',
+    '-x16', '-s16', '-k1M',
+    '--min-split-size=1M',
+    '--enable-http-pipelining=true',
+    '--max-connection-per-server=16',
+    '--continue=true',
+    '--file-allocation=none',
+    '--auto-file-renaming=false'
+]
+
+CLASSIC_ARGS = [
+    'aria2c',
+    '-x4', '-s4',
+    '--file-allocation=none',
+    '--auto-file-renaming=false',
+    '--continue=true'
+]
+
+def run_aria_cmd(cmd):
+    try:
+        rc = subprocess.call(cmd)
+        return rc
+    except Exception as e:
+        print("[aria2c runner] Exception while calling aria2c:", str(e))
+        return 1
+
+def smart_aria2_subprocess(url, out_path):
+    # Determine mode (directory vs file)
+    is_dir = False
+    if out_path.endswith(os.sep) or os.path.isdir(out_path):
+        is_dir = True
+        target = out_path
+    else:
+        is_dir = False
+        target = out_path
+
+    # AGGRESSIVE
+    if is_dir:
+        cmd = AGGRESSIVE_ARGS + ['-d', target, url]
+    else:
+        cmd = AGGRESSIVE_ARGS + ['-o', target, url]
+
+    print("\n[aria2] Starting AGGRESSIVE mode...")
+    rc = run_aria_cmd(cmd)
+    if rc == 0:
+        print("[aria2] Aggressive mode succeeded.")
+        return True
+
+    print("[aria2] Aggressive failed. Cooling down 15s...")
+    time.sleep(15)
+
+    # SAFE
+    if is_dir:
+        cmd = SAFE_ARGS + ['-d', target, url]
+    else:
+        cmd = SAFE_ARGS + ['-o', target, url]
+
+    print("\n[aria2] Trying SAFE mode...")
+    rc = run_aria_cmd(cmd)
+    if rc == 0:
+        print("[aria2] Safe mode succeeded.")
+        return True
+
+    print("[aria2] Safe failed. Cooling down 15s...")
+    time.sleep(15)
+
+    # CLASSIC
+    if is_dir:
+        cmd = CLASSIC_ARGS + ['-d', target, url]
+    else:
+        cmd = CLASSIC_ARGS + ['-o', target, url]
+
+    print("\n[aria2] Trying CLASSIC mode...")
+    rc = run_aria_cmd(cmd)
+    if rc == 0:
+        print("[aria2] Classic mode succeeded.")
+        return True
+
+    print("[aria2] All modes failed.")
+    return False
+
+#Downloader
 def downloader(opt, site):
     import yt_dlp
-    with yt_dlp.YoutubeDL(opt) as yt:
-        info = yt.extract_info(link, download=True)
-        title = info.get('title', None)
+
+    # copy opt so we don't mutate caller dict
+    od = dict(opt)
+    od['external_downloader'] = 'aria2c'
+
+    # 1) AGGRESSIVE
+    try:
+        od['external_downloader_args'] = AGGRESSIVE_ARGS
+        print("\n[yt-dlp] Attempting AGGRESSIVE aria2c args...")
+        with yt_dlp.YoutubeDL(od) as ytd:
+            ytd.download([link])
+        # success -> history
+        try:
+            with yt_dlp.YoutubeDL({'quiet': True}) as y:
+                info = y.extract_info(link, download=False)
+                title = info.get('title', None)
+        except Exception:
+            title = None
         with open(json_path,'r') as file:
             data = json.load(file)
-            state = data["default"][0]["incognito"]
-        if state == "off":
-            history(title, site)
-        else:
-            os.remove(temp_loc)
-            exit()
+        if data["default"][0]["incognito"] == "off":
+            history(title or link, site)
+        return
+    except Exception as e:
+        print("[yt-dlp] Aggressive attempt failed:", str(e))
+
+    # wait 15s then SAFE
+    print("[yt-dlp] Cooling down 15 seconds before SAFE attempt...")
+    time.sleep(15)
+
+    try:
+        od['external_downloader_args'] = SAFE_ARGS
+        print("\n[yt-dlp] Attempting SAFE aria2c args...")
+        with yt_dlp.YoutubeDL(od) as ytd:
+            ytd.download([link])
+        # success -> history
+        try:
+            with yt_dlp.YoutubeDL({'quiet': True}) as y:
+                info = y.extract_info(link, download=False)
+                title = info.get('title', None)
+        except Exception:
+            title = None
+        with open(json_path,'r') as file:
+            data = json.load(file)
+        if data["default"][0]["incognito"] == "off":
+            history(title or link, site)
+        return
+    except Exception as e:
+        print("[yt-dlp] Safe attempt failed:", str(e))
+
+    # wait 15s then CLASSIC
+    print("[yt-dlp] Cooling down 15 seconds before CLASSIC attempt...")
+    time.sleep(15)
+
+    try:
+        od['external_downloader_args'] = CLASSIC_ARGS
+        print("\n[yt-dlp] Attempting CLASSIC aria2c args...")
+        with yt_dlp.YoutubeDL(od) as ytd:
+            ytd.download([link])
+        try:
+            with yt_dlp.YoutubeDL({'quiet': True}) as y:
+                info = y.extract_info(link, download=False)
+                title = info.get('title', None)
+        except Exception:
+            title = None
+        with open(json_path,'r') as file:
+            data = json.load(file)
+        if data["default"][0]["incognito"] == "off":
+            history(title or link, site)
+        return
+    except Exception as e:
+        print("[yt-dlp] Classic attempt failed:", str(e))
+
+    # final fallback: no external_downloader (yt-dlp internal)
+    print("[yt-dlp] Cooling down 15 seconds before final fallback (internal downloader)...")
+    time.sleep(15)
+    try:
+        od_noext = dict(od)
+        if 'external_downloader_args' in od_noext:
+            del od_noext['external_downloader_args']
+        if 'external_downloader' in od_noext:
+            del od_noext['external_downloader']
+        print("\n[yt-dlp] Attempting final fallback: yt-dlp internal downloader...")
+        with yt_dlp.YoutubeDL(od_noext) as ytd:
+            ytd.download([link])
+        try:
+            with yt_dlp.YoutubeDL({'quiet': True}) as y:
+                info = y.extract_info(link, download=False)
+                title = info.get('title', None)
+        except Exception:
+            title = None
+        with open(json_path,'r') as file:
+            data = json.load(file)
+        if data["default"][0]["incognito"] == "off":
+            history(title or link, site)
+        return
+    except Exception as e:
+        print("[yt-dlp] Final fallback failed too:", str(e))
+        print("[yt-dlp] All attempts exhausted. Download failed.")
 
 #(Youtube) Video
 def video(mode):
@@ -190,7 +375,7 @@ def video(mode):
                 i = input('Resolution Code: ')
                 print("\n")  
                 data["default"][0]["code"] = i
-                
+
                 with open(json_path, "w") as defaultFile:
                     json.dump(data, defaultFile)
                 defaultFile.close
@@ -201,7 +386,7 @@ def video(mode):
                     j = data[code][0]["height"]
                     k = data[code][0]["res"]
                 default.close
-                
+
             else:
                 with open(json_path, "r") as default:
                     data = json.load(default)
@@ -224,7 +409,7 @@ def video(mode):
                         i = input('Resolution Code: ')
                         print("\n")  
                         data["default"][0]["code"] = i
-                    
+
                         with open(json_path, "w") as defaultFile:
                             json.dump(data, defaultFile)
                         defaultFile.close
@@ -235,7 +420,7 @@ def video(mode):
                             j = data[code][0]["height"]
                             k = data[code][0]["res"]
                         default.close
-                
+
                     else:
                         j = data[code][0]["height"]
                         k = data[code][0]["res"]
@@ -288,20 +473,22 @@ def video(mode):
                                         }
                                     ]
             }   
-    downloader(opt, site = mode) 
+    
+    downloader(opt, site = mode)
+
 
 #(Youtube) Audio
 def audio(dir):
     print("Downloading songs from "+dir+": \n")
     with open(json_path, "r") as defaultFile:
         data = json.load(defaultFile)
-        
+
     #json key first time allotment
     if data["default"][0]["codec"] == "":
         print('Enter the Format of audio (mp3, aac, m4a, flac....)')
         firstCodec = input('Enter the format: ')
         data["default"][0]["codec"] = firstCodec
-    
+
         with open(json_path, "w") as defaultFile:
             json.dump(data, defaultFile)
         defaultFile.close
@@ -310,7 +497,7 @@ def audio(dir):
             data = json.load(default)
             codec = data["default"][0]["codec"]
         default.close
-    
+
     #json key for later use
     else:
         with open(json_path, "r") as default:
@@ -325,7 +512,7 @@ def audio(dir):
                 with open(json_path, "r") as defaultFile:
                     data = json.load(defaultFile)
                     data["default"][0]["codec"] = lateCodec
-                
+
                 with open(json_path, "w") as defaultFile:
                     json.dump(data, defaultFile)
                 defaultFile.close
@@ -334,25 +521,25 @@ def audio(dir):
                     data = json.load(defa)
                     codec = data["default"][0]["codec"]
                 defa.close
-            
+
             else:
                 codec = data["default"][0]["codec"]
             default.close
-    
+
     path = genPath+"Termux_Downloader/"+dir+"/"
     exist = os.path.isdir(path)
     if exist:
         pass
     else:
         os.mkdir(path)
-        
+
     if "playlist" in link:
         op_path =  path + '/%(playlist)s/%(title)s.%(ext)s'
         thumb = bool(True)
     else:
         op_path =  path + '%(title)s.%(ext)s'     
         thumb = bool(True)
-        
+
     opt = {
             'format' : 'bestaudio/best',
             'writethumbnail' : thumb,
@@ -378,7 +565,8 @@ def audio(dir):
         site = "Youtube Music"
     else:
         site = "Youtube"
-    downloader(opt, site= site) 
+    
+    downloader(opt, site= site)
 
 #(Others) Social Media and download supported video steaming sites:
 def others():
@@ -404,8 +592,12 @@ def others():
                 }
     try: #Try the video is downloadable from the site           
         downloader(opt,site = dir_name)   
+
     except: #Else delete the folder created to download if only site is not downloadable
-        os.rmdir(path)
+        try:
+            os.rmdir(path)
+        except Exception:
+            pass
 
 #(General Downloader)From FTP links and Torrent:
 def genDown():
@@ -416,12 +608,13 @@ def genDown():
         print("Downloading from FTP link:")
         path = genPath+"Termux_Downloader/Downloads/"
 
-    code = "aria2c -d '"+ path + "' '"+ link + "' --file-allocation=none"
-    if os.path.isdir(path):
-        os.system(code)
-    else:
+    # Use smart_aria2_subprocess for direct aria2c usage
+    if not os.path.isdir(path):
         os.mkdir(path)
-        os.system(code)
+    url = link
+    success = smart_aria2_subprocess(url, path)
+    if not success:
+        print("[genDown] All aria2c modes failed for URL:", url)
 
 #(Drive) Google Drive:
 def drive():
@@ -436,7 +629,7 @@ def drive():
     else:
         os.mkdir(path)
         os.system(code)
-  
+
 #(Master) Link Assortment (Distributor)
 def linkDistributor():
     if "drive" in link:
@@ -482,7 +675,7 @@ def masterDirectory():
             for root, dirs, files in os.walk(path):
                 if not len(dirs) and not len(files):
                     empty_Dir.append(root)
-            
+
             if not len(empty_Dir) == int("0"):
                 for x in empty_Dir:
                     os.rmdir(x + "/")
