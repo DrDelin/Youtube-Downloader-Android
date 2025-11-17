@@ -1,4 +1,4 @@
-#Version 1.0.0.0
+#Version 1.1.0.0
 #Engine 1.0
 #BETA VERSION
 
@@ -96,7 +96,7 @@ print(f"Incognito Mode: {state}\n")
 
 #Update news:
 print("(Changelog)Whats new...!\n")
-print("   >BETA VERSION\n")
+print("   >BETA VERSION - Aria2 Accleration\n")
 
 #(Master) Verification of dependencies
 def dependency():
