@@ -13,7 +13,7 @@ start = time.time()
 cprint("WELCOME TO TERMUX DOWNLOADER","cyan","on_red",attrs=["bold"])
 
 #Update Server URL:
-url = "https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/refs/heads/master/YTD_Android.py"
+url = "https://raw.githubusercontent.com/DrDelin/Youtube-Downloader-Android/refs/heads/beta/YTD_Android.py"
 
 #Local Version No:
 l_version = linecache.getline(r"/data/data/com.termux/files/home/main.py", 1)
