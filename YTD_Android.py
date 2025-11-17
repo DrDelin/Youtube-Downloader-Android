@@ -1,6 +1,6 @@
 #Version 11.0.0.0
 #Engine 11.0
-#Stable version
+#BETA VERSION
 
 #(Master) imports
 import os
