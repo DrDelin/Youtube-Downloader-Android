@@ -1,4 +1,4 @@
-#Version 11.0.0.0
+#Version 11.0.1.0
 #Engine 11.0
 #Stable version
 
@@ -11,17 +11,17 @@ from termcolor import colored
 from datetime import date
 
 #Version Info:
-version = (linecache.getline(linecache.sys.argv[0],1))
+version = (linecache.getline(sys.argv[0],1))
 print(version.replace("#", ""))
 linecache.clearcache()
 
 #Engine info:
-engine = (linecache.getline(linecache.sys.argv[0],2))
+engine = (linecache.getline(sys.argv[0],2))
 print(engine.replace("#", ""))
 linecache.clearcache()
 
 #Build info:
-build = (linecache.getline(linecache.sys.argv[0],3))
+build = (linecache.getline(sys.argv[0],3))
 print("Build: "+ build.replace("#", ""))
 linecache.clearcache()
 
